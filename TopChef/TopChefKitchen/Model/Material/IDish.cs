@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TopChefKitchen.Model.Material
 {
-    interface IDishes
+    interface IDish
     {
         int Quantity { get; set; }
     }

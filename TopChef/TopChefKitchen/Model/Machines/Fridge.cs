@@ -18,7 +18,8 @@ namespace TopChefKitchen.Model.Machines
             this.Position = position;
             this.Name = "Fridge";
             this.IsStatic = false;
-            this.Capacity = 10;                       
+            this.Capacity = 10;
+            this.Preparation = new List<Preparation>();
         }
 
         public void addItem(Preparation preparation)

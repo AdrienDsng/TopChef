@@ -21,6 +21,11 @@ namespace TopChefKitchen.Model.Machines
         public Machine(Position position, string name)
         {
             this.Position = position;
+            this.Capacity = 1;
+            this.WorkingTime = 5;
+            this.IsStatic = false;
+            this.Name = "Machine";
+            on();
         }
 
         public Machine()

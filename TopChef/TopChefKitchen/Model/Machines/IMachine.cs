@@ -10,7 +10,7 @@ namespace TopChefKitchen.Model.Machines
     interface IMachine
     {
         int Capacity { get; set; }
-        int WaitTime { get; set; }
+        int WorkingTime { get; set; }
 
         void on();
         void off();

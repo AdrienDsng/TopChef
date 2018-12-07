@@ -11,27 +11,24 @@ namespace TopChefKitchen.Model.Machines
     class Fridge : Machine
     {
        
-
-        public Fridge(position.Position position) : base()
+        public Fridge(position.Position position, string name) : base()
         {
             this.Position = position;
             this.Name = "Fridge";
             this.IsStatic = false;
-            this.Capacity = 10;
-            
-            
+            this.Capacity = 10;                       
         }
 
         public List<Preparation> Preparation { get; set ; }
 
-        public void addItem(INamed name, int waitTime)
+        public void addItem(INamed name)
         {
-            throw new NotImplementedException();
+            Items.Add(name);
         }
 
         new public void removeItem(INamed name)
         {
-            throw new NotImplementedException();
+            Items.Remove(name);
         }
 
     }

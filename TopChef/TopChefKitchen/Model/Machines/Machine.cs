@@ -12,7 +12,7 @@ namespace TopChefKitchen.Model.Machines
     {
    
         public int Capacity { get ; set; }
-        public int WaitTime { get ; set ; }
+        public int WorkingTime { get ; set ; }
         public bool IsStatic { get; set; }
         public string State { get ; set; }
         public string Name { get ; set ; }
@@ -26,7 +26,7 @@ namespace TopChefKitchen.Model.Machines
 
         public Machine()
         {
-
+            on();
         }
 
         public void addItem(INamed name)

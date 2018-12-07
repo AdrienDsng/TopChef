@@ -14,7 +14,6 @@ namespace TopChefKitchen.Model.Machines
 
         void on();
         void off();
-        void addItem(INamed name);
-        void removeItem(INamed name);
+
     }
 }

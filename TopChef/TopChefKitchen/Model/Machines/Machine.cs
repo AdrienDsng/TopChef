@@ -16,8 +16,7 @@ namespace TopChefKitchen.Model.Machines
         public bool IsStatic { get; set; }
         public string State { get ; set; }
         public string Name { get ; set ; }
-        internal List<INamed> Items { get ; set ; }
-        internal Position Position { get ; set; }
+        public Position Position { get ; set; }
 
         public Machine(Position position, string name)
         {
@@ -29,11 +28,6 @@ namespace TopChefKitchen.Model.Machines
             on();
         }
 
-        public void addItem(INamed name)
-        {
-            Items.Add(name);
-        }
-
         public void off()
         {
             this.State = "off";
@@ -42,11 +36,6 @@ namespace TopChefKitchen.Model.Machines
         public void on()
         {
             this.State = "standby";
-        }
-
-        public void removeItem(INamed name)
-        {
-            Items.Remove(name);
         }
     }
 }

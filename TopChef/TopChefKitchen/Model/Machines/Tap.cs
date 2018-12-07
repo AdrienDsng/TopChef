@@ -12,7 +12,7 @@ namespace TopChefKitchen.Model.Machines
     class Tap : Machine
     {
         
-        public List<Dishes> Dishes { get; set; }
+        public List<Dish> Dishes { get; set; }
         public static Semaphore semaphore = new Semaphore(0, 1);
 
         public Tap(Position position) : base()
@@ -24,12 +24,12 @@ namespace TopChefKitchen.Model.Machines
             this.WorkingTime = 0;
         }
 
-        public void addItem(Dishes dish)
+        public void addItem(Dish dish)
         {
             Dishes.Add(dish);
         }
 
-        public void removeItem(Dishes dish)
+        public void removeItem(Dish dish)
         {
             Dishes.Remove(dish);
         }

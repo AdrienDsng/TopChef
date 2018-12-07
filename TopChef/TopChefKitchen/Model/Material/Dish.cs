@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TopChefKitchen.Model.Material
 {
-    class Dishes
+    class Dish
     {
     }
 }

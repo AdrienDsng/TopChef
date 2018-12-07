@@ -11,5 +11,14 @@ namespace TopChefKitchen.Model.Machines
     {
         public List<Dishes> Dishes { get; set; }
 
+        public void addItem(Dishes dish)
+        {
+            Dishes.Add(dish);
+        }
+
+        public void removeItem(Dishes dish)
+        {
+            Dishes.Remove(dish);
+        }
     }
 }

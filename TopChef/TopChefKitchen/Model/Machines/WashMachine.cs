@@ -11,5 +11,15 @@ namespace TopChefKitchen.Model.Machines
     {
         public List<Fabrics> Fabrics { get; set; }
 
+        public void addItem(Fabrics fabric)
+        {
+            Fabrics.Add(fabric);
+        }
+
+        public void removeItem(Fabrics fabric)
+        {
+            Fabrics.Remove(fabric);
+        }
+
     }
 }

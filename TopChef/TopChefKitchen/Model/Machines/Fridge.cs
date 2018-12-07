@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using TopChefKitchen.Model.Interface;
 using TopChefKitchen.Model.Recipe;
@@ -12,9 +13,11 @@ namespace TopChefKitchen.Model.Machines
     {
 
         public List<Preparation> Preparation { get; set; }
+        public static Semaphore semaphore = new Semaphore(0,1);
 
         public Fridge(position.Position position, string name) : base()
         {
+            
             this.Position = position;
             this.Name = "Fridge";
             this.IsStatic = false;

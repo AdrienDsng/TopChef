@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using TopChefKitchen.Model.Material;
 using TopChefKitchen.Model.position;
@@ -12,6 +13,7 @@ namespace TopChefKitchen.Model.Machines
     {
 
         public List<Dishes> Dishes { get; set ; }
+        public static Semaphore semaphore = new Semaphore(0, 1);
         public int maxCuttelry = 24;
         public int maxGlass = 24;
         public int maxPlate = 24;

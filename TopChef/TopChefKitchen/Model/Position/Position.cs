@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TopChefKitchen.Model.position
 {
-    class Position : IPosition
+    class Position : IDisplayable
     {
 
         public int X { get ; set; }

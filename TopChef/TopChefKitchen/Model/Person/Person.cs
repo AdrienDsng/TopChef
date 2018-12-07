@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TopChefKitchen.Model.Material
+namespace TopChefKitchen.Model.Personn
 {
-    class CoffeCup
+    class Person
     {
     }
 }

@@ -12,12 +12,12 @@ namespace TopChefKitchen.Model.Machines
 
         public List<Dishes> Dishes { get; set ; }
 
-        new public void addItem(Dishes dish)
+        public void addItem(Dishes dish)
         {
             Dishes.Add(dish);
         }
 
-        new public void removeItem(Dishes dish)
+        public void removeItem(Dishes dish)
         {
             Dishes.Remove(dish);
         }

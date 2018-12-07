@@ -26,7 +26,7 @@ namespace TopChefKitchen.Model.Machines
             Preparation.Add(preparation);
         }
 
-        new public void removeItem(Preparation preparation)
+        public void removeItem(Preparation preparation)
         {
             Preparation.Remove(preparation);
         }

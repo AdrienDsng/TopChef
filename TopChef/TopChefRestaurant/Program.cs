@@ -1,4 +1,8 @@
 ﻿using System;
+using TopChefRestaurant;
+using TopChefRestaurant.Controller;
+using TopChefRestaurant.Model;
+using TopChefRestaurant.View;
 
 namespace TopChefRestaurant
 {
@@ -13,8 +17,12 @@ namespace TopChefRestaurant
         [STAThread]
         static void Main()
         {
-            using (var game = new Game1())
-                game.Run();
+            //using (var game = new Game1())
+            //    game.Run();
+
+            RestaurantModel model = new RestaurantModel();
+            RestaurantController controller = new RestaurantController(model);
+            RestaurantView view = new RestaurantView(controller);
         }
     }
 }

@@ -14,3 +14,22 @@ D:\documents\Projet Topchef\TopChef\TopChef\TopChefKitchen\bin\DesktopGL\AnyCPU\
 D:\documents\Projet Topchef\TopChef\TopChef\TopChefKitchen\bin\DesktopGL\AnyCPU\Debug\MonoGame.Framework.dll
 D:\documents\Projet Topchef\TopChef\TopChef\TopChefKitchen\obj\Debug\TopChefKitchen.exe
 D:\documents\Projet Topchef\TopChef\TopChef\TopChefKitchen\obj\Debug\TopChefKitchen.pdb
+C:\Users\Julien\Documents\csharp\topchef\TopChef\TopChefKitchen\bin\DesktopGL\AnyCPU\Debug\x86\SDL2.dll
+C:\Users\Julien\Documents\csharp\topchef\TopChef\TopChefKitchen\bin\DesktopGL\AnyCPU\Debug\x64\SDL2.dll
+C:\Users\Julien\Documents\csharp\topchef\TopChef\TopChefKitchen\bin\DesktopGL\AnyCPU\Debug\x86\soft_oal.dll
+C:\Users\Julien\Documents\csharp\topchef\TopChef\TopChefKitchen\bin\DesktopGL\AnyCPU\Debug\x64\soft_oal.dll
+C:\Users\Julien\Documents\csharp\topchef\TopChef\TopChefKitchen\bin\DesktopGL\AnyCPU\Debug\x86\libSDL2-2.0.so.0
+C:\Users\Julien\Documents\csharp\topchef\TopChef\TopChefKitchen\bin\DesktopGL\AnyCPU\Debug\x64\libSDL2-2.0.so.0
+C:\Users\Julien\Documents\csharp\topchef\TopChef\TopChefKitchen\bin\DesktopGL\AnyCPU\Debug\x86\libopenal.so.1
+C:\Users\Julien\Documents\csharp\topchef\TopChef\TopChefKitchen\bin\DesktopGL\AnyCPU\Debug\x64\libopenal.so.1
+C:\Users\Julien\Documents\csharp\topchef\TopChef\TopChefKitchen\bin\DesktopGL\AnyCPU\Debug\libSDL2-2.0.0.dylib
+C:\Users\Julien\Documents\csharp\topchef\TopChef\TopChefKitchen\bin\DesktopGL\AnyCPU\Debug\libopenal.1.dylib
+C:\Users\Julien\Documents\csharp\topchef\TopChef\TopChefKitchen\bin\DesktopGL\AnyCPU\Debug\MonoGame.Framework.dll.config
+C:\Users\Julien\Documents\csharp\topchef\TopChef\TopChefKitchen\bin\DesktopGL\AnyCPU\Debug\TopChefKitchen.exe
+C:\Users\Julien\Documents\csharp\topchef\TopChef\TopChefKitchen\bin\DesktopGL\AnyCPU\Debug\TopChefKitchen.pdb
+C:\Users\Julien\Documents\csharp\topchef\TopChef\TopChefKitchen\bin\DesktopGL\AnyCPU\Debug\MonoGame.Framework.dll
+C:\Users\Julien\Documents\csharp\topchef\TopChef\TopChefKitchen\obj\Debug\TopChefKitchen.csprojAssemblyReference.cache
+C:\Users\Julien\Documents\csharp\topchef\TopChef\TopChefKitchen\obj\Debug\TopChefKitchen.csproj.CoreCompileInputs.cache
+C:\Users\Julien\Documents\csharp\topchef\TopChef\TopChefKitchen\obj\Debug\TopChefKitchen.csproj.CopyComplete
+C:\Users\Julien\Documents\csharp\topchef\TopChef\TopChefKitchen\obj\Debug\TopChefKitchen.exe
+C:\Users\Julien\Documents\csharp\topchef\TopChef\TopChefKitchen\obj\Debug\TopChefKitchen.pdb

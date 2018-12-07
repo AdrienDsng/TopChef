@@ -32,5 +32,13 @@ namespace TopChefKitchen.Model.Machines
             Fabrics.Remove(fabric);
         }
 
+        public void check()
+        {
+            if(Fabrics.Count() > Capacity)
+            {
+                this.State = "Working";
+            }
+        }
+
     }
 }

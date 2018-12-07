@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TopChefKitchen.Model.Material;
 
 namespace TopChefKitchen.Model.Machines
 {
@@ -11,14 +12,14 @@ namespace TopChefKitchen.Model.Machines
 
         public List<Dishes> Dishes { get; set ; }
 
-        new public void addItem(INamed name)
+        new public void addItem(Dishes dish)
         {
-            throw new NotImplementedException();
+            Dishes.Add(dish);
         }
 
-        new public void removeItem(INamed name)
+        new public void removeItem(Dishes dish)
         {
-            throw new NotImplementedException();
+            Dishes.Remove(dish);
         }
     }
 }

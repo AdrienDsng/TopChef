@@ -3,10 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TopChefKitchen.Model.Material;
 
 namespace TopChefKitchen.Model.Machines
 {
     class WashMachine
     {
+        public List<Fabrics> Fabrics { get; set; }
+
     }
 }

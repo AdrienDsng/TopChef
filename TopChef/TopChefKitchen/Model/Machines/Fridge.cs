@@ -10,7 +10,9 @@ namespace TopChefKitchen.Model.Machines
 {
     class Fridge : Machine
     {
-       
+
+        public List<Preparation> Preparation { get; set; }
+
         public Fridge(position.Position position, string name) : base()
         {
             this.Position = position;
@@ -19,16 +21,14 @@ namespace TopChefKitchen.Model.Machines
             this.Capacity = 10;                       
         }
 
-        public List<Preparation> Preparation { get; set ; }
-
-        public void addItem(INamed name)
+        public void addItem(Preparation preparation)
         {
-            Items.Add(name);
+            Preparation.Add(preparation);
         }
 
-        new public void removeItem(INamed name)
+        new public void removeItem(Preparation preparation)
         {
-            Items.Remove(name);
+            Preparation.Remove(preparation);
         }
 
     }

@@ -6,7 +6,7 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>0e61c8cf-cd1b-4713-b32c-49649b814414</ProjectGuid>
+    <ProjectGuid>a58e5149-864b-4538-a413-75e00a1fdf69</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>TopChefRestaurant</RootNamespace>

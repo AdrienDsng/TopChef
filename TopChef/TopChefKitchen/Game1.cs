@@ -11,11 +11,15 @@ namespace TopChefKitchen
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
-        
+        public const int WINDOW_WIDTH = 224;
+        public const int WINDOW_HEIGHT = 248;
+
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
+            graphics.PreferredBackBufferWidth = WINDOW_WIDTH;
+            graphics.PreferredBackBufferHeight = WINDOW_HEIGHT;
         }
 
         /// <summary>
@@ -63,6 +67,8 @@ namespace TopChefKitchen
                 Exit();
 
             // TODO: Add your update logic here
+            graphics.PreferredBackBufferWidth = WINDOW_WIDTH;
+            graphics.PreferredBackBufferHeight = WINDOW_HEIGHT;
 
             base.Update(gameTime);
         }

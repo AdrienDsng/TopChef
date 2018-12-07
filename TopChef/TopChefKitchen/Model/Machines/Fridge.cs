@@ -1,12 +1,12 @@
-﻿using projettopchef.Kitchen.Model.Interface;
-using projettopchef.Kitchen.Model.Recipe;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TopChefKitchen.Model.Interface;
+using TopChefKitchen.Model.Recipe;
 
-namespace projettopchef.Kitchen.Model.Machines
+namespace TopChefKitchen.Model.Machines
 {
     class Fridge : Machine
     {

@@ -1,11 +1,11 @@
-﻿using projettopchef.Kitchen.Model.Recipe;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TopChefKitchen.Model.Recipe;
 
-namespace projettopchef.Kitchen.Model
+namespace TopChefKitchen.Model
 {
     class Bar
     {

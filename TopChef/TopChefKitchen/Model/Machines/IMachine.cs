@@ -1,11 +1,11 @@
-﻿using projettopchef.Kitchen.Model.Interface;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TopChefKitchen.Model.Interface;
 
-namespace projettopchef.Kitchen.Model.Machines
+namespace TopChefKitchen.Model.Machines
 {
     interface IMachine
     {

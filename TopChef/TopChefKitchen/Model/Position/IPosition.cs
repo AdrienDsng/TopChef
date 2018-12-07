@@ -1,10 +1,11 @@
-﻿using System;
+﻿using projettopchef.Kitchen.Model.position;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace projettopchef.Kitchen.Model.position
+namespace TopChefKitchen.Model.position
 {
     interface IPosition
     {

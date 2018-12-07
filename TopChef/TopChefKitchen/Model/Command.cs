@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using projettopchef.Kitchen.Model.Recipe;
 
-namespace projettopchef.Kitchen.Model
+
+namespace TopChefKitchen.Model
 {
     class Command
     {

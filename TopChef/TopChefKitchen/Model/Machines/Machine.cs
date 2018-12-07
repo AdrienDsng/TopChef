@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using projettopchef.Kitchen.Model.Interface;
-using projettopchef.Kitchen.Model.position;
+using TopChefKitchen.Model.Interface;
+using TopChefKitchen.Model.position;
 
-namespace projettopchef.Kitchen.Model.Machines
+namespace TopChefKitchen.Model.Machines
 {
     class Machine : IMachine, IState, IStatic, INamed
     {

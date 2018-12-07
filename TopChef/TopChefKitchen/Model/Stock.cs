@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.Data;
 using System.Data.SqlClient;
 
-namespace projettopchef.Kitchen.Model
+namespace TopChefKitchen.Model
 {
     class Stock
     {

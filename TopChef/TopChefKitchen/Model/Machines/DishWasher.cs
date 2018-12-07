@@ -25,7 +25,7 @@ namespace TopChefKitchen.Model.Machines
             this.Name = "DishWasher";
             this.IsStatic = false;
             this.Capacity = 72;
-            this.WorkingTime = 10;
+            this.WorkingTime = 8;
         }
 
         public void addItem(Dishes dish)

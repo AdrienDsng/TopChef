@@ -11,7 +11,7 @@ namespace TopChefKitchen.Model.Machines
 {
     class WashMachine : Machine
     {
-        public List<Fabrics> Fabrics { get; set; }
+        public List<Fabric> Fabrics { get; set; }
         public static Semaphore semaphore = new Semaphore(0, 1);
 
         public WashMachine(Position position) : base()
@@ -23,12 +23,12 @@ namespace TopChefKitchen.Model.Machines
             this.WorkingTime = 10;
         }
 
-        public void addItem(Fabrics fabric)
+        public void addItem(Fabric fabric)
         {
             Fabrics.Add(fabric);
         }
 
-        public void removeItem(Fabrics fabric)
+        public void removeItem(Fabric fabric)
         {
             Fabrics.Remove(fabric);
         }

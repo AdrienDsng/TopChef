@@ -24,12 +24,12 @@ namespace TopChefKitchen.Model.Machines
             this.WorkingTime = 0;
         }
 
-        public void addItem(Dish dish)
+        public void AddItem(Dish dish)
         {
             Dishes.Add(dish);
         }
 
-        public void removeItem(Dish dish)
+        public void RemoveItem(Dish dish)
         {
             Dishes.Remove(dish);
         }

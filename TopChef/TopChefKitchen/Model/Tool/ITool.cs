@@ -11,4 +11,4 @@ namespace TopChefKitchen.Model.Tool
         int Quantity { get; set; }
         string Size { get; set; }
     }
-}s
+}

@@ -48,6 +48,40 @@ namespace TopChefKitchen.Model
             return all;
         }
 
+        public void SelectRecipe(string name)
+        {
+
+            if (CheckIfResourceAvailable(name) == true)
+            { 
+            Recipe = CreateRecipe(name);
+            
+            Rq_sql = "SELECT * FROM steps WHERE id = " + Id;
+            Command = new System.Data.SqlClient.SqlCommand(Rq_sql, Connection);
+            DataAdapter = new System.Data.SqlClient.SqlDataAdapter(Command);
+            DataAdapter.Fill(DataSet, "rows");
+            ReaderSteps = Command.ExecuteReader();
+            
+           while(ReaderSteps.GetString(1) != null)
+            {
+                Step step = new Step
+                {
+                    RecipeName = name,
+                    Id = ReaderSteps.GetInt32(1),
+                    Wait_Time = ReaderSteps.GetInt32(3),
+                    Nb_step = ReaderSteps.GetInt32(4),
+                    Sync = ReaderSteps.GetInt32(5)
+                };
+                UpdateStep(step);
+                Recipe.Steps.Add(step);
+                ReaderSteps.Read();
+            }           
+            ReaderSteps.Close();
+
+            UpdateStock(Recipe.Name);
+            }
+            
+        }
+
 
         }
 

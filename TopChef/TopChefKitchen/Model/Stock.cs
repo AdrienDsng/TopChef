@@ -101,6 +101,28 @@ namespace TopChefKitchen.Model
 
         }
 
+        public Recipe.Recipe CreateRecipe(string name)
+        {
+            Rq_sql = "SELECT * FROM recipes WHERE name =" + name;
+            Command = new System.Data.SqlClient.SqlCommand(Rq_sql, Connection);
+            DataAdapter = new System.Data.SqlClient.SqlDataAdapter(Command);
+            DataAdapter.Fill(DataSet, "rows");
+            string recipe = DataSet.ToString();
+
+            Recipe = new Recipe.Recipe
+            {
+                Name = name
+            };
+            ReaderRecipe = Command.ExecuteReader();
+            string type = ReaderRecipe.GetString(4);
+            Recipe.Type = type;
+            int nb_people = ReaderRecipe.GetInt32(4);
+            Recipe.Nb_people = nb_people;
+            Id = ReaderRecipe.GetString(1);
+            ReaderRecipe.Close();
+            return Recipe;
+        }
+
 
         }
 

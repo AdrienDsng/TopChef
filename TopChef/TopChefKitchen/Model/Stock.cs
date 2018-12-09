@@ -38,6 +38,16 @@ namespace TopChefKitchen.Model
             Command = null;
         }
 
+        public string SelectAll()
+        {
+            Rq_sql = "SELECT * FROM *";
+            Command = new System.Data.SqlClient.SqlCommand(Rq_sql, Connection);
+            DataAdapter = new System.Data.SqlClient.SqlDataAdapter(Command);
+            DataAdapter.Fill(DataSet, "rows");
+            string all = DataSet.ToString();
+            return all;
+        }
+
 
         }
 

@@ -177,6 +177,15 @@ namespace TopChefKitchen.Model
 
         }
 
+        private void CheckResourceQuantity()
+        {
+            Rq_sql = "DELETE * FROM stock WHERE quantity = 0";
+            Command = new System.Data.SqlClient.SqlCommand(Rq_sql, Connection);
+            DataAdapter = new System.Data.SqlClient.SqlDataAdapter(Command);
+            DataAdapter.Fill(DataSet, "rows");
+           
+        }
+
 
         }
 

@@ -82,6 +82,25 @@ namespace TopChefKitchen.Model
             
         }
 
+        private void UpdateStep(Step step)
+        {
+            Rq_sql = "SELECT * FROM step_tool WHERE id_step =" + step.Id;
+            Command = new System.Data.SqlClient.SqlCommand(Rq_sql, Connection);
+            DataAdapter = new System.Data.SqlClient.SqlDataAdapter(Command);
+            DataAdapter.Fill(DataSet, "rows");
+            ReaderStep_Tool = Command.ExecuteReader();
+
+            Rq_sql = "SELECT * FROM step_tool WHERE id =" + ReaderStep_Tool.GetInt32(3);
+            ReaderStep_Tool.Close();
+            Command = new System.Data.SqlClient.SqlCommand(Rq_sql, Connection);
+            DataAdapter = new System.Data.SqlClient.SqlDataAdapter(Command);
+            DataAdapter.Fill(DataSet, "rows");
+            Readertools = Command.ExecuteReader();
+            step.Tool_Needed = Readertools.GetString(2);
+            Readertools.Close();
+
+        }
+
 
         }
 

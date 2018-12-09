@@ -123,6 +123,22 @@ namespace TopChefKitchen.Model
             return Recipe;
         }
 
+        public void UpdateStock(string name)
+        {
+            ReaderRecipe_Resource = GetRessourcesFromRecipe(name);
+            while (ReaderRecipe_Resource.GetString(1) != null)
+            {
+                int resourceId = ReaderRecipe_Resource.GetInt32(2);
+                int quantity = ReaderRecipe_Resource.GetInt32(4);
+                RemoveResource(resourceId, quantity);
+                
+                
+                ReaderSteps.Read();
+            }
+            ReaderRecipe_Resource.Close();
+            CheckResourceQuantity();
+        }
+
 
         }
 

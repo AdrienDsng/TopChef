@@ -139,6 +139,24 @@ namespace TopChefKitchen.Model
             CheckResourceQuantity();
         }
 
+        public void RemoveResource(int resourceId, int quantity)
+        {
+            Rq_sql = "SELECT * FROM stock WHERE id =" + resourceId;
+            Command = new System.Data.SqlClient.SqlCommand(Rq_sql, Connection);
+            DataAdapter = new System.Data.SqlClient.SqlDataAdapter(Command);
+            DataAdapter.Fill(DataSet, "rows");
+            ReaderStock = Command.ExecuteReader();
+            quantity = ReaderStock.GetInt32(3) - quantity;
+            ReaderStock.Close();
+
+            Rq_sql = "UPDATE stock SET quantity = "+ quantity + "WHERE id =  " + resourceId;
+            Command = new System.Data.SqlClient.SqlCommand(Rq_sql, Connection);
+            DataAdapter = new System.Data.SqlClient.SqlDataAdapter(Command);
+            DataAdapter.Fill(DataSet, "rows");
+           
+            
+        }
+
 
         }
 

@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -186,7 +186,43 @@ namespace TopChefKitchen.Model
            
         }
 
+        private bool CheckIfResourceAvailable(String name)
+        {
+            List<int> quantities = new List<int>();
+            List<int> ids = new List<int>();
+            bool isnull = false;
+            ReaderRecipe_Resource = GetRessourcesFromRecipe(name);
 
+            while (ReaderRecipe_Resource.GetString(1) != null)
+            {
+                ids.Add(ReaderRecipe_Resource.GetInt32(2));
+                quantities.Add(ReaderRecipe_Resource.GetInt32(4));
+                
+                ReaderSteps.Read();
+            }
+            ReaderRecipe_Resource.Close();
+            int i = 0;
+            foreach (int value in ids)
+            {
+                Rq_sql = "SELECT * FROM stock WHERE id = "+ ids;
+                Command = new System.Data.SqlClient.SqlCommand(Rq_sql, Connection);
+                DataAdapter = new System.Data.SqlClient.SqlDataAdapter(Command);
+                DataAdapter.Fill(DataSet, "rows");
+                ReaderStock = Command.ExecuteReader();
+                if (quantities[i]- ReaderStock.GetInt32(4) >= 0)
+                {
+                    isnull = true;
+                }
+                else
+                {
+                    isnull = false;
+                }
+                i++;
+            }
+
+
+            return isnull;
+           
         }
 
     }

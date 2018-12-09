@@ -157,6 +157,26 @@ namespace TopChefKitchen.Model
             
         }
 
+        private SqlDataReader GetRessourcesFromRecipe(string name)
+        {
+            Rq_sql = "SELECT * FROM recipes WHERE name =" + name ;
+            Command = new System.Data.SqlClient.SqlCommand(Rq_sql, Connection);
+            DataAdapter = new System.Data.SqlClient.SqlDataAdapter(Command);
+            DataAdapter.Fill(DataSet, "rows");
+            ReaderRecipe = Command.ExecuteReader();
+
+            Rq_sql = "SELECT * FROM recipe_resource WHERE id_recipe =" + ReaderRecipe.GetInt32(1);
+            ReaderRecipe.Close();
+            Command = new System.Data.SqlClient.SqlCommand(Rq_sql, Connection);
+            DataAdapter = new System.Data.SqlClient.SqlDataAdapter(Command);
+            DataAdapter.Fill(DataSet, "rows");
+            ReaderRecipe_Resource = Command.ExecuteReader();
+
+            return ReaderRecipe_Resource;
+
+
+        }
+
 
         }
 

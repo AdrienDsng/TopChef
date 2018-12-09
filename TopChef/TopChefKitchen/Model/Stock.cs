@@ -27,9 +27,19 @@ namespace TopChefKitchen.Model
         public string Rq_sql { get; set ; }
         public string Id { get; set; }
        
-        void UpdateStock()
+
+        public Stock()
         {
+            Rq_sql = null;
+            Cnx = @"Data Source=DESKTOP-OR03K2O\SQLEXPRESS;Initial Catalog=DB_A2_WS2;Integrated Security=True";
+            Connection = new System.Data.SqlClient.SqlConnection(Cnx);
+            DataSet = new System.Data.DataSet();
+            DataAdapter = null;
+            Command = null;
+        }
+
 
         }
+
     }
 }

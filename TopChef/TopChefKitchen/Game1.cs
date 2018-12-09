@@ -5,13 +5,13 @@ using Microsoft.Xna.Framework.Input;
 
 namespace TopChefKitchen
 {
-    public class Kitchen : Game
+    public class Game1 : Game
     {
         GraphicsDeviceManager graphics;
         private Map myMap = new Map(32, 32, 10, 10);
         SpriteBatch spriteBatch;
 
-        public Kitchen()
+        public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
             IsMouseVisible = true;

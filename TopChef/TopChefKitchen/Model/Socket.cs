@@ -12,9 +12,9 @@ namespace TopChefKitchen.Model
         private int port;
         private byte[] received;
 
-        public string Lp { get => lp; set => lp = value; }
-        public int Port { get => port; set => port = value; }
-        public byte[] Received { get => received; set => received = value; }
+        public string Lp { get; }
+        public int Port { get; }
+        public byte[] Received { get; }
 
         public void Send()
         {

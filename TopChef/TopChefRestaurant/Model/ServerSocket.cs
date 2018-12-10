@@ -46,6 +46,8 @@ namespace Model
 
             //handle the packet
 
+            PacketHandler.Handle(packet, clientSocket);
+
             _buffer = new byte[1024];
             clientSocket.BeginReceive(_buffer, 0, _buffer.Length, SocketFlags.None, ReceivedCallBack, clientSocket);
         }

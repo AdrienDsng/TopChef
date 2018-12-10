@@ -20,8 +20,20 @@ namespace Model
         }
         private void ConnectCallBack(IAsyncResult result)
         {
-            Console.WriteLine("Connext to restaurant");
+            Console.WriteLine("Connect to restaurant");
+            _buffer = new byte[1024];
             _socket.BeginReceive(_buffer, 0, _buffer.Length, SocketFlags.None, ReceivedCallBack, null);
+
+            #region Initial Packet
+
+            byte[] packet = new byte[4];
+            byte[] packetLength = BitConverter.GetBytes((ushort)packet.Length);
+            byte[] packetType = BitConverter.GetBytes((ushort)1000);
+            Array.Copy(packetLength, packet, 2);
+            Array.Copy(packetType, 0, packet, 2, 2);
+            _socket.Send(packet);
+
+            #endregion
         }
         private void ReceivedCallBack(IAsyncResult result)
         {

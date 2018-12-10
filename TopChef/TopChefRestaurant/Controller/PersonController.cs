@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
-using TopChefRestaurant.Controller.Actions;
+using TopChefRestaurant.Model.Actions;
 using TopChefRestaurant.Model.Person;
 using TopChefRestaurant.Model.Positions;
 
@@ -34,19 +34,19 @@ namespace TopChefRestaurant.Controller
 
         private void AttributeActions()
         {
-            bool shouldBreak = false;
             foreach (IAction action in _actionsNotAttributed)
             {
+                Person bestMatch = null;
                 foreach (Person employee in _restaurantEmployees)
                 {
-                    if (action.CanRealize(employee))
-                    {
-                        employee.AddAction(action);
-                        shouldBreak = true;
-                        break;
-                    }
+                    if (!action.CanRealize(employee)) continue;
+                    
+                    if (bestMatch == null)
+                        bestMatch = employee;
+                    else if (bestMatch.GetRemainingWorkingTime() > employee.GetRemainingWorkingTime())
+                        bestMatch = employee;
                 }
-                if (shouldBreak) break;
+                bestMatch?.AddAction(action);
             }
         }
 
@@ -54,12 +54,11 @@ namespace TopChefRestaurant.Controller
         {
             foreach (IAction action in _runningActions.ToList())
             {
-                if (action.DecreaseTime() == 0)
-                {
-                    _runningActions.Remove(action);
-                    action.Employee.Available = true;
-                    action.Employee.CurrentAction = null;
-                }
+                if (action.DecreaseTime() != 0) continue;
+                
+                _runningActions.Remove(action);
+                action.Employee.Available = true;
+                action.Employee.CurrentAction = null;
             }
         }
 
@@ -67,12 +66,11 @@ namespace TopChefRestaurant.Controller
         {
             foreach (Person employee in _restaurantEmployees)
             {
-                if (employee.Available && employee.HasActionLeft())
-                {
-                    employee.NextAction();
-                    employee.Available = false;
-                    _runningActions.Add(employee.CurrentAction);
-                }
+                if (!employee.Available || !employee.HasActionLeft()) continue;
+                
+                employee.NextAction();
+                employee.Available = false;
+                _runningActions.Add(employee.CurrentAction);
             }
         }
     }

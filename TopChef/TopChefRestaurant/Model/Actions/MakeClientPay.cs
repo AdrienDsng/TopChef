@@ -1,13 +1,14 @@
 using TopChefRestaurant.Model.Person;
 
-namespace TopChefRestaurant.Controller.Actions
+namespace TopChefRestaurant.Model.Actions
 {
-    public class LayTable : Action, IAction
+    public class MakeClientPay : Action, IAction
     {
         
-        public LayTable() : base(60)
+        public MakeClientPay() : base(20)
         {
         }
+        
         public override void Realize()
         {
             throw new System.NotImplementedException();
@@ -16,8 +17,7 @@ namespace TopChefRestaurant.Controller.Actions
         public int Time { get; }
         public bool CanRealize(object person)
         {
-            return person is RowChief;
+            return person is HotelMaster;
         }
-
     }
 }

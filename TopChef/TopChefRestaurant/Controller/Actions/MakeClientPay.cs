@@ -9,7 +9,7 @@ namespace TopChefRestaurant.Controller.Actions
         {
         }
         
-        public void Realize(object o)
+        public override void Realize()
         {
             throw new System.NotImplementedException();
         }

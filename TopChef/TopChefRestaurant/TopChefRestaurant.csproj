@@ -44,6 +44,7 @@
   <ItemGroup>
     <Compile Include="Controller\ClientController.cs" />
     <Compile Include="Controller\PersonController.cs" />
+    <Compile Include="Controller\RecipeController.cs" />
     <Compile Include="Controller\RestaurantController.cs" />
     <Compile Include="Controller\TableController.cs" />
     <Compile Include="Game1.cs" />
@@ -89,7 +90,9 @@
     <Compile Include="Model\Person\Waiter.cs" />
     <Compile Include="Model\Positions\IDisplayable.cs" />
     <Compile Include="Model\Positions\Position.cs" />
+    <Compile Include="Model\Recipe.cs" />
     <Compile Include="Model\RestaurantModel.cs" />
+    <Compile Include="Model\ServerSocket.cs" />
     <Compile Include="Model\Sleeper.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

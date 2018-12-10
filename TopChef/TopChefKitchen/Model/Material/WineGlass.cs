@@ -6,7 +6,18 @@ using System.Threading.Tasks;
 
 namespace TopChefKitchen.Model.Material
 {
-    class WineGlass
+    class WineGlass : Glass
     {
+        public WineGlass(position.Position position) :base(position)
+        {
+            Position = position;
+            Quantity = 150;
+            Size = "Small";
+            Name = "WineGlass";
+            State = "Standby";
+            IsStatic = false;
+            IsDirty = false;
+
+        }
     }
 }

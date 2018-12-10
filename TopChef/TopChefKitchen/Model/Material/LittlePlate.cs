@@ -6,7 +6,18 @@ using System.Threading.Tasks;
 
 namespace TopChefKitchen.Model.Material
 {
-    class LittlePlate
+    class LittlePlate : Dish
     {
+        public LittlePlate(position.Position position)
+        {
+            Position = position;
+            Quantity = 150;
+            Size = "Small";
+            Name = "LittlePlate";
+            State = "Standby";
+            IsStatic = false;
+            IsDirty = false;
+
+        }
     }
 }

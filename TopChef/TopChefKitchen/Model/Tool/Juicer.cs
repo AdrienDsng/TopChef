@@ -6,7 +6,17 @@ using System.Threading.Tasks;
 
 namespace TopChefKitchen.Model.Tool
 {
-    class Juicer
+    class Juicer : Tool
     {
+        public Juicer(position.Position position)
+        {
+            Position = position;
+            Quantity = 1;
+            Size = "Small";
+            Name = "Juicer";
+            State = "Standby";
+            IsStatic = false;
+            IsDirty = false;
+        }
     }
 }

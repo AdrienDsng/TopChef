@@ -35,5 +35,10 @@ namespace TopChefKitchen
             spriteBatch.Draw(characterSheetTexture, new Rectangle(X, Y, 128, 96), tintColor);
             spriteBatch.End();
         }
+        public void move(int x, int y)
+        {
+            this.X = x;
+            this.Y = y;
+        }
     }
 }

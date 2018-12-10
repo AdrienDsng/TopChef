@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using System.Net.WebSockets;
 using TopChefRestaurant.Model.Material;
 using TopChefRestaurant.Model.Person;
 
@@ -12,10 +14,12 @@ namespace TopChefRestaurant.Model.Actions
         }
         public override void Realize()
         {
-            throw new System.NotImplementedException();
+//            ClientSocket.send(Table.Dishes); TODO
+//            ClientSocket.send(Table.TableNapkin);
+            Table.Dishes = new List<Dish>();
+            Table.TableNapkin = null;
         }
 
-        public int Time { get; }
         public bool CanRealize(object person)
         {
             return person is Waiter;

@@ -35,5 +35,10 @@ namespace TopChefRestaurant.Controller
             _clients.Add(client);
             _personController.AddAction(new WelcomeClient(client, _tableController));
         }
+
+        public void RemoveClient(Client client)
+        {
+            this._clients.Remove(client);
+        }
     }
 }

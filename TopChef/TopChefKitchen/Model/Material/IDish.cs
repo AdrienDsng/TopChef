@@ -9,5 +9,6 @@ namespace TopChefKitchen.Model.Material
     interface IDish
     {
         int Quantity { get; set; }
+        string Size { get; set;  }
     }
 }

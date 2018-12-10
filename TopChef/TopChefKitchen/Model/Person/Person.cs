@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using TopChefKitchen.Model.Interface;
 using TopChefKitchen.Model.position;
+using TopChefKitchen.Model.Tool;
 
 namespace TopChefKitchen.Model.Personn
 {
@@ -16,6 +17,7 @@ namespace TopChefKitchen.Model.Personn
         public string Name { get ; set ; }
         public string State { get; set; }
         public Position Position { get ; set ; }
+        public Tool.Tool tool { get ; set ; }
 
         public Person(String name, Position position, int time)
         {

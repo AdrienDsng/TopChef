@@ -12,10 +12,9 @@ namespace TopChefRestaurant.Model.Actions
         }
         public override void Realize()
         {
-            throw new System.NotImplementedException();
+            Table.HasBread = true;
         }
 
-        public int Time { get; }
         public bool CanRealize(object person)
         {
             return person is Apprentice;

@@ -6,7 +6,17 @@ using System.Threading.Tasks;
 
 namespace TopChefKitchen.Model.Tool
 {
-    class SaladBowl
+    class SaladBowl : Tool
     {
+        public SaladBowl(position.Position position)
+        {
+            Position = position;
+            Quantity = 5;
+            Size = "Small";
+            Name = "SaladBowl";
+            State = "Standby";
+            IsStatic = false;
+            IsDirty = false;
+        }
     }
 }

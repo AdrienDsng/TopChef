@@ -23,6 +23,8 @@ namespace TopChefRestaurant
             RestaurantModel model = new RestaurantModel();
             RestaurantController controller = new RestaurantController(model);
             RestaurantView view = new RestaurantView(controller);
+            
+            controller.Loop();
         }
     }
 }

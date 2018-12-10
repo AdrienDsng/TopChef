@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using TopChefRestaurant.Model.Actions;
 using TopChefRestaurant.Model.Material;
+using TopChefRestaurant.Model.Person;
 using TopChefRestaurant.Model.Positions;
 
 namespace TopChefRestaurant.Controller
@@ -10,6 +11,7 @@ namespace TopChefRestaurant.Controller
     {
         private Dictionary<int, List<Table>> _availableTable = new Dictionary<int, List<Table>>();
         private List<Table> _busyTable = new List<Table>();
+        private Queue<Client> _clientsWaiting = new Queue<Client>();
         private PersonController _personController;
         public TableController(PersonController personController)
         {
@@ -35,11 +37,11 @@ namespace TopChefRestaurant.Controller
 
         public void MainLoop()
         {
-            randomTableEvent();
-            checkTables();
+            RandomTableEvent();
+            CheckTables();
         }
 
-        private void randomTableEvent()
+        private void RandomTableEvent()
         {
             Random rnd = new Random();
 
@@ -52,7 +54,7 @@ namespace TopChefRestaurant.Controller
             }
         }
 
-        private void checkTables()
+        private void CheckTables()
         {
             foreach (var table in _busyTable)
             {
@@ -64,10 +66,26 @@ namespace TopChefRestaurant.Controller
                 {
                     _personController.AddAction(new RefreshWater(table));
                 }
-                if (table.Clients.Count == 0)
+                if (table.Client.Number == 0)
                 {
                     _personController.AddAction(new DeserveTable(table));
                 }
+            }
+        }
+
+        public void AssignTable(Client client)
+        {
+            if (_availableTable[client.Number].Count > 0)
+            {
+                Table table = _availableTable[client.Number][0];
+                _availableTable.Remove(0);
+                table.Client = client;
+                client.Table = table;
+                _busyTable.Add(table);
+            }
+            else
+            {
+                _clientsWaiting.Enqueue(client);
             }
         }
     }

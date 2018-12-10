@@ -8,7 +8,7 @@ namespace TopChefRestaurant.Model.Material
     public class Table : IDisplayable, IStatic, INamed, IState
     {
         private int MaxNbClients { get; set; }
-        public List<Client> Clients { get; set; }
+        public Client Client { get; set; }
         public TableNapkin TableNapkin { get; set; }
         public bool HasBread { get; set; }
         public bool HasWater { get; set; }

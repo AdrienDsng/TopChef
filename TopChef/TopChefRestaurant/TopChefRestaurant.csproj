@@ -48,7 +48,6 @@
     <Compile Include="Controller\TableController.cs" />
     <Compile Include="Game1.cs" />
     <Compile Include="Model\Actions\Action.cs" />
-    <Compile Include="Model\Actions\AssignClient.cs" />
     <Compile Include="Model\Actions\DeserveTable.cs" />
     <Compile Include="Model\Actions\IAction.cs" />
     <Compile Include="Model\Actions\LayTable.cs" />

@@ -37,20 +37,19 @@ public class Socket
                 //while no response app break
                 Socket handler = listener.Accept();
                 data = null;
-
-                while (true)
-                {
-                    int bytesRec = handler.Receive(bytes);
-                    data += Encoding.ASCII.GetString(bytes, 0, bytesRec);
-                    if (data.IndexOf("<EOF>") > -1)
-                    {
-                        break;
-                    }
-                }
-
             }
+
+            hanlder.Shutdown(SocketShutdown.Both);
+            handler.Close();
+
+        } catch (Exception e)
+
+        {
+            Console.WriteLine(e.ToString)();
         }
-        
-    
+
+        Console.WriteLine("\nAppuyé sur entrer pour continuer...");
+        Console.Read();
 	}
+ 
 }

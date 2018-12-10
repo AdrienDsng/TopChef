@@ -22,8 +22,5 @@ namespace TopChefRestaurant.Model.Actions
         {
             return person is HotelMaster;
         }
-
-        public int Time { get; }
-
     }
 }

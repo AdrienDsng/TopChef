@@ -1,6 +1,6 @@
 using TopChefRestaurant.Model.Person;
 
-namespace TopChefRestaurant.Controller.Actions
+namespace TopChefRestaurant.Model.Actions
 {
     public class RefreshBreadWater : Action, IAction
     {

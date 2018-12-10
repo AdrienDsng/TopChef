@@ -1,12 +1,10 @@
-using TopChefRestaurant.Model.Person;
-
-namespace TopChefRestaurant.Controller.Actions
+namespace TopChefRestaurant.Model.Actions
 {
     public abstract class Action
     {
         private int Time { get; set; }
-        private int RemainingTime { get; set; }
-        public Person Employee { get; set; }
+        public int RemainingTime { get; set; }
+        public Person.Person Employee { get; set; }
         
         public Action(int time)
         {

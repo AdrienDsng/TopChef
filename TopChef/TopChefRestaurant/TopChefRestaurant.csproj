@@ -42,19 +42,20 @@
     <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Controller\Actions\Action.cs" />
-    <Compile Include="Controller\Actions\AssignClient.cs" />
-    <Compile Include="Controller\Actions\DeserveTable.cs" />
-    <Compile Include="Controller\Actions\IAction.cs" />
-    <Compile Include="Controller\Actions\LayTable.cs" />
-    <Compile Include="Controller\Actions\MakeClientPay.cs" />
-    <Compile Include="Controller\Actions\RefreshBreadWater.cs" />
-    <Compile Include="Controller\Actions\ServeTable.cs" />
-    <Compile Include="Controller\Actions\TakeCommands.cs" />
-    <Compile Include="Controller\Actions\WelcomeClient.cs" />
     <Compile Include="Controller\PersonController.cs" />
     <Compile Include="Controller\RestaurantController.cs" />
+    <Compile Include="Controller\TableController.cs" />
     <Compile Include="Game1.cs" />
+    <Compile Include="Model\Actions\Action.cs" />
+    <Compile Include="Model\Actions\AssignClient.cs" />
+    <Compile Include="Model\Actions\DeserveTable.cs" />
+    <Compile Include="Model\Actions\IAction.cs" />
+    <Compile Include="Model\Actions\LayTable.cs" />
+    <Compile Include="Model\Actions\MakeClientPay.cs" />
+    <Compile Include="Model\Actions\RefreshBreadWater.cs" />
+    <Compile Include="Model\Actions\ServeTable.cs" />
+    <Compile Include="Model\Actions\TakeCommands.cs" />
+    <Compile Include="Model\Actions\WelcomeClient.cs" />
     <Compile Include="Model\Interfaces\INamed.cs" />
     <Compile Include="Model\Interfaces\IState.cs" />
     <Compile Include="Model\Interfaces\IStatic.cs" />

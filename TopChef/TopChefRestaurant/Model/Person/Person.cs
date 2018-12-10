@@ -1,5 +1,5 @@
 using System.Collections.Generic;
-using TopChefRestaurant.Controller.Actions;
+using TopChefRestaurant.Model.Actions;
 using TopChefRestaurant.Model.Interfaces;
 using TopChefRestaurant.Model.Positions;
 
@@ -30,6 +30,7 @@ namespace TopChefRestaurant.Model.Person
         public string State { get; set; }
         public bool IsStatic { get; set; }
         public string Name { get; set; }
+        public IAction CurrentAction { get; set; }
         
         private Queue<IAction> ActionsList = new Queue<IAction>();
 
@@ -40,7 +41,19 @@ namespace TopChefRestaurant.Model.Person
         {
             return ActionsList.Count >= 1;
         }
-        public IAction CurrentAction { get; set; }
+
+        public int GetRemainingWorkingTime()
+        {
+            int remaining = 0;
+            if(CurrentAction != null)
+                remaining += CurrentAction.RemainingTime;
+            foreach (var action in ActionsList)
+            {
+                remaining += action.RemainingTime;
+            }
+
+            return remaining;
+        }
 
         public Person(string name, Position position)
         {

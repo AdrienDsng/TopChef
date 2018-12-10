@@ -19,5 +19,11 @@ namespace TopChefRestaurant.Model.Material
         public bool IsStatic { get; set; }
         public string Name { get; set; }
         public string State { get; set; }
+
+        public Table(int maxNbClients, Position position)
+        {
+            this.MaxNbClients = maxNbClients;
+            this.Position = position;
+        }
     }
 }

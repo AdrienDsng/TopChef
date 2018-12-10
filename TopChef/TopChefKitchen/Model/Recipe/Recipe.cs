@@ -12,7 +12,7 @@ namespace TopChefKitchen.Model.Recipe
     {
         
         public string Name { get ; set ; }
-        public string Type { get; set; }
+        public int Type { get; set; }
         public List<Step> Steps { get ; set ; }
         public int Time { get ; set ; }
         public int Nb_people { get; set; }

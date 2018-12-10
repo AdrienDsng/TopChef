@@ -23,6 +23,16 @@ namespace Model
             Console.WriteLine("Connext to restaurant");
             _socket.BeginReceive(_buffer, 0, _buffer.Length, SocketFlags.None, ReceivedCallBack, null);
         }
-        private void ReceivedCallBack(IAsyncResult result);
+        private void ReceivedCallBack(IAsyncResult result)
+        {
+            int bufLength = _socket.EndReceive(result);
+            byte[] packet = new byte[bufLength];
+            Array.Copy(_buffer, packet, packet.Length);
+
+            //handle packet
+
+            _buffer = new byte[1024];
+            _socket.BeginReceive(_buffer, 0, _buffer.Length, SocketFlags.None, ReceivedCallBack, null);
+        }
     }
-}
+} 

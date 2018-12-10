@@ -8,5 +8,6 @@ public class Socket
 {
 	private static Socket(string IP, int Port)
 	{
+        byte[] received = [1024];
 	}
 }

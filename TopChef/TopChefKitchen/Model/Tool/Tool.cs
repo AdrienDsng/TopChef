@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using TopChefKitchen.Model.Interface;
 using TopChefKitchen.Model.position;
+using TopChefKitchen.Model.Recipe;
 
 namespace TopChefKitchen.Model.Tool
 {
@@ -17,6 +18,12 @@ namespace TopChefKitchen.Model.Tool
         public string Name { get ; set ; }
         public string State { get ; set ; }
         public bool IsDirty { get ; set ; }
+        public Preparation Preparation { get ; set ; }
+
+        public void GetPreparation(Preparation preparation)
+        {
+            this.Preparation = preparation;
+        }
 
         public void move(Position position)
         {

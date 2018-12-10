@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TopChefKitchen.Model.Recipe;
 
 namespace TopChefKitchen.Model.Tool
 {
@@ -10,5 +11,8 @@ namespace TopChefKitchen.Model.Tool
     {
         int Quantity { get; set; }
         string Size { get; set; }
+        Preparation Preparation { get;set; }
+
+        void GetPreparation(Preparation preparation);
     }
 }

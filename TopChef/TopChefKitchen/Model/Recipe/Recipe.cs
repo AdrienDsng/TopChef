@@ -26,5 +26,9 @@ namespace TopChefKitchen.Model.Recipe
         {
                     
         }
+        public void AddStep(Step step)
+        {
+            Steps.Add(step);
+        }
     }
 }

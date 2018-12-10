@@ -6,10 +6,9 @@ using System.Threading.Tasks;
 
 namespace TopChefKitchen.Model.position
 {
-    interface IDisplayable
+    interface IPosition
     {
-        int X { get; set; }
-        int Y { get; set; }
+        Position Position { get; set; }
         void move(Position position);
     }
 }

@@ -8,6 +8,8 @@ namespace TopChefRestaurant.Model.Person
     public class Person : IPerson, IDisplayable, IState, IStatic, INamed
     {
         public int WorkingTime { get; set; }
+        public bool Available { get; set; }
+        
         public void Arrive()
         {
             throw new System.NotImplementedException();
@@ -32,6 +34,19 @@ namespace TopChefRestaurant.Model.Person
         private Queue<IAction> ActionsList = new Queue<IAction>();
 
         public void AddAction(IAction action) => ActionsList.Enqueue(action);
-        public IAction NextAction() => ActionsList.Dequeue();
+        public void NextAction() => CurrentAction = ActionsList.Dequeue();
+
+        public bool HasActionLeft()
+        {
+            return ActionsList.Count >= 1;
+        }
+        public IAction CurrentAction { get; set; }
+
+        public Person(string name, Position position)
+        {
+            this.Name = name;
+            this.Position = position;
+            this.Available = true;
+        }
     }
 }

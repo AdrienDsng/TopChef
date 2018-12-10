@@ -8,7 +8,7 @@ namespace TopChefRestaurant.Controller.Actions
         public LayTable() : base(60)
         {
         }
-        public void Realize(object o)
+        public override void Realize()
         {
             throw new System.NotImplementedException();
         }

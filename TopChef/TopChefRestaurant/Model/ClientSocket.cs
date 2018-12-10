@@ -21,6 +21,8 @@ public class Socket
         IPAddress ipAdress = ipHostInfo.AddressList[0];
         IPEndPoint localEndPoint = new IPEndPoint(IPAddress, 11000);
 
+        //Create socket
+        Socket listener = new Socket(ipAdress.AddressFamily, SocketType.Stream, ProtocolType.Tcp);
         
     
 	}

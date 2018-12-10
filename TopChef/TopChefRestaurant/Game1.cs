@@ -14,7 +14,8 @@ namespace TopChefRestaurant
 
         public const int WINDOWS_WIDTH = 568;
         public const int WINDOWS_HEIGHT = 784;
-
+        Vector2 position;
+        Texture2D redSquare;
         Texture2D backgroundmap;
         
         
@@ -24,6 +25,7 @@ namespace TopChefRestaurant
             graphics.PreferredBackBufferWidth = WINDOWS_WIDTH;
             graphics.PreferredBackBufferHeight = WINDOWS_HEIGHT;
             Content.RootDirectory = "Content";
+            position = new Vector2(0, 0);
         }
 
         /// <summary>
@@ -35,6 +37,12 @@ namespace TopChefRestaurant
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
+            redSquare = new Texture2D(this.GraphicsDevice, 100, 100);
+            Color[] colorData = new Color[100 * 100];
+            for (int i = 0; i < 10000; i++)
+                colorData[i] = Color.Red;
+
+            redSquare.SetData<Color>(colorData);
 
             base.Initialize();
         }
@@ -72,7 +80,9 @@ namespace TopChefRestaurant
                 Exit();
 
             // TODO: Add your update logic here
-
+            position.X += 1;
+            if (position.X > this.GraphicsDevice.Viewport.Width)
+                position.X = 0;
 
             base.Update(gameTime);
         }
@@ -86,8 +96,14 @@ namespace TopChefRestaurant
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
             // TODO: Add your drawing code here
+            //Draw background
             spriteBatch.Begin();
             spriteBatch.Draw(backgroundmap, new Vector2(0,0), Color.White);
+            spriteBatch.End();
+
+            //Draw square
+            spriteBatch.Begin();
+            spriteBatch.Draw(redSquare, position);
             spriteBatch.End();
 
             base.Draw(gameTime);

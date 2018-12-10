@@ -34,8 +34,16 @@ namespace TopChefKitchen
                 for (int y = 0; y < height; y++)
                 {
                     spriteBatch.FillRectangle(tilePosition, new Size2(tileWidth, tileHeight), Color.Black);
+
+                    tilePosition.Y = tileHeight;
+                    tilePosition.Y += tileHeight;
                 }
+
+                tilePosition.X = tileWidth;
+                tilePosition.X += tileWidth;
             }
+
+            
 
             spriteBatch.End();
 

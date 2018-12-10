@@ -53,25 +53,26 @@ namespace TopChefKitchen.Model
             {
                 Recipe = CreateRecipe(Recipe,name);
 
-                Rq_sql = "SELECT * FROM steps WHERE id = " + Id + ";" ;
+                Rq_sql = "SELECT * FROM steps WHERE id_recipe = " + Id + ";" ;
                 Command = new System.Data.SqlClient.SqlCommand(Rq_sql, Connection);           
                 ReaderSteps = Command.ExecuteReader();
-                ReaderSteps.Read();s
+             
                 while (ReaderSteps.Read() != false)
                 {
-                    Step step = new Step
-                    {
-                        RecipeName = name,
-                        Id = ReaderSteps.GetInt32(0),
-                        Wait_Time = ReaderSteps.GetInt32(2),
-                        Nb_step = ReaderSteps.GetInt32(3),
-                        Sync = ReaderSteps.GetInt32(4)
-                    };
-                    UpdateStep(step);
-                    Recipe.Steps.Add(step);
-                    ReaderSteps.Read();
-                }           
+                    Step step = new Step();
+                    step.RecipeName = name;
+                    step.Id = ReaderSteps.GetInt32(0);
+                    step.Wait_Time = ReaderSteps.GetInt32(2);
+                    step.Nb_step = ReaderSteps.GetInt32(3);
+                    step.Sync = ReaderSteps.GetInt32(4);                    
+                    Recipe.AddStep(step);
+                    
+                }
                 ReaderSteps.Close();
+                foreach (var value in Recipe.Steps)
+                {
+                    UpdateStep(value);
+                }
 
                 UpdateStock(Recipe.Name);
                 return this.Recipe;
@@ -81,17 +82,25 @@ namespace TopChefKitchen.Model
 
         private void UpdateStep(Step step)
         {
-            Rq_sql = "SELECT * FROM step_tool WHERE id_step =" + step.Id;
+            
+            Rq_sql = "SELECT * FROM step_tool WHERE id_step =" + step.Id+";";
             Command = new System.Data.SqlClient.SqlCommand(Rq_sql, Connection);
             ReaderStep_Tool = Command.ExecuteReader();
+            
 
-            Rq_sql = "SELECT * FROM step_tool WHERE id =" + ReaderStep_Tool.GetInt32(3);
+            if (ReaderStep_Tool.Read() != false)
+            {               
+                Rq_sql = "SELECT * FROM tools WHERE id =" + ReaderStep_Tool.GetInt32(2) + ";";
+            }
+                
             ReaderStep_Tool.Close();
             Command = new System.Data.SqlClient.SqlCommand(Rq_sql, Connection);
             Readertools = Command.ExecuteReader();
-            step.Tool_Needed = Readertools.GetString(2);
-            Readertools.Close();
-
+            if (Readertools.Read() != false)
+            {
+                step.Tool_Needed = Readertools.GetString(1);
+            }               
+            Readertools.Close();   
         }
 
         public Recipe.Recipe CreateRecipe(Recipe.Recipe recipe, string name)

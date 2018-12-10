@@ -8,8 +8,6 @@ namespace TopChefRestaurant.Model.Material
 {
     class Material
     {
-       
-
         public int Quantity { get ; set ; }
     }
 }

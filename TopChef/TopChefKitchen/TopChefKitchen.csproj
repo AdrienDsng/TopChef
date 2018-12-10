@@ -49,6 +49,7 @@
     <Compile Include="Model\Interface\IState.cs" />
     <Compile Include="Model\Interface\IStatic.cs" />
     <Compile Include="Model\Interface\IWashable.cs" />
+    <Compile Include="Model\Kitchen.cs" />
     <Compile Include="Model\Machines\DishWasher.cs" />
     <Compile Include="Model\Machines\Fridge.cs" />
     <Compile Include="Model\Machines\IMachine.cs" />
@@ -78,10 +79,11 @@
     <Compile Include="Model\Person\Apprentice.cs" />
     <Compile Include="Model\Person\Cook.cs" />
     <Compile Include="Model\Person\DishWasherDiver.cs" />
-    <Compile Include="Model\Person\IPersonn.cs" />
+    <Compile Include="Model\Person\ICook.cs" />
+    <Compile Include="Model\Person\IPerson.cs" />
     <Compile Include="Model\Person\KitchenChief.cs" />
     <Compile Include="Model\Person\Person.cs" />
-    <Compile Include="Model\Position\IDisplayable.cs" />
+    <Compile Include="Model\Position\IPosition.cs" />
     <Compile Include="Model\Position\Position.cs" />
     <Compile Include="Model\Recipe\FinalPreparation.cs" />
     <Compile Include="Model\Recipe\Preparation.cs" />

@@ -1,0 +1,201 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\MonoGame\v3.0\MonoGame.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\MonoGame\v3.0\MonoGame.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{D04F2BCE-7CE5-48D1-B4B5-145A639A422B}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>TopChefKitchen</RootNamespace>
+    <AssemblyName>TopChefKitchen</AssemblyName>
+    <FileAlignment>512</FileAlignment>
+    <MonoGamePlatform>DesktopGL</MonoGamePlatform>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\$(MonoGamePlatform)\$(Platform)\$(Configuration)\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;LINUX</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>false</Prefer32Bit>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|AnyCPU'">
+    <OutputPath>bin\$(MonoGamePlatform)\$(Platform)\$(Configuration)\</OutputPath>
+    <DefineConstants>TRACE;LINUX</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>false</Prefer32Bit>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Icon.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="Model\Bar.cs" />
+    <Compile Include="Model\Command.cs" />
+    <Compile Include="Model\Interface\INamed.cs" />
+    <Compile Include="Model\Interface\IObservable.cs" />
+    <Compile Include="Model\Interface\IState.cs" />
+    <Compile Include="Model\Interface\IStatic.cs" />
+    <Compile Include="Model\Interface\IWashable.cs" />
+    <Compile Include="Model\kitchenModel.cs" />
+    <Compile Include="Model\Machines\DishWasher.cs" />
+    <Compile Include="Model\Machines\Fridge.cs" />
+    <Compile Include="Model\Machines\IMachine.cs" />
+    <Compile Include="Model\Machines\Machine.cs" />
+    <Compile Include="Model\Machines\Tap.cs" />
+    <Compile Include="Model\Machines\WashMachine.cs" />
+    <Compile Include="Model\Material\BigSpoon.cs" />
+    <Compile Include="Model\Material\ChampagneGlass.cs" />
+    <Compile Include="Model\Material\CoffeeCup.cs" />
+    <Compile Include="Model\Material\CookingTable.cs" />
+    <Compile Include="Model\Material\CurvyPlate.cs" />
+    <Compile Include="Model\Material\Cuttlery.cs" />
+    <Compile Include="Model\Material\DessertPlate.cs" />
+    <Compile Include="Model\Material\Dish.cs" />
+    <Compile Include="Model\Material\DishFactory.cs" />
+    <Compile Include="Model\Material\Fabric.cs" />
+    <Compile Include="Model\Material\Fork.cs" />
+    <Compile Include="Model\Material\Glass.cs" />
+    <Compile Include="Model\Material\IDish.cs" />
+    <Compile Include="Model\Material\Knife.cs" />
+    <Compile Include="Model\Material\LittlePlate.cs" />
+    <Compile Include="Model\Material\LittleSpoon.cs" />
+    <Compile Include="Model\Material\Plate.cs" />
+    <Compile Include="Model\Material\TableCloth.cs" />
+    <Compile Include="Model\Material\TableNapkin.cs" />
+    <Compile Include="Model\Material\WineGlass.cs" />
+    <Compile Include="Model\Person\Apprentice.cs" />
+    <Compile Include="Model\Person\Cook.cs" />
+    <Compile Include="Model\Person\DishWasherDiver.cs" />
+    <Compile Include="Model\Person\ICook.cs" />
+    <Compile Include="Model\Person\IPerson.cs" />
+    <Compile Include="Model\Person\KitchenChief.cs" />
+    <Compile Include="Model\Person\Person.cs" />
+    <Compile Include="Model\Position\IPosition.cs" />
+    <Compile Include="Model\Position\Position.cs" />
+    <Compile Include="Model\Recipe\FinalPreparation.cs" />
+    <Compile Include="Model\Recipe\Preparation.cs" />
+    <Compile Include="Model\Recipe\Recipe.cs" />
+    <Compile Include="Model\Recipe\Step.cs" />
+    <Compile Include="Model\Socket.cs" />
+    <Compile Include="Model\Stock.cs" />
+    <Compile Include="Model\Tool\CookingFire.cs" />
+    <Compile Include="Model\Tool\CookingKnife.cs" />
+    <Compile Include="Model\Tool\Funnel.cs" />
+    <Compile Include="Model\Tool\ITool.cs" />
+    <Compile Include="Model\Tool\Juicer.cs" />
+    <Compile Include="Model\Tool\Mixer.cs" />
+    <Compile Include="Model\Tool\Oven.cs" />
+    <Compile Include="Model\Tool\Pan.cs" />
+    <Compile Include="Model\Tool\PressureCooker.cs" />
+    <Compile Include="Model\Tool\SaladBowl.cs" />
+    <Compile Include="Model\Tool\Sieve.cs" />
+    <Compile Include="Model\Tool\Stove.cs" />
+    <Compile Include="Model\Tool\Tool.cs" />
+    <Compile Include="Model\Tool\ToolFactory.cs" />
+    <Compile Include="Model\Tool\WoodenSpoon.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="View\Entity.cs" />
+    <Compile Include="View\kitchen.cs" />
+    <Compile Include="View\KitchenChief.cs" />
+    <Compile Include="View\map.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="MonoGame.Extended, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MonoGame.Extended.1.1.0\lib\portable-net45+win8+wpa81\MonoGame.Extended.dll</HintPath>
+    </Reference>
+    <Reference Include="MonoGame.Extended.Graphics, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MonoGame.Extended.Graphics.1.1.0\lib\portable-net45+win8+wpa81\MonoGame.Extended.Graphics.dll</HintPath>
+    </Reference>
+    <Reference Include="MonoGame.Extended.Tiled, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MonoGame.Extended.Tiled.1.1.0\lib\portable-net45+win8+wpa81\MonoGame.Extended.Tiled.dll</HintPath>
+    </Reference>
+    <Reference Include="MonoGame.Framework">
+      <HintPath>$(MonoGameInstallDirectory)\MonoGame\v3.0\Assemblies\DesktopGL\MonoGame.Framework.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Icon.ico" />
+    <EmbeddedResource Include="Icon.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <MonoGameContentReference Include="Content\Content.mgcb" />
+    <None Include="$(MonoGameInstallDirectory)\MonoGame\v3.0\Assemblies\DesktopGL\x86\SDL2.dll">
+      <Link>x86\SDL2.dll</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="$(MonoGameInstallDirectory)\MonoGame\v3.0\Assemblies\DesktopGL\x64\SDL2.dll">
+      <Link>x64\SDL2.dll</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="$(MonoGameInstallDirectory)\MonoGame\v3.0\Assemblies\DesktopGL\x86\soft_oal.dll">
+      <Link>x86\soft_oal.dll</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="$(MonoGameInstallDirectory)\MonoGame\v3.0\Assemblies\DesktopGL\x64\soft_oal.dll">
+      <Link>x64\soft_oal.dll</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="$(MonoGameInstallDirectory)\MonoGame\v3.0\Assemblies\DesktopGL\x86\libSDL2-2.0.so.0">
+      <Link>x86\libSDL2-2.0.so.0</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="$(MonoGameInstallDirectory)\MonoGame\v3.0\Assemblies\DesktopGL\x64\libSDL2-2.0.so.0">
+      <Link>x64\libSDL2-2.0.so.0</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="$(MonoGameInstallDirectory)\MonoGame\v3.0\Assemblies\DesktopGL\x86\libopenal.so.1">
+      <Link>x86\libopenal.so.1</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="$(MonoGameInstallDirectory)\MonoGame\v3.0\Assemblies\DesktopGL\x64\libopenal.so.1">
+      <Link>x64\libopenal.so.1</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="$(MonoGameInstallDirectory)\MonoGame\v3.0\Assemblies\DesktopGL\libSDL2-2.0.0.dylib">
+      <Link>libSDL2-2.0.0.dylib</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="$(MonoGameInstallDirectory)\MonoGame\v3.0\Assemblies\DesktopGL\libopenal.1.dylib">
+      <Link>libopenal.1.dylib</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="$(MonoGameInstallDirectory)\MonoGame\v3.0\Assemblies\DesktopGL\MonoGame.Framework.dll.config">
+      <Link>MonoGame.Framework.dll.config</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="app.manifest" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Controller\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath)\MonoGame\v3.0\MonoGame.Content.Builder.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

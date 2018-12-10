@@ -10,6 +10,10 @@ public class Socket
 	{
         byte[] mgs = Encoding.UTF8.GetBytes("Test");
         byte[] received = new byte[1024];
+
+
+        //all connexion allowed
+        permission = new SocketPermission(NetworkAccess.Accept, TransportType.Tcp, "", SocketPermission.AllPorts);
         
     
 	}

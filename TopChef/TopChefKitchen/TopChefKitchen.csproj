@@ -49,7 +49,7 @@
     <Compile Include="Model\Interface\IState.cs" />
     <Compile Include="Model\Interface\IStatic.cs" />
     <Compile Include="Model\Interface\IWashable.cs" />
-    <Compile Include="Model\Kitchen.cs" />
+    <Compile Include="Model\kitchenModel.cs" />
     <Compile Include="Model\Machines\DishWasher.cs" />
     <Compile Include="Model\Machines\Fridge.cs" />
     <Compile Include="Model\Machines\IMachine.cs" />

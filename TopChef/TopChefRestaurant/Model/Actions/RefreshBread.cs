@@ -3,10 +3,10 @@ using TopChefRestaurant.Model.Person;
 
 namespace TopChefRestaurant.Model.Actions
 {
-    public class DeserveTable : Action, IAction
+    public class RefreshBread : Action, IAction
     {
-        private Table Table;
-        public DeserveTable(Table table) : base(60)
+        private Table Table { get; set; }
+        public RefreshBread(Table table) : base(30)
         {
             this.Table = table;
         }
@@ -18,7 +18,7 @@ namespace TopChefRestaurant.Model.Actions
         public int Time { get; }
         public bool CanRealize(object person)
         {
-            return person is Waiter;
+            return person is Apprentice;
         }
 
     }

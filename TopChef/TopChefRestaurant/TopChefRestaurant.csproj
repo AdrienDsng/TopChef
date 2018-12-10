@@ -42,6 +42,7 @@
     <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Controller\ClientController.cs" />
     <Compile Include="Controller\PersonController.cs" />
     <Compile Include="Controller\RestaurantController.cs" />
     <Compile Include="Controller\TableController.cs" />
@@ -52,7 +53,8 @@
     <Compile Include="Model\Actions\IAction.cs" />
     <Compile Include="Model\Actions\LayTable.cs" />
     <Compile Include="Model\Actions\MakeClientPay.cs" />
-    <Compile Include="Model\Actions\RefreshBreadWater.cs" />
+    <Compile Include="Model\Actions\RefreshBread.cs" />
+    <Compile Include="Model\Actions\RefreshWater.cs" />
     <Compile Include="Model\Actions\ServeTable.cs" />
     <Compile Include="Model\Actions\TakeCommands.cs" />
     <Compile Include="Model\Actions\WelcomeClient.cs" />

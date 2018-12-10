@@ -1,12 +1,14 @@
+using TopChefRestaurant.Model.Material;
 using TopChefRestaurant.Model.Person;
 
 namespace TopChefRestaurant.Model.Actions
 {
-    public class RefreshBreadWater : Action, IAction
+    public class RefreshWater : Action, IAction
     {
-        
-        public RefreshBreadWater() : base(30)
+        private Table Table { get; set; }
+        public RefreshWater(Table table) : base(30)
         {
+            this.Table = table;
         }
         public override void Realize()
         {

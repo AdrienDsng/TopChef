@@ -73,5 +73,7 @@ namespace TopChefRestaurant.Controller
                 _runningActions.Add(employee.CurrentAction);
             }
         }
+
+        public void AddAction(IAction action) => _actionsNotAttributed.Enqueue(action);
     }
 }

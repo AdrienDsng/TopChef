@@ -10,7 +10,7 @@ public class Socket
 	{
         byte[] mgs = Encoding.UTF8.GetBytes("Test");
 
-        //Data bufer for incoming data
+        //Data buffer for incoming data
         byte[] received = new byte[1024];
         //all connexion allowed
         permission = new SocketPermission(NetworkAccess.Accept, TransportType.Tcp, "", SocketPermission.AllPorts);
@@ -23,6 +23,33 @@ public class Socket
 
         //Create socket
         Socket listener = new Socket(ipAdress.AddressFamily, SocketType.Stream, ProtocolType.Tcp);
+
+        //Bind socket to the local endpoint
+        try
+        {
+            listener.Bind(localEndPoint);
+            listener.Listen(10);
+
+            //beggining connections
+            while (true)
+            {
+                Console.WriteLine("En attente de connexion...");
+                //while no response app break
+                Socket handler = listener.Accept();
+                data = null;
+
+                while (true)
+                {
+                    int bytesRec = handler.Receive(bytes);
+                    data += Encoding.ASCII.GetString(bytes, 0, bytesRec);
+                    if (data.IndexOf("<EOF>") > -1)
+                    {
+                        break;
+                    }
+                }
+
+            }
+        }
         
     
 	}

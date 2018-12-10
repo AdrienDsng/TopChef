@@ -42,16 +42,30 @@
     <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Controller\Actions\AssignClient.cs" />
+    <Compile Include="Controller\Actions\DeserveTable.cs" />
+    <Compile Include="Controller\Actions\IAction.cs" />
+    <Compile Include="Controller\Actions\LayTable.cs" />
+    <Compile Include="Controller\Actions\MakeClientPay.cs" />
+    <Compile Include="Controller\Actions\RefreshBreadWater.cs" />
+    <Compile Include="Controller\Actions\ServeTable.cs" />
+    <Compile Include="Controller\Actions\TakeCommands.cs" />
+    <Compile Include="Controller\Actions\WelcomeClient.cs" />
+    <Compile Include="Controller\PersonController.cs" />
     <Compile Include="Controller\RestaurantController.cs" />
     <Compile Include="Game1.cs" />
+    <Compile Include="Model\Interfaces\INamed.cs" />
+    <Compile Include="Model\Interfaces\IState.cs" />
+    <Compile Include="Model\Interfaces\IStatic.cs" />
+    <Compile Include="Model\Interfaces\IWashable.cs" />
     <Compile Include="Model\Material\BigSpoon.cs" />
     <Compile Include="Model\Material\ChampagneGlass.cs" />
     <Compile Include="Model\Material\CoffeeCup.cs" />
     <Compile Include="Model\Material\CurvyPlate.cs" />
     <Compile Include="Model\Material\Cuttlery.cs" />
     <Compile Include="Model\Material\DessertPlate.cs" />
-    <Compile Include="Model\Material\Dishes.cs" />
-    <Compile Include="Model\Material\Fabrics.cs" />
+    <Compile Include="Model\Material\Dish.cs" />
+    <Compile Include="Model\Material\Fabric.cs" />
     <Compile Include="Model\Material\Fork.cs" />
     <Compile Include="Model\Material\Glass.cs" />
     <Compile Include="Model\Material\Knife.cs" />
@@ -59,10 +73,21 @@
     <Compile Include="Model\Material\LittleSpoon.cs" />
     <Compile Include="Model\Material\Material.cs" />
     <Compile Include="Model\Material\Plate.cs" />
+    <Compile Include="Model\Material\Table.cs" />
     <Compile Include="Model\Material\TableCloth.cs" />
     <Compile Include="Model\Material\TableNapkin.cs" />
     <Compile Include="Model\Material\WineGlass.cs" />
+    <Compile Include="Model\Person\Apprentice.cs" />
+    <Compile Include="Model\Person\Client.cs" />
+    <Compile Include="Model\Person\HotelMaster.cs" />
+    <Compile Include="Model\Person\IPerson.cs" />
+    <Compile Include="Model\Person\Person.cs" />
+    <Compile Include="Model\Person\RowChief.cs" />
+    <Compile Include="Model\Person\Waiter.cs" />
+    <Compile Include="Model\Positions\IDisplayable.cs" />
+    <Compile Include="Model\Positions\Position.cs" />
     <Compile Include="Model\RestaurantModel.cs" />
+    <Compile Include="Model\Sleeper.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="View\RestaurantView.cs" />
@@ -139,7 +164,6 @@
     <None Include="app.manifest" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\MonoGame\v3.0\MonoGame.Content.Builder.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

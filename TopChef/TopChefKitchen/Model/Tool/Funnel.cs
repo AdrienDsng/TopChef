@@ -6,7 +6,17 @@ using System.Threading.Tasks;
 
 namespace TopChefKitchen.Model.Tool
 {
-    class Funnel
+    class Funnel : Tool
     {
+        public Funnel(position.Position position)
+        {
+            Position = position;
+            Quantity = 1;
+            Size = "4";
+            Name = "Funnel";
+            State = "Standby";
+            IsStatic = false;
+            IsDirty = false;
+        }
     }
 }

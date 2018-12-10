@@ -6,7 +6,18 @@ using System.Threading.Tasks;
 
 namespace TopChefKitchen.Model.Tool
 {
-    class CookingFire
+    class CookingFire : Tool
     {
+        public CookingFire(position.Position position)
+        {
+            Position = position;
+            Quantity = 5;
+            Size = "Big"; 
+            Name = "CookingFire";
+            State = "Standby";
+            IsStatic = true;
+            IsDirty = false;
+
     }
+}
 }

@@ -8,6 +8,9 @@ public class Socket
 {
 	private static Socket(string IP, int Port)
 	{
-        byte[] received = [1024];
+        byte[] mgs = Encoding.UTF8.GetBytes("Test");
+        byte[] received = new byte[1024];
+        
+    
 	}
 }

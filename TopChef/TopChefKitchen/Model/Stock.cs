@@ -52,20 +52,20 @@ namespace TopChefKitchen.Model
             if (CheckIfResourceAvailable(name) == true)
             {
                 Recipe = CreateRecipe(Recipe,name);
-                
-                Rq_sql = "SELECT * FROM steps WHERE id = " + Id;
+
+                Rq_sql = "SELECT * FROM steps WHERE id = " + Id + ";" ;
                 Command = new System.Data.SqlClient.SqlCommand(Rq_sql, Connection);           
                 ReaderSteps = Command.ExecuteReader();
-                ReaderSteps.Read();
+                ReaderSteps.Read();s
                 while (ReaderSteps.Read() != false)
                 {
                     Step step = new Step
                     {
                         RecipeName = name,
-                        Id = ReaderSteps.GetInt32(1),
-                        Wait_Time = ReaderSteps.GetInt32(3),
-                        Nb_step = ReaderSteps.GetInt32(4),
-                        Sync = ReaderSteps.GetInt32(5)
+                        Id = ReaderSteps.GetInt32(0),
+                        Wait_Time = ReaderSteps.GetInt32(2),
+                        Nb_step = ReaderSteps.GetInt32(3),
+                        Sync = ReaderSteps.GetInt32(4)
                     };
                     UpdateStep(step);
                     Recipe.Steps.Add(step);

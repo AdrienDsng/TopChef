@@ -1,12 +1,10 @@
 ﻿using System;
-using System.Text;
-using System.IO;
-using System.Net;
-using System.Net.Sockets;
 
-public class GetSocket
+namespace Model
 {
-	private static Socket(string IP, int Port)
-	{
-	}
+    public class ClientSocket
+    {
+
+    }
+
 }

@@ -1,20 +1,23 @@
+using TopChefRestaurant.Controller;
 using TopChefRestaurant.Model.Person;
 
 namespace TopChefRestaurant.Model.Actions
 {
     public class MakeClientPay : Action, IAction
     {
-        
-        public MakeClientPay() : base(20)
+        private Client Client;
+        private ClientController _clientController;
+        public MakeClientPay(Client client, ClientController clientController) : base(20)
         {
+            this.Client = client;
+            this._clientController = clientController;
         }
         
         public override void Realize()
         {
-            throw new System.NotImplementedException();
+            _clientController.RemoveClient(Client);
         }
 
-        public int Time { get; }
         public bool CanRealize(object person)
         {
             return person is HotelMaster;

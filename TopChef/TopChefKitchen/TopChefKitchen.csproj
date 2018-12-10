@@ -59,7 +59,7 @@
     <Compile Include="Model\Material\BigSpoon.cs" />
     <Compile Include="Model\Material\ChampagneGlass.cs" />
     <Compile Include="Model\Material\CoffeeCup.cs" />
-    <Compile Include="Model\Material\CookingTable.cs" />
+    <Compile Include="Model\Machines\CookingTable.cs" />
     <Compile Include="Model\Material\CurvyPlate.cs" />
     <Compile Include="Model\Material\Cuttlery.cs" />
     <Compile Include="Model\Material\DessertPlate.cs" />
@@ -91,13 +91,13 @@
     <Compile Include="Model\Recipe\Step.cs" />
     <Compile Include="Model\Socket.cs" />
     <Compile Include="Model\Stock.cs" />
-    <Compile Include="Model\Tool\CookingFire.cs" />
+    <Compile Include="Model\Machines\CookingFire.cs" />
     <Compile Include="Model\Tool\CookingKnife.cs" />
     <Compile Include="Model\Tool\Funnel.cs" />
     <Compile Include="Model\Tool\ITool.cs" />
     <Compile Include="Model\Tool\Juicer.cs" />
-    <Compile Include="Model\Tool\Mixer.cs" />
-    <Compile Include="Model\Tool\Oven.cs" />
+    <Compile Include="Model\Machines\Mixer.cs" />
+    <Compile Include="Model\Machines\Oven.cs" />
     <Compile Include="Model\Tool\Pan.cs" />
     <Compile Include="Model\Tool\PressureCooker.cs" />
     <Compile Include="Model\Tool\SaladBowl.cs" />

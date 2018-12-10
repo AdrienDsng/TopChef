@@ -7,12 +7,13 @@ namespace TopChefRestaurant.Model.Material
 {
     public class Table : IDisplayable, IStatic, INamed, IState
     {
-        private int MaxNbClients { get; set; }
+        public int MaxNbClients { get; set; }
         public Client Client { get; set; }
         public TableNapkin TableNapkin { get; set; }
         public bool HasBread { get; set; }
         public bool HasWater { get; set; }
-
+        public List<Dish> Dishes = new List<Dish>();
+        public List<Recipe> Orders = new List<Recipe>();
 
         public string Sprite { get; set; }
         public Position Position { get; set; }

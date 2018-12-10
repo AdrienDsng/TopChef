@@ -15,9 +15,8 @@ namespace TopChefKitchen.Model.Machines
         public List<Dish> Dishes { get; set; }
         public static Semaphore semaphore = new Semaphore(0, 1);
 
-        public Tap(Position position) : base()
+        public Tap(Position position) : base(position)
         {
-            this.Position = position;
             this.Name = "Tap";
             this.IsStatic = false;
             this.Capacity = 1;

@@ -14,9 +14,8 @@ namespace TopChefKitchen.Model.Machines
         public List<Fabric> Fabrics { get; set; }
         public static Semaphore semaphore = new Semaphore(0, 1);
 
-        public WashMachine(Position position) : base()
+        public WashMachine(Position position) : base(position)
         {
-            this.Position = position;
             this.Name = "WashMachine";
             this.IsStatic = false;
             this.Capacity = 10;

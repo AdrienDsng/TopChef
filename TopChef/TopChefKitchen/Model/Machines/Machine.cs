@@ -28,8 +28,9 @@ namespace TopChefKitchen.Model.Machines
             on();
         }
 
-        public Machine()
+        public Machine(Position position)
         {
+            Position = position;
             on();
         }
 

@@ -14,10 +14,8 @@ namespace TopChefKitchen.Model.Machines
         public List<Preparation> Preparation { get; set; }
         public static Semaphore semaphore = new Semaphore(0,1);
 
-        public Fridge(position.Position position, string name) : base()
-        {
-            this.Position = position;
-            this.Name = "Fridge";
+        public Fridge(position.Position position) : base(position)
+        {            
             this.IsStatic = false;
             this.Capacity = 10;
             this.Preparation = new List<Preparation>();

@@ -19,9 +19,8 @@ namespace TopChefKitchen.Model.Machines
         public int maxPlate = 24;
         public int waitTime = 10;
 
-        public DishWasher(Position position) : base()
+        public DishWasher(Position position) : base(position)
         {
-            this.Position = position;
             this.Name = "DishWasher";
             this.IsStatic = false;
             this.Capacity = 72;

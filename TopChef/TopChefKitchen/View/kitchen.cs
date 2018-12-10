@@ -59,6 +59,10 @@ namespace TopChefKitchen
             {
                 test.X ++;
             }
+            if (Keyboard.GetState().IsKeyDown(Keys.R))
+            {
+                test.X += 1000;
+            }
 
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
@@ -71,6 +75,8 @@ namespace TopChefKitchen
 
             myMap.draw(spriteBatch, kitchenTile);
             test.Draw(spriteBatch, playerTile);
+
+            
 
             base.Draw(gameTime);
         }

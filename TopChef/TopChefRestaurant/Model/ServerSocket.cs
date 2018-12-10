@@ -30,15 +30,17 @@ namespace Model
         private void AcceptedCallBack(IAsyncResult result)
         {
            Socket clientSocket = _socket.EndAccept(result);
-            Accept();
-
-            clientSocket.BeginReceive(_buffer, 0, _buffer.Length, SocketFlags.None, ReceivedCallBack, clientSocket);
+           _buffer = new byte[1024];
+           clientSocket.BeginReceive(_buffer, 0, _buffer.Length, SocketFlags.None, ReceivedCallBack, clientSocket);
+           Accept();     
         }
 
         private void ReceivedCallBack(IAsyncResult result)
         {
             Socket clientSocket = result.AsyncState as Socket;
-            int bufferSize = clientSocket.EndReceive(result);
+            SocketError SE;
+            int bufferSize = clientSocket.EndReceive(result, out SE);
+            if (SE != SocketError.Success);
             byte[] packet = new byte[bufferSize];
             Array.Copy(_buffer, packet, packet.Length);
 

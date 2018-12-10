@@ -8,7 +8,7 @@ using TopChefKitchen.Model.position;
 
 namespace TopChefKitchen.Model.Machines
 {
-    class Machine : IMachine, IState, IStatic, INamed
+    class Machine : IMachine, IState, IStatic, INamed, IPosition
     {
    
         public int Capacity { get ; set; }
@@ -41,6 +41,16 @@ namespace TopChefKitchen.Model.Machines
         public void on()
         {
             this.State = "standby";
+        }
+
+        public void isWorking()
+        {
+            this.State = "IsWorking";
+        }
+
+        public void move(Position position)
+        {
+            throw new NotImplementedException();
         }
     }
 }

@@ -11,13 +11,11 @@ namespace TopChefKitchen.Model.Machines
 {
     class Fridge : Machine
     {
-
         public List<Preparation> Preparation { get; set; }
         public static Semaphore semaphore = new Semaphore(0,1);
 
         public Fridge(position.Position position, string name) : base()
         {
-            
             this.Position = position;
             this.Name = "Fridge";
             this.IsStatic = false;

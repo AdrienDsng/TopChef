@@ -176,6 +176,7 @@ namespace TopChefKitchen.Model
 
             return ReaderRecipe_Resource;
         }
+
         private void CheckResourceQuantity()
         {
             Rq_sql = "DELETE * FROM stock WHERE quantity = 0";
@@ -218,6 +219,5 @@ namespace TopChefKitchen.Model
             }
             return isnull;          
         }
-
     }
 }

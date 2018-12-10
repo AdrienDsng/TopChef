@@ -2,8 +2,12 @@ using TopChefRestaurant.Model.Person;
 
 namespace TopChefRestaurant.Controller.Actions
 {
-    public class TakeCommands : IAction
+    public class TakeCommands : Action, IAction
     {
+
+        public TakeCommands() : base(60)
+        {
+        }
         public void Realize(object o)
         {
             throw new System.NotImplementedException();

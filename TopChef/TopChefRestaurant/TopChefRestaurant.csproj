@@ -42,6 +42,7 @@
     <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Controller\Actions\Action.cs" />
     <Compile Include="Controller\Actions\AssignClient.cs" />
     <Compile Include="Controller\Actions\DeserveTable.cs" />
     <Compile Include="Controller\Actions\IAction.cs" />

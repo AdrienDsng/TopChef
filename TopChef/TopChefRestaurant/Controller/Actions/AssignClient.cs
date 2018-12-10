@@ -2,8 +2,11 @@ using TopChefRestaurant.Model.Person;
 
 namespace TopChefRestaurant.Controller.Actions
 {
-    public class AssignClient : IAction
+    public class AssignClient : Action, IAction
     {
+        public AssignClient() : base(30)
+        {
+        }
         public void Realize(object o)
         {
             throw new System.NotImplementedException();
@@ -14,5 +17,6 @@ namespace TopChefRestaurant.Controller.Actions
         {
             return person is HotelMaster;
         }
+
     }
 }

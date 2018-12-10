@@ -2,8 +2,12 @@ using TopChefRestaurant.Model.Person;
 
 namespace TopChefRestaurant.Controller.Actions
 {
-    public class RefreshBreadWater : IAction
+    public class RefreshBreadWater : Action, IAction
     {
+        
+        public RefreshBreadWater() : base(30)
+        {
+        }
         public void Realize(object o)
         {
             throw new System.NotImplementedException();
@@ -14,5 +18,6 @@ namespace TopChefRestaurant.Controller.Actions
         {
             return person is Apprentice;
         }
+
     }
 }

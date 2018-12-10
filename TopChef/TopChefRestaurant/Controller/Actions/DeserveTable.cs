@@ -2,8 +2,12 @@ using TopChefRestaurant.Model.Person;
 
 namespace TopChefRestaurant.Controller.Actions
 {
-    public class DeserveTable : IAction
+    public class DeserveTable : Action, IAction
     {
+        
+        public DeserveTable() : base(60)
+        {
+        }
         public void Realize(object o)
         {
             throw new System.NotImplementedException();
@@ -14,5 +18,6 @@ namespace TopChefRestaurant.Controller.Actions
         {
             return person is Waiter;
         }
+
     }
 }

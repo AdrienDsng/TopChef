@@ -2,21 +2,38 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
+using TopChefKitchen.Model.Tool;
+using TopChefKitchen.Model.position;
 
-namespace TopChefKitchen.Model.Tool
+namespace TopChefKitchen.Model.Machines
 {
-    class Mixer : Tool
+    class Mixer : Machine
     {
-        public Mixer(position.Position position)
+        public List<ITool> Tools { get; set; }
+        public bool IsDirty { get; set; }
+
+        public static Semaphore semaphore = new Semaphore(0, 1);
+
+
+        public Mixer(Position position) : base(position)
         {
-            Position = position;
-            Quantity = 1;
-            Size = "Small";
-            Name = "Mixer";
-            State = "Standby";
-            IsStatic = false;
-            IsDirty = false;
+            this.IsDirty = false;
+            this.Name = "Oven";
+            this.IsStatic = false;
+            this.Capacity = 1;
+            this.Tools = new List<ITool>();
+        }
+
+        public void addItem(ITool tool)
+        {
+            Tools.Add(tool);
+        }
+
+        public void removeItem(ITool tool)
+        {
+            Tools.Remove(tool);
         }
     }
 }

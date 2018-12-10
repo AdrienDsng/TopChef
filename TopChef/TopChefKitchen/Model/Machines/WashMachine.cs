@@ -18,7 +18,7 @@ namespace TopChefKitchen.Model.Machines
         {
             this.Name = "WashMachine";
             this.IsStatic = false;
-            this.Capacity = 10;
+            this.Capacity = 100000000;
             this.WorkingTime = 10;
         }
 
@@ -34,7 +34,7 @@ namespace TopChefKitchen.Model.Machines
 
         public void check()
         {
-            if(Fabrics.Count() > Capacity)
+            if(Fabrics.Count() > 10)
             {
                 this.State = "Working";
             }

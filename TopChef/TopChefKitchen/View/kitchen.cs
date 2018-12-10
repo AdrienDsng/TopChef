@@ -5,15 +5,17 @@ using Microsoft.Xna.Framework.Input;
 
 namespace TopChefKitchen
 {
-    public class Game1 : Game
+    public class kitchen : Game
     {
         GraphicsDeviceManager graphics;
         private Map myMap = new Map();
         SpriteBatch spriteBatch;
+        Entity test;
 
-        Texture2D kitchen;
+        Texture2D kitchenTile;
+        Texture2D playerTile;
 
-        public Game1()
+        public kitchen()
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
@@ -22,21 +24,42 @@ namespace TopChefKitchen
 
         protected override void Initialize()
         {
-            graphics.PreferredBackBufferHeight = 320;
-            graphics.PreferredBackBufferWidth = 928;
+            test = new Entity(this.GraphicsDevice);
+
+            graphics.PreferredBackBufferHeight = 480;
+            graphics.PreferredBackBufferWidth = 1392;
             graphics.ApplyChanges();
+
             spriteBatch = new SpriteBatch(GraphicsDevice);
             base.Initialize();
         }
         protected override void LoadContent()
         {
-            kitchen = Content.Load<Texture2D>("Kitchen");
+            kitchenTile = Content.Load<Texture2D>("Kitchen");
+            playerTile = Content.Load<Texture2D>("player");
         }
         protected override void UnloadContent()
         {
         }
         protected override void Update(GameTime gameTime)
         {
+            if (Keyboard.GetState().IsKeyDown(Keys.Z))
+            {
+                test.Y --;
+            }
+            if (Keyboard.GetState().IsKeyDown(Keys.S))
+            {
+                test.Y++;
+            }
+            if (Keyboard.GetState().IsKeyDown(Keys.Q))
+            {
+                test.X --;
+            }
+            if (Keyboard.GetState().IsKeyDown(Keys.D))
+            {
+                test.X ++;
+            }
+
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
@@ -46,7 +69,8 @@ namespace TopChefKitchen
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
-            myMap.draw(spriteBatch, kitchen);
+            myMap.draw(spriteBatch, kitchenTile);
+            test.Draw(spriteBatch, playerTile);
 
             base.Draw(gameTime);
         }

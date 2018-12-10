@@ -34,7 +34,6 @@ namespace TopChefKitchen.Model
             Connection = new System.Data.SqlClient.SqlConnection(Cnx);
             Connection.Open();
             DataSet = new System.Data.DataSet();
-            
             Command = null;
         }
 
@@ -54,32 +53,30 @@ namespace TopChefKitchen.Model
             {
                 Recipe = CreateRecipe(Recipe,name);
                 
-
                 Rq_sql = "SELECT * FROM steps WHERE id = " + Id;
-            Command = new System.Data.SqlClient.SqlCommand(Rq_sql, Connection);           
-            ReaderSteps = Command.ExecuteReader();
-            ReaderSteps.Read();
-            while (ReaderSteps.Read() != false)
-                {
-                Step step = new Step
-                {
-                    RecipeName = name,
-                    Id = ReaderSteps.GetInt32(1),
-                    Wait_Time = ReaderSteps.GetInt32(3),
-                    Nb_step = ReaderSteps.GetInt32(4),
-                    Sync = ReaderSteps.GetInt32(5)
-                };
-                UpdateStep(step);
-                Recipe.Steps.Add(step);
+                Command = new System.Data.SqlClient.SqlCommand(Rq_sql, Connection);           
+                ReaderSteps = Command.ExecuteReader();
                 ReaderSteps.Read();
-            }           
-            ReaderSteps.Close();
+                while (ReaderSteps.Read() != false)
+                {
+                    Step step = new Step
+                    {
+                        RecipeName = name,
+                        Id = ReaderSteps.GetInt32(1),
+                        Wait_Time = ReaderSteps.GetInt32(3),
+                        Nb_step = ReaderSteps.GetInt32(4),
+                        Sync = ReaderSteps.GetInt32(5)
+                    };
+                    UpdateStep(step);
+                    Recipe.Steps.Add(step);
+                    ReaderSteps.Read();
+                }           
+                ReaderSteps.Close();
 
-            UpdateStock(Recipe.Name);
+                UpdateStock(Recipe.Name);
                 return this.Recipe;
             }
-            return this.Recipe; 
-            
+            return this.Recipe;            
         }
 
         private void UpdateStep(Step step)
@@ -123,10 +120,8 @@ namespace TopChefKitchen.Model
             
             while (ReaderRecipe_Resource.Read() != false)
             {
-
                 resourceId.Add(ReaderRecipe_Resource.GetInt32(1));
                 quantity.Add(ReaderRecipe_Resource.GetInt32(3));
-
             }
             ReaderRecipe_Resource.Close();
             RemoveResource(resourceId, quantity);
@@ -139,9 +134,7 @@ namespace TopChefKitchen.Model
             Rq_sql = "select * from stock where id_resource =";
             foreach (int value in resourceId)
             {
-
-                Rq_sql += value;
-                
+                Rq_sql += value;             
             }
             Rq_sql += ";";
             Command = new System.Data.SqlClient.SqlCommand(Rq_sql, Connection);
@@ -154,6 +147,7 @@ namespace TopChefKitchen.Model
                 Rq_sql += " WHERE id_resource = "; 
                 Rq_sql += value + ";";
                 Command = new System.Data.SqlClient.SqlCommand(Rq_sql, Connection);
+
                 ReaderStock.Read();
                 Console.WriteLine(Rq_sql);
                 i++;
@@ -172,10 +166,7 @@ namespace TopChefKitchen.Model
             ReaderRecipe_Resource = Command.ExecuteReader();
 
             return ReaderRecipe_Resource;
-
-
         }
-
         private void CheckResourceQuantity()
         {
             Rq_sql = "DELETE * FROM stock WHERE quantity = 0";
@@ -192,9 +183,7 @@ namespace TopChefKitchen.Model
             ReaderRecipe_Resource.Read();
             
             while (ReaderRecipe_Resource.Read() != false)
-            {                
-                
-                 
+            {                                                
                 ids.Add(ReaderRecipe_Resource.GetInt32(1));
                 quantities.Add(ReaderRecipe_Resource.GetInt32(3));
                 
@@ -218,10 +207,7 @@ namespace TopChefKitchen.Model
                 }
                 i++;
             }
-            
-
-            return isnull;
-           
+            return isnull;          
         }
 
     }

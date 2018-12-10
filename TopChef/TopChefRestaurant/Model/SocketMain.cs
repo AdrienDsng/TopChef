@@ -1,5 +1,5 @@
 ﻿using System;
-using Server.Networking;
+using Model.ServerSocket;
 
 namespace Model
 {

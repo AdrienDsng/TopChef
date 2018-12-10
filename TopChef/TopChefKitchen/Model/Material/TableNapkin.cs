@@ -6,7 +6,18 @@ using System.Threading.Tasks;
 
 namespace TopChefKitchen.Model.Material
 {
-    class TableNapkin
+    class TableNapkin : Fabric
     {
+        public TableNapkin(position.Position position)
+        {
+            Position = position;
+            Quantity = 40;
+            Size = "Small";
+            Name = "LittlePlate";
+            State = "Standby";
+            IsStatic = false;
+            IsDirty = false;
+
+        }
     }
 }

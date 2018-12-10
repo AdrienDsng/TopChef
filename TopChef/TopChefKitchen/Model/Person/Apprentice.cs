@@ -16,19 +16,9 @@ namespace TopChefKitchen.Model.Personn
             Arrive();
         }
 
-        public void CutIngredient()
+        public void takeTool(string name)
         {
             throw new NotImplementedException();
-        }
-
-        public void PeelIngredient()
-        {
-            throw new NotImplementedException();
-        }
-
-        public void getIngredientFromStock()
-        {
-
         }
     }
 }

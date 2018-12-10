@@ -8,10 +8,11 @@ namespace TopChefKitchen.Model.Person
 {
     interface ICook
     {
-        void CutIngredient();
-        void PeelIngredient();
-        void CookIngredientWithFire();
-        void putIngredientInTheFridge();
-        void CookIngredient();
+        void CutIngredient(Tool.Tool tool);
+        void PeelIngredient(Tool.Tool tool);
+        void CookIngredientWithFire(Tool.Tool tool, Machines.Machine machine);
+        void putIngredientInTheFridge(Tool.Tool tool, Machines.Machine machine);
+        void CookIngredient(Tool.Tool tool);
+        void takeTool(String name);
     }
 }

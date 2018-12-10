@@ -10,6 +10,7 @@ namespace TopChefKitchen.Model.Personn
     {
         int WorkingTime { get; set; }
         bool IsAlive { get; set; }
+        Tool.Tool tool { get; set; }
 
         void Arrive();
         void Leave();

@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TopChefKitchen.Model.Machines;
 using TopChefKitchen.Model.Person;
 using TopChefKitchen.Model.position;
+using TopChefKitchen.Model.Tool;
 
 namespace TopChefKitchen.Model.Personn
 {
@@ -17,27 +19,32 @@ namespace TopChefKitchen.Model.Personn
             Arrive();
         }
 
-        public void CookIngredient()
+        public void CookIngredient(Tool.Tool tool)
         {
             throw new NotImplementedException();
         }
 
-        public void CookIngredientWithFire()
+        public void CookIngredientWithFire(Tool.Tool tool, Machine machine)
         {
             throw new NotImplementedException();
         }
 
-        public void CutIngredient()
+        public void CutIngredient(Tool.Tool tool)
         {
             throw new NotImplementedException();
         }
 
-        public void PeelIngredient()
+        public void PeelIngredient(Tool.Tool tool)
         {
             throw new NotImplementedException();
         }
 
-        public void putIngredientInTheFridge()
+        public void putIngredientInTheFridge(Tool.Tool tool, Machine machine)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void takeTool(string name)
         {
             throw new NotImplementedException();
         }

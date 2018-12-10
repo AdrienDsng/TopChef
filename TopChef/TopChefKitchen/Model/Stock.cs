@@ -11,9 +11,8 @@ namespace TopChefKitchen.Model
 {
     class Stock
     {
-        public Recipe.Recipe Recipe { get; set;}
-        public DataSet DataSet { get ; set ; }
-        public SqlDataAdapter DataAdapter { get ; set ; }
+        public Recipe.Recipe Recipe { get; set; }
+        public DataSet DataSet { get ; set ; }    
         public SqlConnection Connection { get ; set ; }
         public SqlCommand Command { get ; set ; }
         public SqlDataReader ReaderRecipe { get; set; }
@@ -25,16 +24,17 @@ namespace TopChefKitchen.Model
         public SqlDataReader ReaderStock { get; set; }
         public string Cnx { get ; set; }
         public string Rq_sql { get; set ; }
-        public string Id { get; set; }
+        public int Id { get; set; }
        
 
         public Stock()
         {
             Rq_sql = null;
-            Cnx = @"Data Source=DESKTOP-OR03K2O\SQLEXPRESS;Initial Catalog=DB_A2_WS2;Integrated Security=True";
+            Cnx = @"Data Source=DESKTOP-OR03K2O\SQLEXPRESS;Initial Catalog=sql ;Integrated Security=True";
             Connection = new System.Data.SqlClient.SqlConnection(Cnx);
+            Connection.Open();
             DataSet = new System.Data.DataSet();
-            DataAdapter = null;
+            
             Command = null;
         }
 
@@ -42,27 +42,25 @@ namespace TopChefKitchen.Model
         {
             Rq_sql = "SELECT * FROM *";
             Command = new System.Data.SqlClient.SqlCommand(Rq_sql, Connection);
-            DataAdapter = new System.Data.SqlClient.SqlDataAdapter(Command);
-            DataAdapter.Fill(DataSet, "rows");
             string all = DataSet.ToString();
             return all;
         }
 
-        public void SelectRecipe(string name)
+        public Recipe.Recipe SelectRecipe(string name)
         {
+            Recipe = new Recipe.Recipe();
 
             if (CheckIfResourceAvailable(name) == true)
-            { 
-            Recipe = CreateRecipe(name);
-            
-            Rq_sql = "SELECT * FROM steps WHERE id = " + Id;
-            Command = new System.Data.SqlClient.SqlCommand(Rq_sql, Connection);
-            DataAdapter = new System.Data.SqlClient.SqlDataAdapter(Command);
-            DataAdapter.Fill(DataSet, "rows");
-            ReaderSteps = Command.ExecuteReader();
-            
-           while(ReaderSteps.GetString(1) != null)
             {
+                Recipe = CreateRecipe(Recipe,name);
+                
+
+                Rq_sql = "SELECT * FROM steps WHERE id = " + Id;
+            Command = new System.Data.SqlClient.SqlCommand(Rq_sql, Connection);           
+            ReaderSteps = Command.ExecuteReader();
+            ReaderSteps.Read();
+            while (ReaderSteps.Read() != false)
+                {
                 Step step = new Step
                 {
                     RecipeName = name,
@@ -78,7 +76,9 @@ namespace TopChefKitchen.Model
             ReaderSteps.Close();
 
             UpdateStock(Recipe.Name);
+                return this.Recipe;
             }
+            return this.Recipe; 
             
         }
 
@@ -86,90 +86,89 @@ namespace TopChefKitchen.Model
         {
             Rq_sql = "SELECT * FROM step_tool WHERE id_step =" + step.Id;
             Command = new System.Data.SqlClient.SqlCommand(Rq_sql, Connection);
-            DataAdapter = new System.Data.SqlClient.SqlDataAdapter(Command);
-            DataAdapter.Fill(DataSet, "rows");
             ReaderStep_Tool = Command.ExecuteReader();
 
             Rq_sql = "SELECT * FROM step_tool WHERE id =" + ReaderStep_Tool.GetInt32(3);
             ReaderStep_Tool.Close();
             Command = new System.Data.SqlClient.SqlCommand(Rq_sql, Connection);
-            DataAdapter = new System.Data.SqlClient.SqlDataAdapter(Command);
-            DataAdapter.Fill(DataSet, "rows");
             Readertools = Command.ExecuteReader();
             step.Tool_Needed = Readertools.GetString(2);
             Readertools.Close();
 
         }
 
-        public Recipe.Recipe CreateRecipe(string name)
+        public Recipe.Recipe CreateRecipe(Recipe.Recipe recipe, string name)
         {
-            Rq_sql = "SELECT * FROM recipes WHERE name =" + name;
+            Rq_sql = "SELECT * FROM recipes WHERE name = '" + name+ "';";
             Command = new System.Data.SqlClient.SqlCommand(Rq_sql, Connection);
-            DataAdapter = new System.Data.SqlClient.SqlDataAdapter(Command);
-            DataAdapter.Fill(DataSet, "rows");
-            string recipe = DataSet.ToString();
-
-            Recipe = new Recipe.Recipe
-            {
-                Name = name
-            };
+            
+  
+            recipe.Name = name;
             ReaderRecipe = Command.ExecuteReader();
-            string type = ReaderRecipe.GetString(4);
-            Recipe.Type = type;
-            int nb_people = ReaderRecipe.GetInt32(4);
-            Recipe.Nb_people = nb_people;
-            Id = ReaderRecipe.GetString(1);
+            ReaderRecipe.Read();
+            int type = ReaderRecipe.GetInt32(3);
+            recipe.Type = type;
+            int nb_people = ReaderRecipe.GetInt32(2);
+            recipe.Nb_people = nb_people;
+            Id = ReaderRecipe.GetInt32(0);
             ReaderRecipe.Close();
-            return Recipe;
+            return recipe;
         }
 
         public void UpdateStock(string name)
         {
+            List<int> resourceId = new List<int>();
+            List<int> quantity = new List<int>();
             ReaderRecipe_Resource = GetRessourcesFromRecipe(name);
-            while (ReaderRecipe_Resource.GetString(1) != null)
+            
+            while (ReaderRecipe_Resource.Read() != false)
             {
-                int resourceId = ReaderRecipe_Resource.GetInt32(2);
-                int quantity = ReaderRecipe_Resource.GetInt32(4);
-                RemoveResource(resourceId, quantity);
-                
-                
-                ReaderSteps.Read();
+
+                resourceId.Add(ReaderRecipe_Resource.GetInt32(1));
+                quantity.Add(ReaderRecipe_Resource.GetInt32(3));
+
             }
             ReaderRecipe_Resource.Close();
+            RemoveResource(resourceId, quantity);
             CheckResourceQuantity();
         }
 
-        public void RemoveResource(int resourceId, int quantity)
+        public void RemoveResource(List<int> resourceId, List<int> quantity)
         {
-            Rq_sql = "SELECT * FROM stock WHERE id =" + resourceId;
-            Command = new System.Data.SqlClient.SqlCommand(Rq_sql, Connection);
-            DataAdapter = new System.Data.SqlClient.SqlDataAdapter(Command);
-            DataAdapter.Fill(DataSet, "rows");
-            ReaderStock = Command.ExecuteReader();
-            quantity = ReaderStock.GetInt32(3) - quantity;
-            ReaderStock.Close();
+            int i = 0;
+            Rq_sql = "select * from stock where id_resource =";
+            foreach (int value in resourceId)
+            {
 
-            Rq_sql = "UPDATE stock SET quantity = "+ quantity + "WHERE id =  " + resourceId;
+                Rq_sql += value;
+                
+            }
+            Rq_sql += ";";
             Command = new System.Data.SqlClient.SqlCommand(Rq_sql, Connection);
-            DataAdapter = new System.Data.SqlClient.SqlDataAdapter(Command);
-            DataAdapter.Fill(DataSet, "rows");
-           
-            
+            ReaderStock = Command.ExecuteReader();
+            ReaderStock.Read();
+            foreach (int value in resourceId)
+            {
+                Rq_sql = "UPDATE stock SET quantity =";
+                Rq_sql += ReaderStock.GetInt32(2)-quantity[i];
+                Rq_sql += " WHERE id_resource = "; 
+                Rq_sql += value + ";";
+                Command = new System.Data.SqlClient.SqlCommand(Rq_sql, Connection);
+                ReaderStock.Read();
+                Console.WriteLine(Rq_sql);
+                i++;
+            }         
         }
 
         private SqlDataReader GetRessourcesFromRecipe(string name)
         {
-            Rq_sql = "SELECT * FROM recipes WHERE name =" + name ;
-            Command = new System.Data.SqlClient.SqlCommand(Rq_sql, Connection);
-            DataAdapter = new System.Data.SqlClient.SqlDataAdapter(Command);
-            DataAdapter.Fill(DataSet, "rows");
+            Rq_sql = "select * from recipes where name = '" + name +"';";
+            Command = new System.Data.SqlClient.SqlCommand(Rq_sql, Connection);          
             ReaderRecipe = Command.ExecuteReader();
-
-            Rq_sql = "SELECT * FROM recipe_resource WHERE id_recipe =" + ReaderRecipe.GetInt32(1);
+            ReaderRecipe.Read();           
+            Rq_sql = "select * from recipe_resource where id_recipe =" + ReaderRecipe.GetInt32(0)+";";
             ReaderRecipe.Close();
             Command = new System.Data.SqlClient.SqlCommand(Rq_sql, Connection);
-            DataAdapter = new System.Data.SqlClient.SqlDataAdapter(Command);
-            DataAdapter.Fill(DataSet, "rows");
             ReaderRecipe_Resource = Command.ExecuteReader();
 
             return ReaderRecipe_Resource;
@@ -181,8 +180,6 @@ namespace TopChefKitchen.Model
         {
             Rq_sql = "DELETE * FROM stock WHERE quantity = 0";
             Command = new System.Data.SqlClient.SqlCommand(Rq_sql, Connection);
-            DataAdapter = new System.Data.SqlClient.SqlDataAdapter(Command);
-            DataAdapter.Fill(DataSet, "rows");
            
         }
 
@@ -190,26 +187,28 @@ namespace TopChefKitchen.Model
         {
             List<int> quantities = new List<int>();
             List<int> ids = new List<int>();
-            bool isnull = false;
+            bool isnull = true;
             ReaderRecipe_Resource = GetRessourcesFromRecipe(name);
-
-            while (ReaderRecipe_Resource.GetString(1) != null)
-            {
-                ids.Add(ReaderRecipe_Resource.GetInt32(2));
-                quantities.Add(ReaderRecipe_Resource.GetInt32(4));
+            ReaderRecipe_Resource.Read();
+            
+            while (ReaderRecipe_Resource.Read() != false)
+            {                
                 
-                ReaderSteps.Read();
+                 
+                ids.Add(ReaderRecipe_Resource.GetInt32(1));
+                quantities.Add(ReaderRecipe_Resource.GetInt32(3));
+                
+                ReaderRecipe_Resource.Read();
             }
             ReaderRecipe_Resource.Close();
             int i = 0;
             foreach (int value in ids)
             {
-                Rq_sql = "SELECT * FROM stock WHERE id = "+ ids;
+                Rq_sql = "SELECT * FROM stock WHERE id = " + ids + ";" ;
                 Command = new System.Data.SqlClient.SqlCommand(Rq_sql, Connection);
-                DataAdapter = new System.Data.SqlClient.SqlDataAdapter(Command);
-                DataAdapter.Fill(DataSet, "rows");
                 ReaderStock = Command.ExecuteReader();
-                if (quantities[i]- ReaderStock.GetInt32(4) >= 0)
+                ReaderStock.Read();
+                if (quantities[i]- ReaderStock.GetInt32(2) >= 0)
                 {
                     isnull = true;
                 }
@@ -219,7 +218,7 @@ namespace TopChefKitchen.Model
                 }
                 i++;
             }
-
+            
 
             return isnull;
            

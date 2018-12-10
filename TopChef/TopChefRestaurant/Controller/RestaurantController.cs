@@ -12,6 +12,7 @@ namespace TopChefRestaurant.Controller
     {
         private Sleeper sleeper = new Sleeper();
         private PersonController PersonController = new PersonController();
+        private TableController TableController = new TableController();
         
         public RestaurantController(RestaurantModel model)
         {
@@ -25,6 +26,7 @@ namespace TopChefRestaurant.Controller
                 if (!sleeper.IsPaused)
                 {
                     PersonController.MainLoop();
+                    TableController.MainLoop();
                 }
 
                 Thread.Sleep(sleeper.Period);

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TopChefRestaurant.Model.Material
 {
-    class Dishes : Material
+    class Fabric : Material
     {
     }
 }

@@ -11,10 +11,18 @@ namespace TopChefRestaurant
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
+
+        public const int WINDOWS_WIDTH = 430;
+        public const int WINDOWS_HEIGHT = 630;
+
+        Texture2D backgroundmap;
+        
         
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
+            graphics.PreferredBackBufferWidth = WINDOWS_WIDTH;
+            graphics.PreferredBackBufferHeight = WINDOWS_HEIGHT;
             Content.RootDirectory = "Content";
         }
 
@@ -40,6 +48,7 @@ namespace TopChefRestaurant
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
+            backgroundmap = Content.Load<Texture2D>("TopChefRestaurant");
             // TODO: use this.Content to load your game content here
         }
 
@@ -64,6 +73,7 @@ namespace TopChefRestaurant
 
             // TODO: Add your update logic here
 
+
             base.Update(gameTime);
         }
 
@@ -76,6 +86,9 @@ namespace TopChefRestaurant
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
             // TODO: Add your drawing code here
+            spriteBatch.Begin();
+            spriteBatch.Draw(backgroundmap, new Vector2(-45,-100), Color.White);
+            spriteBatch.End();
 
             base.Draw(gameTime);
         }

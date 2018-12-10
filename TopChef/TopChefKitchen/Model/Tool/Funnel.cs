@@ -12,7 +12,7 @@ namespace TopChefKitchen.Model.Tool
         {
             Position = position;
             Quantity = 1;
-            Size = "4";
+            Size = "Small";
             Name = "Funnel";
             State = "Standby";
             IsStatic = false;

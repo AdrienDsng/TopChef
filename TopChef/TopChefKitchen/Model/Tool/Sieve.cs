@@ -11,6 +11,12 @@ namespace TopChefKitchen.Model.Tool
         public Sieve(position.Position position)
         {
             Position = position;
+            Quantity = 1;
+            Size = "Small";
+            Name = "Sieve";
+            State = "Standby";
+            IsStatic = false;
+            IsDirty = false;
         }
     }
 }

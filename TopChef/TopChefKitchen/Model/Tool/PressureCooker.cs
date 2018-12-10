@@ -11,6 +11,12 @@ namespace TopChefKitchen.Model.Tool
         public PressureCooker(position.Position position)
         {
             Position = position;
+            Quantity = 2;
+            Size = "Small";
+            Name = "PressureCooker";
+            State = "Standby";
+            IsStatic = false;
+            IsDirty = false;
         }
     }
 }

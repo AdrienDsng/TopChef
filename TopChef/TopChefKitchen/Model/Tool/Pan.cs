@@ -11,6 +11,12 @@ namespace TopChefKitchen.Model.Tool
         public Pan(position.Position position)
         {
             Position = position;
+            Quantity = 10;
+            Size = "Small";
+            Name = "Pan";
+            State = "Standby";
+            IsStatic = false;
+            IsDirty = false;
         }
     }
 }

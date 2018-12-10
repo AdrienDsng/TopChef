@@ -12,7 +12,7 @@ namespace TopChefKitchen.Model.Tool
         {
             Position = position;
             Quantity = 1;
-            Size = "2";
+            Size = "Small";
             Name = "Juicer";
             State = "Standby";
             IsStatic = false;

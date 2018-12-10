@@ -11,6 +11,12 @@ namespace TopChefKitchen.Model.Tool
         public Stove(position.Position position)
         {
             Position = position;
+            Quantity = 10;
+            Size = "Small";
+            Name = "Stove";
+            State = "Standby";
+            IsStatic = false;
+            IsDirty = false;
         }
     }
 }

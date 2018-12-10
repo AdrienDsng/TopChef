@@ -11,6 +11,12 @@ namespace TopChefKitchen.Model.Tool
         public WoodenSpoon(position.Position position)
         {
             Position = position;
+            Quantity = 10;
+            Size = "Small";
+            Name = "WoodenSpoon";
+            State = "Standby";
+            IsStatic = false;
+            IsDirty = false;
         }
     }
 }

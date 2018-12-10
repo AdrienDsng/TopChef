@@ -16,12 +16,13 @@ namespace TopChefKitchen
 
         }
 
+
         public void draw(SpriteBatch spriteBatch, Texture2D tile)
         {
             spriteBatch.Begin();
 
-            spriteBatch.Draw(tile, new Rectangle(0, 0, 928, 320), Color.White);
-            
+            spriteBatch.Draw(tile, new Rectangle(0, 0, 1392, 480), Color.White);
+
             spriteBatch.End();
 
         }

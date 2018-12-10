@@ -6,29 +6,30 @@ using System.Threading;
 using System.Threading.Tasks;
 using TopChefKitchen.Model.Interface;
 using TopChefKitchen.Model.Recipe;
+using TopChefKitchen.Model.Tool;
 
 namespace TopChefKitchen.Model.Machines
 {
     class Fridge : Machine
     {
-        public List<Preparation> Preparation { get; set; }
+        public List<ITool> Tools { get; set; }
         public static Semaphore semaphore = new Semaphore(0,1);
 
         public Fridge(position.Position position) : base(position)
         {            
             this.IsStatic = false;
             this.Capacity = 10;
-            this.Preparation = new List<Preparation>();
+            this.Tools = new List<ITool>();
         }
 
-        public void addItem(Preparation preparation)
+        public void addItem(ITool tool)
         {
-            Preparation.Add(preparation);
+            Tools.Add(tool);
         }
 
-        public void removeItem(Preparation preparation)
+        public void removeItem(ITool tool)
         {
-            Preparation.Remove(preparation);
+            Tools.Remove(tool);
         }
 
     }

@@ -11,6 +11,12 @@ namespace TopChefKitchen.Model.Tool
         public Mixer(position.Position position)
         {
             Position = position;
+            Quantity = 1;
+            Size = "Small";
+            Name = "Mixer";
+            State = "Standby";
+            IsStatic = false;
+            IsDirty = false;
         }
     }
 }

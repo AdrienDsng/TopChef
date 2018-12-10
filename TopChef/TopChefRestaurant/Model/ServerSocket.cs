@@ -39,6 +39,13 @@ namespace Model
         {
             Socket clientSocket = result.AsyncState as Socket;
             int bufferSize = clientSocket.EndReceive(result);
+            byte[] packet = new byte[bufferSize];
+            Array.Copy(_buffer, packet, packet.Length);
+
+            //handle the packet
+
+            _buffer = new byte[1024];
+            clientSocket.BeginReceive(_buffer, 0, _buffer.Length, SocketFlags.None, ReceivedCallBack, clientSocket);
         }
     } 
 }

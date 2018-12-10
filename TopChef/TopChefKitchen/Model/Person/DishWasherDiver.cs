@@ -19,5 +19,10 @@ namespace TopChefKitchen.Model.Personn
         {
 
         }
+        public void takeTool(String name, Position position)
+        {
+            move(position);
+            ToolFactory.GetInstance(name, position);
+        }
     }
 }

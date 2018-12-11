@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TopChefKitchen.Model.position;
 
 namespace TopChefKitchen.Model.Person
 {
@@ -13,6 +14,6 @@ namespace TopChefKitchen.Model.Person
         void CookIngredientWithFire(Tool.Tool tool, Machines.Machine machine);
         void putIngredientInTheFridge(Tool.Tool tool, Machines.Machine machine);
         void CookIngredient(Tool.Tool tool);
-        void takeTool(String name);
+        void takeTool(String name, Position position);
     }
 }

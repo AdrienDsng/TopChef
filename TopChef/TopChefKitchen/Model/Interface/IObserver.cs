@@ -9,6 +9,5 @@ namespace TopChefKitchen.Model.Interface
     interface IObserver
     {
         void Update();
-        void OnNotify(string state);
     }
 }

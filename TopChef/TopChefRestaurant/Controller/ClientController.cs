@@ -24,6 +24,7 @@ namespace TopChefRestaurant.Controller
         public void MainLoop()
         {
             GenerateNewClient();
+            MakeClientEat();
         }
 
         private void GenerateNewClient()
@@ -34,6 +35,26 @@ namespace TopChefRestaurant.Controller
             Client client = new Client($"Client {random.Next(1000)}", new Position(0, 0));
             _clients.Add(client);
             _personController.AddAction(new WelcomeClient(client, _tableController));
+        }
+
+        private void MakeClientEat()
+        {
+            Random random = new Random();
+            foreach (var client in _clients)
+            {
+                if (client.EatingTimeLeft == null) continue;
+                
+                int nb = random.Next(0, 20);
+
+                if (nb == 0) client.Table.HasBread = false;
+                else if (nb == 1) client.Table.HasWater = false;
+
+                client.EatingTimeLeft--;
+                if (client.EatingTimeLeft == 0)
+                {
+                    _personController.AddAction(new MakeClientPay(client, this));
+                }
+            }
         }
 
         public void RemoveClient(Client client)

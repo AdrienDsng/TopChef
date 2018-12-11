@@ -11,13 +11,16 @@ namespace TopChefRestaurant.View
 
         public const int WINDOWS_WIDTH = 568;
         public const int WINDOWS_HEIGHT = 784;
+
         Vector2 position;
+
         Texture2D redSquare;
         Texture2D backgroundmap;
         Texture2D hotelMaster;
         Texture2D rowChief;
         Texture2D waiter;
         Texture2D apprentice;
+
         HotelMaster hotelmaster;
         RowChief rowchief;
         Waiter waiteR;

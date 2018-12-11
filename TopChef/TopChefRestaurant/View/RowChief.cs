@@ -13,8 +13,11 @@ namespace TopChefRestaurant.View
 
         public void Draw(SpriteBatch spriteBatch, Texture2D rowChief)
         {
+            int x = 215;
+            int y = 680;
+            
             spriteBatch.Begin();
-            spriteBatch.Draw(rowChief, new Rectangle(100, 100, 24, 32), Color.White);
+            spriteBatch.Draw(rowChief, new Rectangle(x, y, 24, 32), Color.White);
             spriteBatch.End();
         }
     }

@@ -5,7 +5,7 @@ namespace TopChefRestaurant.Model.Actions
 {
     public class WelcomeClient : Action, IAction
     {
-        private Client Client { get; set; }
+        public Client Client { get; set; }
         private TableController TableController { get; set; }
         
         public WelcomeClient(Client client, TableController tableController) : base(20)
@@ -16,6 +16,7 @@ namespace TopChefRestaurant.Model.Actions
         public override void Realize()
         {
             TableController.AssignTable(Client);
+            LogController.Log(new Event(this));
         }
 
         public bool CanRealize(object person)

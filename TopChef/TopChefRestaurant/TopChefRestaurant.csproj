@@ -43,6 +43,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Controller\ClientController.cs" />
+    <Compile Include="Controller\LogController.cs" />
     <Compile Include="Controller\PersonController.cs" />
     <Compile Include="Controller\RecipeController.cs" />
     <Compile Include="Controller\RestaurantController.cs" />
@@ -58,6 +59,7 @@
     <Compile Include="Model\Actions\ServeTable.cs" />
     <Compile Include="Model\Actions\TakeCommands.cs" />
     <Compile Include="Model\Actions\WelcomeClient.cs" />
+    <Compile Include="Model\Event.cs" />
     <Compile Include="Model\Interfaces\INamed.cs" />
     <Compile Include="Model\Interfaces\IState.cs" />
     <Compile Include="Model\Interfaces\IStatic.cs" />

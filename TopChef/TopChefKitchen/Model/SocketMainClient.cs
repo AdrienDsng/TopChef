@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Model.ClientSocket;
+using TopChefKitchen.Model.ClientSocket;
 
-namespace Model
+namespace TopChefKitchen.Model
 {
     class SocketMainClient
     { 

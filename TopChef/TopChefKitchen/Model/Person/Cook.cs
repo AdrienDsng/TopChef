@@ -4,13 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TopChefKitchen.Model.Machines;
-using TopChefKitchen.Model.Person;
 using TopChefKitchen.Model.position;
 using TopChefKitchen.Model.Tool;
 
 namespace TopChefKitchen.Model.Personn
 {
-    class Cook : Person, ICook
+    class Cook : Person
     {
         public Cook(string name, Position position, int time) : base(name, position, time)
         {
@@ -21,27 +20,29 @@ namespace TopChefKitchen.Model.Personn
 
         public void CookIngredient(Tool.Tool tool)
         {
-            throw new NotImplementedException();
+            tool.IsDirty = true;
+            tool.Preparation.State = "On progress";           
         }
 
-        public void CookIngredientWithFire(Tool.Tool tool, Machine machine)
+        public void CookIngredientWithFire(Tool.Tool tool, CookingFire machine)
         {
-            throw new NotImplementedException();
+            machine.IsDirty = true;
         }
 
         public void CutIngredient(Tool.Tool tool)
         {
-            throw new NotImplementedException();
+            tool.IsDirty = true;
         }
 
         public void PeelIngredient(Tool.Tool tool)
         {
-            throw new NotImplementedException();
+            tool.IsDirty = true;
         }
 
-        public void putIngredientInTheFridge(Tool.Tool tool, Machine machine)
-        {
-            throw new NotImplementedException();
+        public void putIngredientInTheFridge(Tool.Tool tool, Fridge machine)
+        {           
+            machine.addItem(tool);
+            tool.IsDirty = true;
         }
 
         public void takeTool(String name, Position position)

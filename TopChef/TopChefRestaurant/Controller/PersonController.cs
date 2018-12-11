@@ -9,7 +9,7 @@ namespace TopChefRestaurant.Controller
     public class PersonController
     {
         private List<IAction> _runningActions = new List<IAction>();
-        private Queue<IAction> _actionsNotAttributed = new Queue<IAction>();
+        private List<IAction> _actionsNotAttributed = new List<IAction>();
         private List<Person> _restaurantEmployees = new List<Person>();
 
         public PersonController()
@@ -34,9 +34,10 @@ namespace TopChefRestaurant.Controller
 
         private void AttributeActions()
         {
-            foreach (IAction action in _actionsNotAttributed)
+            foreach (IAction action in _actionsNotAttributed.ToList())
             {
                 Person bestMatch = null;
+
                 foreach (Person employee in _restaurantEmployees)
                 {
                     if (!action.CanRealize(employee)) continue;
@@ -46,7 +47,13 @@ namespace TopChefRestaurant.Controller
                     else if (bestMatch.GetRemainingWorkingTime() > employee.GetRemainingWorkingTime())
                         bestMatch = employee;
                 }
-                bestMatch?.AddAction(action);
+
+                if (bestMatch != null)
+                {
+                    bestMatch.AddAction(action);
+                    _actionsNotAttributed.Remove(action);
+                    action.Employee = bestMatch;
+                }
             }
         }
 
@@ -74,6 +81,6 @@ namespace TopChefRestaurant.Controller
             }
         }
 
-        public void AddAction(IAction action) => _actionsNotAttributed.Enqueue(action);
+        public void AddAction(IAction action) => _actionsNotAttributed.Add(action);
     }
 }

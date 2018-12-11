@@ -1,7 +1,8 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-namespace TopChefRestaurant
+
+namespace TopChefRestaurant.View
 {
     public class Restaurant : Game
     {
@@ -13,6 +14,8 @@ namespace TopChefRestaurant
         Vector2 position;
         Texture2D redSquare;
         Texture2D backgroundmap;
+        Texture2D hotelMaster;
+        HotelMaster test;
 
         public Restaurant()
         {
@@ -25,6 +28,8 @@ namespace TopChefRestaurant
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
+            test = new HotelMaster(this.GraphicsDevice);
+
             redSquare = new Texture2D(this.GraphicsDevice, 100, 100);
             Color[] colorData = new Color[100 * 100];
             for (int i = 0; i < 10000; i++)
@@ -40,6 +45,7 @@ namespace TopChefRestaurant
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
             backgroundmap = Content.Load<Texture2D>("Restaurant");
+            hotelMaster = Content.Load<Texture2D>("HotelMaster");
             // TODO: use this.Content to load your game content here
         }
         protected override void UnloadContent()
@@ -48,8 +54,8 @@ namespace TopChefRestaurant
         }
         protected override void Update(GameTime gameTime)
         {
-            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
-                Exit();
+            if (Keyboard.GetState().IsKeyDown(Keys.Escape))
+                this.Exit();
 
             // TODO: Add your update logic here
             position.X += 1;
@@ -72,6 +78,8 @@ namespace TopChefRestaurant
             spriteBatch.Begin();
             spriteBatch.Draw(redSquare, position);
             spriteBatch.End();
+
+            test.Draw(spriteBatch, hotelMaster);
 
             base.Draw(gameTime);
         }

@@ -48,7 +48,6 @@
     <Compile Include="Controller\RecipeController.cs" />
     <Compile Include="Controller\RestaurantController.cs" />
     <Compile Include="Controller\TableController.cs" />
-    <Compile Include="Game1.cs" />
     <Compile Include="Model\Actions\Action.cs" />
     <Compile Include="Model\Actions\DeserveTable.cs" />
     <Compile Include="Model\Actions\IAction.cs" />
@@ -99,6 +98,7 @@
     <Compile Include="Model\Sleeper.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="View\HotelMaster.cs" />
     <Compile Include="View\Restaurant.cs" />
     <Compile Include="View\RestaurantView.cs" />
   </ItemGroup>

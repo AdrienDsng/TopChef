@@ -1,7 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-
+using TopChefKitchen.Model.Tool;
 
 namespace TopChefKitchen
 {
@@ -20,6 +20,7 @@ namespace TopChefKitchen
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
             IsMouseVisible = true;
+            Tool tool = ToolFactory.GetInstance("Juicer", new Model.position.Position(1,1));
         }
 
         protected override void Initialize()

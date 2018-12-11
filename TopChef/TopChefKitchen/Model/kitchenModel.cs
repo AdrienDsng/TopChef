@@ -8,6 +8,6 @@ namespace TopChefKitchen.Model
 {
     class KitchenModel
     {
-
+        
     }
 }

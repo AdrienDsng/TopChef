@@ -39,7 +39,7 @@ namespace TopChefKitchen.Model.Person
             State = "Gone";
         }
 
-        public void move(Position position)
+        public void Move(Position position)
         {
             Position = position;
         }

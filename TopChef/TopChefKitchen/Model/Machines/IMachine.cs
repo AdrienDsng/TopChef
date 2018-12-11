@@ -12,9 +12,9 @@ namespace TopChefKitchen.Model.Machines
         int Capacity { get; set; }
         int WorkingTime { get; set; }
 
-        void on();
-        void off();
-        void isWorking();
+        void On();
+        void Off();
+        void IsWorking();
 
     }
 }

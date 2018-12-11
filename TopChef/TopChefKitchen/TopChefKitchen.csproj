@@ -86,7 +86,6 @@
     <Compile Include="Model\Person\Person.cs" />
     <Compile Include="Model\Position\IPosition.cs" />
     <Compile Include="Model\Position\Position.cs" />
-    <Compile Include="Model\Recipe\FinalPreparation.cs" />
     <Compile Include="Model\Recipe\Preparation.cs" />
     <Compile Include="Model\Recipe\Recipe.cs" />
     <Compile Include="Model\Recipe\Step.cs" />

@@ -8,50 +8,67 @@ using TopChefKitchen.Model.position;
 
 namespace TopChefKitchen.Model.Machines
 {
-    class Machine : IMachine, IState, IStatic, INamed, IPosition
+    class Machine : IMachine, IState, IStatic, INamed, IPosition, IObservable
     {
-   
+         
         public int Capacity { get ; set; }
         public int WorkingTime { get ; set ; }
         public bool IsStatic { get; set; }
         public string State { get ; set; }
         public string Name { get ; set ; }
         public Position Position { get ; set; }
+        public List<IObserver> Observers { get ; set ; }
 
         public Machine(Position position, string name)
         {
+            this.Observers = new List<IObserver>();
             this.Position = position;
             this.Capacity = 1;
             this.WorkingTime = 5;
             this.IsStatic = false;
             this.Name = "Machine";
-            on();
+            On();
         }
 
         public Machine(Position position)
         {
             Position = position;
-            on();
+            On();
         }
 
-        public void off()
+        public void Off()
         {
             this.State = "off";
         }
 
-        public void on()
+        public void On()
         {
             this.State = "standby";
         }
 
-        public void isWorking()
+        public void IsWorking()
         {
             this.State = "IsWorking";
         }
 
-        public void move(Position position)
+        public void Move(Position position)
         {
-            throw new NotImplementedException();
+            Position = position;
+        }
+
+        public void AddObserver(IObserver observer)
+        {
+            Observers.Add(observer);
+        }
+
+        public void DelObserver(IObserver observer)
+        {
+            Observers.Remove(observer);
+        }
+
+        public string Notify()
+        {
+            return this.State;
         }
     }
 }

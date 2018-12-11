@@ -9,7 +9,8 @@ namespace TopChefRestaurant.Model.Actions
     public class TakeCommands : Action, IAction
     {
         private RecipeController _recipeController;
-        private Table Table;
+        public Table Table;
+        
         public TakeCommands(Table table, RecipeController recipeController) : base(60)
         {
             this.Table = table;
@@ -25,6 +26,7 @@ namespace TopChefRestaurant.Model.Actions
             }
 
             _recipeController.SendOrders(Table);
+            LogController.Log(new Event(this));
         }
 
         public bool CanRealize(object person)

@@ -9,6 +9,11 @@ namespace TopChefRestaurant.Model
         
         private static Sleeper instance = null;
         private static readonly object padlock = new object();
+
+        public void ArreteDeSleeper()//Chiper arrete de chiper #Dora
+        {
+            IsPaused = false;
+        }
         
         Sleeper()
         {

@@ -25,7 +25,8 @@ namespace TopChefKitchen.Model
         public string Cnx { get ; set; }
         public string Rq_sql { get; set ; }
         public int Id { get; set; }
-       
+        public Dictionary<string, int> Dictionary { get; set; }
+
 
         public Stock()
         {
@@ -184,7 +185,7 @@ namespace TopChefKitchen.Model
            
         }
 
-        private bool CheckIfResourceAvailable(String name)
+        public bool CheckIfResourceAvailable(String name)
         {
             List<int> quantities = new List<int>();
             List<int> ids = new List<int>();
@@ -218,6 +219,24 @@ namespace TopChefKitchen.Model
                 i++;
             }
             return isnull;          
+        }
+
+        public Dictionary<string , int> GetRecipeNameWithTypes()
+        {
+
+            Rq_sql = "SELECT * FROM Recipe;";
+            Command = new System.Data.SqlClient.SqlCommand(Rq_sql, Connection);
+            ReaderRecipe = Command.ExecuteReader();
+
+            while (ReaderRecipe.Read() != false)
+            {
+                this.Dictionary.Add(ReaderRecipe.GetString(1) , ReaderRecipe.GetInt32(3));
+                ReaderRecipe_Resource.Read();
+            }
+            ReaderRecipe.Close();
+
+
+            return this.Dictionary;
         }
     }
 }

@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Net.WebSockets;
+using TopChefRestaurant.Controller;
 using TopChefRestaurant.Model.Material;
 using TopChefRestaurant.Model.Person;
 
@@ -7,7 +8,7 @@ namespace TopChefRestaurant.Model.Actions
 {
     public class DeserveTable : Action, IAction
     {
-        private Table Table;
+        public Table Table { get; set; }
         public DeserveTable(Table table) : base(60)
         {
             this.Table = table;
@@ -18,6 +19,7 @@ namespace TopChefRestaurant.Model.Actions
 //            ClientSocket.send(Table.TableNapkin);
             Table.Dishes = null;
             Table.TableNapkin = null;
+            LogController.Log(new Event(this));
         }
 
         public bool CanRealize(object person)

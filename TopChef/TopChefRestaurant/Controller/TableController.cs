@@ -13,9 +13,12 @@ namespace TopChefRestaurant.Controller
         private List<Table> _busyTable = new List<Table>();
         private Queue<Client> _clientsWaiting = new Queue<Client>();
         private PersonController _personController;
-        public TableController(PersonController personController)
+        private RecipeController _recipeController;
+        
+        public TableController(PersonController personController, RecipeController recipeController)
         {
             this._personController = personController;
+            this._recipeController = recipeController;
             
             _availableTable.Add(2, new List<Table>());
             _availableTable.Add(4, new List<Table>());
@@ -62,13 +65,20 @@ namespace TopChefRestaurant.Controller
                 {
                     _personController.AddAction(new RefreshBread(table));
                 }
+                
                 if (!table.HasWater)
                 {
                     _personController.AddAction(new RefreshWater(table));
                 }
+                
                 if (table.Client.Number == 0)
                 {
                     _personController.AddAction(new DeserveTable(table));
+                }
+
+                if (table.Dishes == null && table.TableNapkin == null)
+                {
+                    _personController.AddAction(new LayTable(table));
                 }
             }
         }
@@ -82,6 +92,7 @@ namespace TopChefRestaurant.Controller
                 table.Client = client;
                 client.Table = table;
                 _busyTable.Add(table);
+                _personController.AddAction(new TakeCommands(table, _recipeController));
             }
             else
             {

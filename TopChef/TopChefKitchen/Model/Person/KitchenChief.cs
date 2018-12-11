@@ -40,12 +40,12 @@ namespace TopChefKitchen.Model.Person
             throw new NotImplementedException();
         }
 
-        public void putIngredientInTheFridge(Tool.Tool tool, Machine machine)
+        public void PutIngredientInTheFridge(Tool.Tool tool, Machine machine)
         {
             throw new NotImplementedException();
         }
 
-        public void takeTool(String name, Position position)
+        public void TakeTool(String name, Position position)
         {
             move(position);
             ToolFactory.GetInstance(name, position);

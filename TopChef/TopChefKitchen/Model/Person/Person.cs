@@ -17,7 +17,7 @@ namespace TopChefKitchen.Model.Person
         public string Name { get ; set ; }
         public string State { get; set; }
         public Position Position { get ; set ; }
-        public Tool.Tool tool { get ; set ; }
+        public Tool.Tool Tool { get ; set ; }
 
         public Person(String name, Position position, int time)
         {

@@ -9,6 +9,6 @@ namespace TopChefKitchen.Model.position
     interface IPosition
     {
         Position Position { get; set; }
-        void move(Position position);
+        void Move(Position position);
     }
 }

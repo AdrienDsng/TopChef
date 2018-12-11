@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TopChefKitchen", "TopChefKi
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TopChefRestaurant", "TopChefRestaurant\TopChefRestaurant.csproj", "{A58E5149-864B-4538-A413-75E00A1FDF69}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TopChefRestaurantTest", "TopChefRestaurantTest\TopChefRestaurantTest.csproj", "{9F6D8C0C-ABDA-477B-AD6B-84626BE7DA4B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TopChefRestaurantTest", "TopChefRestaurantTest\TopChefRestaurantTest.csproj", "{83D173F3-922B-48DC-9197-B493CDDCADEC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,10 +23,10 @@ Global
 		{A58E5149-864B-4538-A413-75E00A1FDF69}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A58E5149-864B-4538-A413-75E00A1FDF69}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A58E5149-864B-4538-A413-75E00A1FDF69}.Release|Any CPU.Build.0 = Release|Any CPU
-		{9F6D8C0C-ABDA-477B-AD6B-84626BE7DA4B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{9F6D8C0C-ABDA-477B-AD6B-84626BE7DA4B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{9F6D8C0C-ABDA-477B-AD6B-84626BE7DA4B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{9F6D8C0C-ABDA-477B-AD6B-84626BE7DA4B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{83D173F3-922B-48DC-9197-B493CDDCADEC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{83D173F3-922B-48DC-9197-B493CDDCADEC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{83D173F3-922B-48DC-9197-B493CDDCADEC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{83D173F3-922B-48DC-9197-B493CDDCADEC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

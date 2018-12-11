@@ -43,7 +43,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Model\Bar.cs" />
-    <Compile Include="Model\Machines\Listener\MachineListenner.cs" />
+    <Compile Include="Model\Interface\IObserver.cs" />
     <Compile Include="Model\Sleeper.cs" />
     <Compile Include="Model\Command.cs" />
     <Compile Include="Model\Interface\INamed.cs" />

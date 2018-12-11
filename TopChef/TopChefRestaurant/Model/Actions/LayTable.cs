@@ -8,6 +8,7 @@ namespace TopChefRestaurant.Model.Actions
     public class LayTable : Action, IAction
     {
         public Table Table { get; set; }
+        
         public LayTable(Table table) : base(60)
         {
             this.Table = table;
@@ -26,6 +27,7 @@ namespace TopChefRestaurant.Model.Actions
                 Table.Dishes.Add(new WineGlass());
                 Table.Dishes.Add(new LittleSpoon());
             }
+            
             LogController.Log(new Event(this));
         }
 

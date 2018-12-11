@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using TopChefRestaurant.Model.Material;
 using TopChefRestaurant.Model.Person;
 
@@ -13,6 +14,7 @@ namespace TopChefRestaurant.Model.Actions
         public override void Realize()
         {
             Table.TableNapkin = new TableNapkin();
+            Table.Dishes = new List<Dish>();
 
             for (var i = 0; i < Table.MaxNbClients; i++)
             {

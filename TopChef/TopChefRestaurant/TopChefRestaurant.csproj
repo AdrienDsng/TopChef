@@ -81,6 +81,7 @@
     <Compile Include="Model\Material\TableCloth.cs" />
     <Compile Include="Model\Material\TableNapkin.cs" />
     <Compile Include="Model\Material\WineGlass.cs" />
+    <Compile Include="Model\PacketHandler.cs" />
     <Compile Include="Model\Person\Apprentice.cs" />
     <Compile Include="Model\Person\Client.cs" />
     <Compile Include="Model\Person\HotelMaster.cs" />

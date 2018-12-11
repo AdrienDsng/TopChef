@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TopChefKitchen.Model.position;
+using TopChefKitchen.Model.Tool;
 
 namespace TopChefKitchen.Model.Personn
 {
@@ -18,8 +19,16 @@ namespace TopChefKitchen.Model.Personn
 
         public void takeTool(String name, Position position)
         {
-            move(position);
+            move(new Position(position.X+1,position.Y));
             ToolFactory.GetInstance(name, position);
+        }
+        public void CutIngredient(Tool.Tool tool)
+        {
+            throw new NotImplementedException();
+        }
+        public void PeelIngredient(Tool.Tool tool)
+        {
+            throw new NotImplementedException();
         }
     }
 }

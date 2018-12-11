@@ -8,6 +8,8 @@ namespace TopChefRestaurant.Model.Person
     {
         public int Number { get; set; }
         public Table Table { get; set; }
+        public int? EatingTimeLeft = null;
+        
         public Client(string name, Position position) : base(name, position)
         {
             Random random = new Random();

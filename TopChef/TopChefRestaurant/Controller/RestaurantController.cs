@@ -10,31 +10,41 @@ namespace TopChefRestaurant.Controller
 {
     class RestaurantController
     {
-        private Sleeper sleeper = new Sleeper();
+        private Sleeper sleeper = Sleeper.Instance;
         private PersonController PersonController;
         private TableController TableController;
         private ClientController ClientController;
+        private RecipeController RecipeController;
+        private bool ShouldLoop = true;
         
-        public RestaurantController(RestaurantModel model)
+        public RestaurantController()
         {
             this.PersonController = new PersonController();
-            this.TableController = new TableController(PersonController);
+            this.RecipeController = new RecipeController(PersonController);
+            this.TableController = new TableController(PersonController, RecipeController);
             this.ClientController = new ClientController(PersonController, TableController);
         }
 
         public void Loop()
         {
-            while (true)
+            while (ShouldLoop)
             {
                 if (!sleeper.IsPaused)
                 {
                     ClientController.MainLoop();
                     TableController.MainLoop();
                     PersonController.MainLoop();
+
+                    sleeper.TimeElapsed += 1000;
                 }
 
                 Thread.Sleep(sleeper.Period);
             }
+        }
+
+        public void StopLoop()
+        {
+            this.ShouldLoop = false;
         }
     }
 }

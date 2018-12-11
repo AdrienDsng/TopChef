@@ -21,10 +21,11 @@ namespace TopChefRestaurant.Model.Material
         public string Name { get; set; }
         public string State { get; set; }
 
-        public Table(int maxNbClients, Position position)
+        public Table(int maxNbClients, string name, Position position)
         {
             this.MaxNbClients = maxNbClients;
             this.Position = position;
+            this.Name = name;
         }
     }
 }

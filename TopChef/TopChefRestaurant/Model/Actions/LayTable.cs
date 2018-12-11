@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using TopChefRestaurant.Controller;
 using TopChefRestaurant.Model.Material;
 using TopChefRestaurant.Model.Person;
 
@@ -5,7 +7,8 @@ namespace TopChefRestaurant.Model.Actions
 {
     public class LayTable : Action, IAction
     {
-        private Table Table { get; set; }
+        public Table Table { get; set; }
+        
         public LayTable(Table table) : base(60)
         {
             this.Table = table;
@@ -13,6 +16,7 @@ namespace TopChefRestaurant.Model.Actions
         public override void Realize()
         {
             Table.TableNapkin = new TableNapkin();
+            Table.Dishes = new List<Dish>();
 
             for (var i = 0; i < Table.MaxNbClients; i++)
             {
@@ -23,6 +27,8 @@ namespace TopChefRestaurant.Model.Actions
                 Table.Dishes.Add(new WineGlass());
                 Table.Dishes.Add(new LittleSpoon());
             }
+            
+            LogController.Log(new Event(this));
         }
 
         public bool CanRealize(object person)

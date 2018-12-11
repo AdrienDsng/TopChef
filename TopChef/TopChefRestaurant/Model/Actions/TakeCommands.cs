@@ -9,7 +9,8 @@ namespace TopChefRestaurant.Model.Actions
     public class TakeCommands : Action, IAction
     {
         private RecipeController _recipeController;
-        private Table Table;
+        public Table Table;
+        
         public TakeCommands(Table table, RecipeController recipeController) : base(60)
         {
             this.Table = table;
@@ -19,10 +20,13 @@ namespace TopChefRestaurant.Model.Actions
         {
             Random random = new Random();
 
-            for (var i = 0; i < Table.Client.Number; i++)
+            for (var i = 0; i < Table.Client.Number; i++)//TODO update this to check recipe availability in real time & select full menu
             {
                 Table.Orders.Add(_recipeController.AvailableRecipe[random.Next(_recipeController.AvailableRecipe.Count)]);
             }
+
+            _recipeController.SendOrders(Table);
+            LogController.Log(new Event(this));
         }
 
         public bool CanRealize(object person)

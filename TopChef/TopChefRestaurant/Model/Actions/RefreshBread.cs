@@ -1,3 +1,4 @@
+using TopChefRestaurant.Controller;
 using TopChefRestaurant.Model.Material;
 using TopChefRestaurant.Model.Person;
 
@@ -5,7 +6,8 @@ namespace TopChefRestaurant.Model.Actions
 {
     public class RefreshBread : Action, IAction
     {
-        private Table Table { get; set; }
+        public Table Table { get; set; }
+        
         public RefreshBread(Table table) : base(30)
         {
             this.Table = table;
@@ -13,6 +15,7 @@ namespace TopChefRestaurant.Model.Actions
         public override void Realize()
         {
             Table.HasBread = true;
+            LogController.Log(new Event(this));
         }
 
         public bool CanRealize(object person)

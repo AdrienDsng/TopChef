@@ -43,11 +43,11 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Controller\ClientController.cs" />
+    <Compile Include="Controller\LogController.cs" />
     <Compile Include="Controller\PersonController.cs" />
     <Compile Include="Controller\RecipeController.cs" />
     <Compile Include="Controller\RestaurantController.cs" />
     <Compile Include="Controller\TableController.cs" />
-    <Compile Include="Game1.cs" />
     <Compile Include="Model\Actions\Action.cs" />
     <Compile Include="Model\Actions\DeserveTable.cs" />
     <Compile Include="Model\Actions\IAction.cs" />
@@ -58,6 +58,7 @@
     <Compile Include="Model\Actions\ServeTable.cs" />
     <Compile Include="Model\Actions\TakeCommands.cs" />
     <Compile Include="Model\Actions\WelcomeClient.cs" />
+    <Compile Include="Model\Event.cs" />
     <Compile Include="Model\Interfaces\INamed.cs" />
     <Compile Include="Model\Interfaces\IState.cs" />
     <Compile Include="Model\Interfaces\IStatic.cs" />
@@ -81,6 +82,7 @@
     <Compile Include="Model\Material\TableCloth.cs" />
     <Compile Include="Model\Material\TableNapkin.cs" />
     <Compile Include="Model\Material\WineGlass.cs" />
+    <Compile Include="Model\PacketHandler.cs" />
     <Compile Include="Model\Person\Apprentice.cs" />
     <Compile Include="Model\Person\Client.cs" />
     <Compile Include="Model\Person\HotelMaster.cs" />
@@ -96,6 +98,8 @@
     <Compile Include="Model\Sleeper.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="View\HotelMaster.cs" />
+    <Compile Include="View\Restaurant.cs" />
     <Compile Include="View\RestaurantView.cs" />
   </ItemGroup>
   <ItemGroup>

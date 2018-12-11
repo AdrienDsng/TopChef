@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading;
 using TopChefRestaurant;
 using TopChefRestaurant.Controller;
 using TopChefRestaurant.Model;
@@ -17,14 +18,27 @@ namespace TopChefRestaurant
         [STAThread]
         static void Main()
         {
-            using (var game = new Game1())
-            game.Run();
 
-            RestaurantModel model = new RestaurantModel();
-            RestaurantController controller = new RestaurantController(model);
-            RestaurantView view = new RestaurantView(controller);
+            Thread loop = new Thread(() =>
+            {
+                RestaurantController controller = new RestaurantController();
+                
+                try
+                {
+                    controller.Loop();
+                }
+                catch (ThreadAbortException e)
+                {
+                    controller.StopLoop();
+                }
+            });
             
-            controller.Loop();
+            loop.Start();
+            
+            using (var game = new Restaurant())
+            game.Run();
+            
+            loop.Abort();
         }
     }
 }

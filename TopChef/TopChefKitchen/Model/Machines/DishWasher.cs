@@ -12,7 +12,7 @@ namespace TopChefKitchen.Model.Machines
     class DishWasher : Machine
     {
 
-        public List<Dish> Dishes { get; set ; }
+        public List<IDish> Dishes { get; set ; }
         public static Semaphore semaphore = new Semaphore(0, 1);
         public int maxCuttelry = 24;
         public int maxGlass = 24;
@@ -27,12 +27,12 @@ namespace TopChefKitchen.Model.Machines
             this.WorkingTime = 8;
         }
 
-        public void addItem(Dish dish)
+        public void addItem(IDish dish)
         {
             Dishes.Add(dish);
         }
 
-        public void removeItem(Dish dish)
+        public void removeItem(IDish dish)
         {
             Dishes.Remove(dish);
         }

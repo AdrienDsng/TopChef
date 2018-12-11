@@ -13,6 +13,10 @@ namespace TopChefRestaurant.Controller
         public RecipeController(PersonController personController)
         {
             this._personController = personController;
+            this.AvailableRecipe.Add(new Recipe());
+            this.AvailableRecipe.Add(new Recipe());
+            this.AvailableRecipe.Add(new Recipe());
+            this.AvailableRecipe.Add(new Recipe());
         }
 
         public void SendOrders(Table table)

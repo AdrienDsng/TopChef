@@ -43,6 +43,8 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Model\Bar.cs" />
+    <Compile Include="Model\Machines\Listener\MachineListenner.cs" />
+    <Compile Include="Model\Sleeper.cs" />
     <Compile Include="Model\Command.cs" />
     <Compile Include="Model\Interface\INamed.cs" />
     <Compile Include="Model\Interface\IObservable.cs" />
@@ -79,7 +81,6 @@
     <Compile Include="Model\Person\Apprentice.cs" />
     <Compile Include="Model\Person\Cook.cs" />
     <Compile Include="Model\Person\DishWasherDiver.cs" />
-    <Compile Include="Model\Person\ICook.cs" />
     <Compile Include="Model\Person\IPerson.cs" />
     <Compile Include="Model\Person\KitchenChief.cs" />
     <Compile Include="Model\Person\Person.cs" />

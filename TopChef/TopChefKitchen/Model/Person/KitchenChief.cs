@@ -8,10 +8,10 @@ using TopChefKitchen.Model.Person;
 using TopChefKitchen.Model.position;
 using TopChefKitchen.Model.Tool;
 
-namespace TopChefKitchen.Model.Personn
+namespace TopChefKitchen.Model.Person
 {
 
-    class KitchenChief : Person, ICook
+    class KitchenChief : Person
     {
         public KitchenChief(string name, Position position, int time) : base(name, position, time)
         {

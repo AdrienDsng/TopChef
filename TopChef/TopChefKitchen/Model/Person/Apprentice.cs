@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using TopChefKitchen.Model.position;
 using TopChefKitchen.Model.Tool;
 
-namespace TopChefKitchen.Model.Personn
+namespace TopChefKitchen.Model.Person
 {
     class Apprentice : Person
     {

@@ -7,7 +7,7 @@ using TopChefKitchen.Model.Machines;
 using TopChefKitchen.Model.position;
 using TopChefKitchen.Model.Tool;
 
-namespace TopChefKitchen.Model.Personn
+namespace TopChefKitchen.Model.Person
 {
     class Cook : Person
     {

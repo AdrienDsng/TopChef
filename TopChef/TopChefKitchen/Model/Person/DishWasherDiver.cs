@@ -8,7 +8,7 @@ using TopChefKitchen.Model.Material;
 using TopChefKitchen.Model.position;
 using TopChefKitchen.Model.Tool;
 
-namespace TopChefKitchen.Model.Personn
+namespace TopChefKitchen.Model.Person
 {
     class DishWasherDiver : Person
     {
@@ -48,6 +48,13 @@ namespace TopChefKitchen.Model.Personn
             move(new Position(machine.Position.X+1,machine.Position.Y));
             machine.addItem(fabric);
         }
+        public void DisposeDishWasher(DishWasher machine)
+        {
+            move(new Position(machine.Position.X + 1, machine.Position.Y));
+
+            //machine.removeItem();
+        }
+
 
         public void takeTool(String name, Position position)
         {

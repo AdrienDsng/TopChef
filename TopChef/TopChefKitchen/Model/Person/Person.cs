@@ -7,7 +7,7 @@ using TopChefKitchen.Model.Interface;
 using TopChefKitchen.Model.position;
 using TopChefKitchen.Model.Tool;
 
-namespace TopChefKitchen.Model.Personn
+namespace TopChefKitchen.Model.Person
 {
     class Person : IPerson , INamed, IPosition,IState, IStatic
     {

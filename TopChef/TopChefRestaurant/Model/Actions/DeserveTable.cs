@@ -16,7 +16,7 @@ namespace TopChefRestaurant.Model.Actions
         {
 //            ClientSocket.send(Table.Dishes); TODO
 //            ClientSocket.send(Table.TableNapkin);
-            Table.Dishes = new List<Dish>();
+            Table.Dishes = null;
             Table.TableNapkin = null;
         }
 

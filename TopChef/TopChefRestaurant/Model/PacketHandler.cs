@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Model
+namespace TopChefRestaurant.Model
 {
     public static class PacketHandler
     {

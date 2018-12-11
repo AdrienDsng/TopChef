@@ -9,9 +9,12 @@ namespace TopChefRestaurant.Model.Actions
     public class DeserveTable : Action, IAction
     {
         public Table Table { get; set; }
-        public DeserveTable(Table table) : base(60)
+        private PersonController _personController;
+        
+        public DeserveTable(Table table, PersonController personController) : base(60)
         {
             this.Table = table;
+            this._personController = personController;
         }
         public override void Realize()
         {
@@ -19,6 +22,9 @@ namespace TopChefRestaurant.Model.Actions
 //            ClientSocket.send(Table.TableNapkin);
             Table.Dishes = null;
             Table.TableNapkin = null;
+            Table.Client = null;
+            
+            _personController.AddAction(new LayTable(Table));
             LogController.Log(new Event(this));
         }
 

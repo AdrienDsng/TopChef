@@ -9,8 +9,8 @@ namespace TopChefRestaurant.View
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
-        public const int WINDOWS_WIDTH = 568; //Largeur de la fenêtre
-        public const int WINDOWS_HEIGHT = 784; //Longueur de la fenêtre
+        public const int WINDOWS_WIDTH = 568;
+        public const int WINDOWS_HEIGHT = 784;
         Vector2 position;
         Texture2D redSquare;
         Texture2D backgroundmap;
@@ -55,7 +55,7 @@ namespace TopChefRestaurant.View
         protected override void Update(GameTime gameTime)
         {
             if (Keyboard.GetState().IsKeyDown(Keys.Escape))
-                Exit();
+                this.Exit();
 
             // TODO: Add your update logic here
             position.X += 1;

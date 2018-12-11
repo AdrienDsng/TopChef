@@ -63,5 +63,3 @@ C:\Users\mathi\Documents\1_Cesi.Exia-local\A3\ProjetTopChef\TopChef\TopChef\TopC
 C:\Users\mathi\Documents\1_Cesi.Exia-local\A3\ProjetTopChef\TopChef\TopChef\TopChefKitchen\bin\DesktopGL\AnyCPU\Debug\MonoGame.Extended.Tiled.xml
 C:\Users\mathi\Documents\1_Cesi.Exia-local\A3\ProjetTopChef\TopChef\TopChef\TopChefKitchen\bin\DesktopGL\AnyCPU\Debug\Newtonsoft.Json.xml
 C:\Users\mathi\Documents\1_Cesi.Exia-local\A3\ProjetTopChef\TopChef\TopChef\TopChefKitchen\obj\Debug\TopChefKitchen.csproj.CopyComplete
-C:\Users\mathi\Documents\1_Cesi.Exia-local\A3\ProjetTopChef\TopChef\TopChef\TopChefKitchen\bin\DesktopGL\AnyCPU\Debug\Content\kitchen.xnb
-C:\Users\mathi\Documents\1_Cesi.Exia-local\A3\ProjetTopChef\TopChef\TopChef\TopChefKitchen\bin\DesktopGL\AnyCPU\Debug\Content\player.xnb

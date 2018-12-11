@@ -14,11 +14,13 @@ namespace TopChefRestaurant.Controller
         private PersonController PersonController;
         private TableController TableController;
         private ClientController ClientController;
+        private RecipeController RecipeController;
         
         public RestaurantController(RestaurantModel model)
         {
             this.PersonController = new PersonController();
-            this.TableController = new TableController(PersonController);
+            this.RecipeController = new RecipeController(PersonController);
+            this.TableController = new TableController(PersonController, RecipeController);
             this.ClientController = new ClientController(PersonController, TableController);
         }
 

@@ -22,26 +22,28 @@ namespace TopChefRestaurant
         [STAThread]
         static void Main()
         {
-            var game = new RestaurantView();
-            Thread loop = new Thread(() =>
+            using (var game = new RestaurantView())
             {
-                RestaurantController controller = new RestaurantController();
-                
-                try
+                Thread loop = new Thread(() =>
                 {
-                    controller.Loop();
-                }
-                catch (ThreadAbortException e)
-                {
-                    controller.StopLoop();
-                }
-            });
-            
-            loop.Start();
-            
-            game.Run();
-            
-            loop.Abort();
+                    RestaurantController controller = new RestaurantController(game);
+
+                    try
+                    {
+                        controller.Loop();
+                    }
+                    catch (ThreadAbortException e)
+                    {
+                        controller.StopLoop();
+                    }
+                });
+
+                loop.Start();
+
+                game.Run();
+
+                loop.Abort();
+            }
         }
     }
 }

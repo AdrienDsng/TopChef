@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using TopChefRestaurant.Model;
+using TopChefRestaurant.View;
 
 namespace TopChefRestaurant.Controller
 {
@@ -15,14 +16,16 @@ namespace TopChefRestaurant.Controller
         private TableController TableController;
         private ClientController ClientController;
         private RecipeController RecipeController;
+        private RestaurantView RestaurantView;
         private bool ShouldLoop = true;
         
-        public RestaurantController()
+        public RestaurantController(RestaurantView view)
         {
-            this.PersonController = new PersonController();
+            this.RestaurantView = view;
+            this.PersonController = new PersonController(RestaurantView);
             this.RecipeController = new RecipeController(PersonController);
-            this.TableController = new TableController(PersonController, RecipeController);
-            this.ClientController = new ClientController(PersonController, TableController);
+            this.TableController = new TableController(RestaurantView, PersonController, RecipeController);
+            this.ClientController = new ClientController(RestaurantView, PersonController, TableController);
         }
 
         public void Loop()

@@ -3,21 +3,32 @@ using System.Collections.Generic;
 using System.Linq;
 using TopChefRestaurant.Model.Actions;
 using TopChefRestaurant.Model.Material;
-using TopChefRestaurant.Model.Person;
 using TopChefRestaurant.Model.Positions;
+using TopChefRestaurant.View;
+using Client = TopChefRestaurant.Model.Person.Client;
 
 namespace TopChefRestaurant.Controller
 {
+    /// <summary>
+    /// Controller managing all the tables
+    /// </summary>
     public class TableController
     {
         private Dictionary<int, List<Table>> _availableTable = new Dictionary<int, List<Table>>();
         private List<Table> _busyTable = new List<Table>();
-        private Queue<Client> _clientsWaiting = new Queue<Client>();
+        private List<Client> _clientsWaiting = new List<Client>();
         private PersonController _personController;
         private RecipeController _recipeController;
+        private RestaurantView _restaurantView;
         
-        public TableController(PersonController personController, RecipeController recipeController)
+        /// <summary>
+        /// Table controller constructor
+        /// </summary>
+        /// <param name="personController"></param>
+        /// <param name="recipeController"></param>
+        public TableController(RestaurantView restaurantView, PersonController personController, RecipeController recipeController)
         {
+            this._restaurantView = restaurantView;
             this._personController = personController;
             this._recipeController = recipeController;
             
@@ -40,12 +51,18 @@ namespace TopChefRestaurant.Controller
             for(int i=0;i<2;i++)
                 _availableTable[10].Add(new Table(10, $"Table {random.Next(1000)}", new Position(0, 0)));
         }
-
+        
+        /// <summary>
+        /// Main loop called from the restaurant controller
+        /// </summary>
         public void MainLoop()
         {
             RandomTableEvent();
         }
 
+        /// <summary>
+        /// Generate random 
+        /// </summary>
         private void RandomTableEvent()
         {
             Random rnd = new Random();
@@ -56,6 +73,7 @@ namespace TopChefRestaurant.Controller
                 {
                     _availableTable[table.MaxNbClients].Add(table);
                     _busyTable.Remove(table); 
+                    CheckWaitingClients();
                 }
                 if (rnd.Next(60 * 20) == 0)
                     table.HasBread = false;
@@ -63,7 +81,22 @@ namespace TopChefRestaurant.Controller
                     table.HasWater = false;
             }
         }
+        
+        /// <summary>
+        /// Check if a table is available for a client who is waiting
+        /// </summary>
+        private void CheckWaitingClients()
+        {
+            foreach (var client in _clientsWaiting)
+            {
+                AssignTable(client);
+            }
+        }
 
+        /// <summary>
+        /// Assign a table to a client
+        /// </summary>
+        /// <param name="client"></param>
         public void AssignTable(Client client)
         {
             if (_availableTable[client.Number].Count > 0)
@@ -75,9 +108,9 @@ namespace TopChefRestaurant.Controller
                 _busyTable.Add(table);
                 _personController.AddAction(new TakeCommands(table, _recipeController));
             }
-            else
+            else if(!_clientsWaiting.Contains(client))
             {
-                _clientsWaiting.Enqueue(client);
+                _clientsWaiting.Add(client);
             }
         }
     }

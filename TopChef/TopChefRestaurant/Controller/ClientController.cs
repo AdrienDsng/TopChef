@@ -1,27 +1,30 @@
 using System;
 using System.Collections.Generic;
 using TopChefRestaurant.Model.Actions;
-using TopChefRestaurant.Model.Person;
 using TopChefRestaurant.Model.Positions;
+using TopChefRestaurant.View;
+using Client = TopChefRestaurant.Model.Person.Client;
 
 namespace TopChefRestaurant.Controller
 {
     /// <summary>
-    /// Controller to manage all the clients
+    /// Controller managing all the clients
     /// </summary>
     public class ClientController
     {
         private List<Client> _clients = new List<Client>();
         private PersonController _personController;
         private TableController _tableController;
+        private RestaurantView _restaurantView;
         
         /// <summary>
         /// ClientController constructor
         /// </summary>
         /// <param name="personController"></param>
         /// <param name="tableController"></param>
-        public ClientController(PersonController personController, TableController tableController)
+        public ClientController(RestaurantView restaurantView, PersonController personController, TableController tableController)
         {
+            _restaurantView = restaurantView;
             _personController = personController;
             _tableController = tableController;
             

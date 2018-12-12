@@ -98,8 +98,12 @@
     <Compile Include="Program.cs" />
     <Compile Include="Model\ClientSocket.cs"/>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="View\Apprentice.cs" />
+    <Compile Include="View\Client.cs" />
     <Compile Include="View\HotelMaster.cs" />
     <Compile Include="View\RestaurantView.cs" />
+    <Compile Include="View\RowChief.cs" />
+    <Compile Include="View\Waiter.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="MonoGame.Extended, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">

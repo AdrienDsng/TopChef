@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TopChefKitchen.Model.Recipe
+namespace TopChefRestaurant.Model.Recipe
 {
-    class AvailableRecipe
+    class AvailableRecipes
     {
     }
 }

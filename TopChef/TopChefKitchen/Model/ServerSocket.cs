@@ -17,8 +17,8 @@ public class ServerSocket
         // Establish the local endpoint for the socket.  
         // Dns.GetHostName returns the name of the   
         // host running the application.  
-        IPHostEntry ipHostInfo = Dns.GetHostEntry(Dns.GetHostName());
-        IPAddress ipAddress = ipHostInfo.AddressList[0];
+        //IPHostEntry ipHostInfo = Dns.GetHostEntry(Dns.GetHostName());
+        IPAddress ipAddress = IPAddress.Parse("0.0.0.0");
         IPEndPoint localEndPoint = new IPEndPoint(ipAddress, 11000);
 
         // Create a TCP/IP socket.  

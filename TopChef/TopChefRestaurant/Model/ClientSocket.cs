@@ -16,8 +16,8 @@ public class ClientSocket
         {
             // Establish the remote endpoint for the socket.  
             // This example uses port 11000 on the local computer.  
-            IPHostEntry ipHostInfo = Dns.GetHostEntry(Dns.GetHostName());
-            IPAddress ipAddress = ipHostInfo.AddressList[0];
+            //IPHostEntry ipHostInfo = Dns.GetHostEntry(Dns.GetHostName());
+            IPAddress ipAddress = IPAddress.Parse("127.0.0.1");
             IPEndPoint remoteEP = new IPEndPoint(ipAddress, 11000);
 
             // Create a TCP/IP  socket.  

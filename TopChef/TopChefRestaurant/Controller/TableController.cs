@@ -39,17 +39,43 @@ namespace TopChefRestaurant.Controller
             _availableTable.Add(10, new List<Table>());
             
             Random random = new Random();
-            
-            for(int i=0;i<10;i++)
-                _availableTable[2].Add(new Table(2, $"Table {random.Next(1000)}", new Position(0, 0)));
-            for(int i=0;i<10;i++)
-                _availableTable[4].Add(new Table(4, $"Table {random.Next(1000)}", new Position(0, 0)));
-            for(int i=0;i<5;i++)
-                _availableTable[6].Add(new Table(6, $"Table {random.Next(1000)}", new Position(0, 0)));
-            for(int i=0;i<5;i++)
-                _availableTable[8].Add(new Table(8, $"Table {random.Next(1000)}", new Position(0, 0)));
-            for(int i=0;i<2;i++)
-                _availableTable[10].Add(new Table(10, $"Table {random.Next(1000)}", new Position(0, 0)));
+
+            new Table(2, $"Table {random.Next(1000)}", new Position(6, 16));
+            new Table(2, $"Table {random.Next(1000)}", new Position(6, 24));
+            new Table(2, $"Table {random.Next(1000)}", new Position(6, 32));
+            new Table(2, $"Table {random.Next(1000)}", new Position(19, 24));
+            new Table(2, $"Table {random.Next(1000)}", new Position(19, 32));
+            new Table(2, $"Table {random.Next(1000)}", new Position(48, 70));
+            new Table(2, $"Table {random.Next(1000)}", new Position(48, 78));
+            new Table(2, $"Table {random.Next(1000)}", new Position(48, 84));
+            new Table(2, $"Table {random.Next(1000)}", new Position(60, 78));
+            new Table(2, $"Table {random.Next(1000)}", new Position(60, 84));
+
+            new Table(2, $"Table {random.Next(1000)}", new Position(18, 16));
+            new Table(2, $"Table {random.Next(1000)}", new Position(18, 42));
+            new Table(2, $"Table {random.Next(1000)}", new Position(6, 42));
+            new Table(2, $"Table {random.Next(1000)}", new Position(6, 52));
+            new Table(2, $"Table {random.Next(1000)}", new Position(18, 52));
+            new Table(2, $"Table {random.Next(1000)}", new Position(48, 48));
+            new Table(2, $"Table {random.Next(1000)}", new Position(62, 48));
+            new Table(2, $"Table {random.Next(1000)}", new Position(62, 60));
+            new Table(2, $"Table {random.Next(1000)}", new Position(48, 60));
+            new Table(2, $"Table {random.Next(1000)}", new Position(62, 68));
+
+            new Table(2, $"Table {random.Next(1000)}", new Position(4, 62));
+            new Table(2, $"Table {random.Next(1000)}", new Position(4, 72));
+            new Table(2, $"Table {random.Next(1000)}", new Position(18, 62));
+            new Table(2, $"Table {random.Next(1000)}", new Position(48, 40));
+            new Table(2, $"Table {random.Next(1000)}", new Position(62, 40));
+
+            new Table(2, $"Table {random.Next(1000)}", new Position(20, 72));
+            new Table(2, $"Table {random.Next(1000)}", new Position(6, 80));
+            new Table(2, $"Table {random.Next(1000)}", new Position(48, 30));
+            new Table(2, $"Table {random.Next(1000)}", new Position(68, 30));
+            new Table(2, $"Table {random.Next(1000)}", new Position(48, 22));
+
+            new Table(2, $"Table {random.Next(1000)}", new Position(20, 82));
+            new Table(2, $"Table {random.Next(1000)}", new Position(64, 22));
         }
         
         /// <summary>

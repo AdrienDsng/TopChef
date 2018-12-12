@@ -45,15 +45,10 @@ namespace TopChefKitchen.Model.Person
 
         public void TakeTool(String name, Position position)
         {
-            move(position);
+            Move(position);
             ToolFactory.GetInstance(name, position);
         }
-
-        public void OnNotify(string state)
-        {
-            throw new NotImplementedException();
-        }
-
+        
         public void Update()
         {
             throw new NotImplementedException();

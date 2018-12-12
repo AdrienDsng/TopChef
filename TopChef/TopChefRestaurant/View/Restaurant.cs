@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using TopChefRestaurant.Model.Person;
 
 namespace TopChefRestaurant.View
 {
@@ -12,7 +13,7 @@ namespace TopChefRestaurant.View
         public const int WINDOWS_WIDTH = 568;
         public const int WINDOWS_HEIGHT = 784;
 
-        Vector2 position;
+        Vector2 squarePosition;
 
         Texture2D redSquare;
         Texture2D backgroundmap;
@@ -26,13 +27,18 @@ namespace TopChefRestaurant.View
         Waiter waiteR;
         Apprentice apprenticE;
 
+        void Changeposition(Person person)
+        {
+            
+        }
+
         public Restaurant()
         {
             graphics = new GraphicsDeviceManager(this);
             graphics.PreferredBackBufferWidth = WINDOWS_WIDTH;
             graphics.PreferredBackBufferHeight = WINDOWS_HEIGHT;
             Content.RootDirectory = "Content";
-            position = new Vector2(0, 0);
+            squarePosition = new Vector2(0, 0);
         }
         protected override void Initialize()
         {
@@ -73,9 +79,9 @@ namespace TopChefRestaurant.View
                 this.Exit();
 
             // TODO: Add your update logic here
-            position.X += 1;
-            if (position.X > this.GraphicsDevice.Viewport.Width)
-                position.X = 0;
+            squarePosition.X += 1;
+            if (squarePosition.X > this.GraphicsDevice.Viewport.Width)
+                squarePosition.X = 0;
 
             base.Update(gameTime);
         }
@@ -91,7 +97,7 @@ namespace TopChefRestaurant.View
 
             //Draw square
             spriteBatch.Begin();
-            spriteBatch.Draw(redSquare, position);
+            spriteBatch.Draw(redSquare, squarePosition);
             spriteBatch.End();
 
             hotelmaster.Draw(spriteBatch, hotelMaster);

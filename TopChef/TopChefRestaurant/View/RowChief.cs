@@ -6,16 +6,25 @@ namespace TopChefRestaurant.View
 {
     class RowChief
     {
+
+        int x = 215;
+        int y = 680;
+
         public RowChief(GraphicsDevice graphicsDevice)
         {
 
         }
 
-        public void Draw(SpriteBatch spriteBatch, Texture2D rowChief)
+        protected void Update(GameTime gameTime)
         {
-            int x = 215;
-            int y = 680;
-            
+            if (y > 200)
+            {
+                y--;
+            }
+        }
+
+        public void Draw(SpriteBatch spriteBatch, Texture2D rowChief)
+        {            
             spriteBatch.Begin();
             spriteBatch.Draw(rowChief, new Rectangle(x, y, 24, 32), Color.White);
             spriteBatch.End();

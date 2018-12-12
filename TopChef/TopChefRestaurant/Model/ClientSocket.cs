@@ -67,12 +67,6 @@ public class ClientSocket
             Console.WriteLine(e.ToString());
         }
     }
-
-    public static int Main(String[] args)
-    {
-        StartClient();
-        return 0;
-    }
 }/*using System;
 using System.Net;
 using System.Net.Sockets;

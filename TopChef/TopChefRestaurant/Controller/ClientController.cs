@@ -6,12 +6,20 @@ using TopChefRestaurant.Model.Positions;
 
 namespace TopChefRestaurant.Controller
 {
+    /// <summary>
+    /// Controller to manage all the clients
+    /// </summary>
     public class ClientController
     {
         private List<Client> _clients = new List<Client>();
         private PersonController _personController;
         private TableController _tableController;
         
+        /// <summary>
+        /// ClientController constructor
+        /// </summary>
+        /// <param name="personController"></param>
+        /// <param name="tableController"></param>
         public ClientController(PersonController personController, TableController tableController)
         {
             _personController = personController;
@@ -22,12 +30,18 @@ namespace TopChefRestaurant.Controller
             _personController.AddAction(new WelcomeClient(client, _tableController));
         }
 
+        /// <summary>
+        /// Main loop called from the restaurant controller
+        /// </summary>
         public void MainLoop()
         {
             GenerateNewClient();
             MakeClientEat();
         }
-
+        
+        /// <summary>
+        /// Randomly generate new clients
+        /// </summary>
         private void GenerateNewClient()
         {
             Random random = new Random();
@@ -38,6 +52,9 @@ namespace TopChefRestaurant.Controller
             _personController.AddAction(new WelcomeClient(client, _tableController));
         }
 
+        /// <summary>
+        /// Randomly make clients eat bread or drink water. Also decrementing their remaining eating time
+        /// </summary>
         private void MakeClientEat()
         {
             Random random = new Random();
@@ -68,6 +85,10 @@ namespace TopChefRestaurant.Controller
             }
         }
 
+        /// <summary>
+        /// Remove a client from the clients list
+        /// </summary>
+        /// <param name="client"></param>
         public void RemoveClient(Client client)
         {
             this._clients.Remove(client);

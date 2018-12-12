@@ -7,7 +7,7 @@ using TopChefKitchen.Model.Machines;
 using TopChefKitchen.Model.position;
 using TopChefKitchen.Model.Tool;
 
-namespace TopChefKitchen.Model.Personn
+namespace TopChefKitchen.Model.Person
 {
     class Cook : Person
     {
@@ -29,26 +29,28 @@ namespace TopChefKitchen.Model.Personn
             machine.IsDirty = true;
         }
 
-        public void CutIngredient(Tool.Tool tool)
-        {
-            tool.IsDirty = true;
-        }
 
-        public void PeelIngredient(Tool.Tool tool)
-        {
-            tool.IsDirty = true;
-        }
 
-        public void putIngredientInTheFridge(Tool.Tool tool, Fridge machine)
+        public void PutIngredientInTheFridge(Tool.Tool tool, Fridge machine)
         {           
             machine.addItem(tool);
             tool.IsDirty = true;
         }
 
-        public void takeTool(String name, Position position)
+        public void TakeTool(String name, Position position)
         {
-            move(position);
+            Move(new Position(position.X + 1, position.Y));
             ToolFactory.GetInstance(name, position);
+        }
+        public void CutIngredient(Tool.Tool tool, CookingTable table)
+        {
+            Move(new Position(table.Position.X + 1, table.Position.Y));
+            tool.IsDirty = true;
+        }
+        public void PeelIngredient(Tool.Tool tool, CookingTable table)
+        {
+            Move(new Position(table.Position.X + 1, table.Position.Y));
+            tool.IsDirty = true;
         }
     }
 }

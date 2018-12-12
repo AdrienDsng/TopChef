@@ -18,7 +18,7 @@ namespace TopChefKitchen.Model.position
             this.Y = y;
         }
 
-        public void move(Position position)
+        public void Move(Position position)
         {
             this.X = position.X;
             this.Y = position.Y;

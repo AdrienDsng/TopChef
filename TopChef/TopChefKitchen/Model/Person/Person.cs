@@ -7,7 +7,7 @@ using TopChefKitchen.Model.Interface;
 using TopChefKitchen.Model.position;
 using TopChefKitchen.Model.Tool;
 
-namespace TopChefKitchen.Model.Personn
+namespace TopChefKitchen.Model.Person
 {
     class Person : IPerson , INamed, IPosition,IState, IStatic
     {
@@ -17,7 +17,7 @@ namespace TopChefKitchen.Model.Personn
         public string Name { get ; set ; }
         public string State { get; set; }
         public Position Position { get ; set ; }
-        public Tool.Tool tool { get ; set ; }
+        public Tool.Tool Tool { get ; set ; }
 
         public Person(String name, Position position, int time)
         {
@@ -39,7 +39,7 @@ namespace TopChefKitchen.Model.Personn
             State = "Gone";
         }
 
-        public void move(Position position)
+        public void Move(Position position)
         {
             Position = position;
         }

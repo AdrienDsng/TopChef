@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace TopChefKitchen.Model
 {
-    class kitchenModel
+    class KitchenModel
     {
-
+        
     }
 }

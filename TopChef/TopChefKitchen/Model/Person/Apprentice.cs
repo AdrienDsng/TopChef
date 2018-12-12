@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TopChefKitchen.Model.Machines;
 using TopChefKitchen.Model.position;
 using TopChefKitchen.Model.Tool;
 
-namespace TopChefKitchen.Model.Personn
+namespace TopChefKitchen.Model.Person
 {
     class Apprentice : Person
     {
@@ -17,18 +18,20 @@ namespace TopChefKitchen.Model.Personn
             Arrive();
         }
 
-        public void takeTool(String name, Position position)
+        public void TakeTool(String name, Position position)
         {
-            move(new Position(position.X+1,position.Y));
+            Move(new Position(position.X+1,position.Y));
             ToolFactory.GetInstance(name, position);
         }
-        public void CutIngredient(Tool.Tool tool)
+        public void CutIngredient(Tool.Tool tool, CookingTable table)
         {
-            throw new NotImplementedException();
+            Move(new Position(table.Position.X + 1, table.Position.Y));
+            tool.IsDirty = true;
         }
-        public void PeelIngredient(Tool.Tool tool)
+        public void PeelIngredient(Tool.Tool tool, CookingTable table)
         {
-            throw new NotImplementedException();
+            Move(new Position(table.Position.X + 1, table.Position.Y));
+            tool.IsDirty = true;
         }
     }
 }

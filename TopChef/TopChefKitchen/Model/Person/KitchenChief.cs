@@ -3,16 +3,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TopChefKitchen.Model.Interface;
 using TopChefKitchen.Model.Machines;
 using TopChefKitchen.Model.Person;
 using TopChefKitchen.Model.position;
 using TopChefKitchen.Model.Tool;
 
-namespace TopChefKitchen.Model.Personn
+namespace TopChefKitchen.Model.Person
 {
 
-    class KitchenChief : Person, ICook
+    class KitchenChief : Person, IObserver
     {
+        private Recipe.Recipe recipe;
         public KitchenChief(string name, Position position, int time) : base(name, position, time)
         {
             IsAlive = true;
@@ -20,35 +22,41 @@ namespace TopChefKitchen.Model.Personn
             Arrive();            
         }
 
-        public void CookIngredient(Tool.Tool tool)
+        public void GetCommand(List<string> commands, Stock stock)
+        {
+            foreach (string command in commands)
+            {
+                if(stock.CheckIfResourceAvailable(command))
+                {
+                    recipe = stock.SelectRecipe(command);
+                }
+            }
+        }
+
+        public void CheckStock(Stock stock)
+        {
+
+        }
+        
+        public void PutIngredientInTheFridge(Tool.Tool tool, Machine machine)
         {
             throw new NotImplementedException();
         }
 
-        public void CookIngredientWithFire(Tool.Tool tool, Machine machine)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void CutIngredient(Tool.Tool tool)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void PeelIngredient(Tool.Tool tool)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void putIngredientInTheFridge(Tool.Tool tool, Machine machine)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void takeTool(String name, Position position)
+        public void TakeTool(String name, Position position)
         {
             move(position);
             ToolFactory.GetInstance(name, position);
+        }
+
+        public void OnNotify(string state)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Update()
+        {
+            throw new NotImplementedException();
         }
     }
 }

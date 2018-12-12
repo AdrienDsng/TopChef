@@ -11,11 +11,20 @@ namespace TopChefRestaurant.View
 
         public const int WINDOWS_WIDTH = 568;
         public const int WINDOWS_HEIGHT = 784;
+
         Vector2 position;
+
         Texture2D redSquare;
         Texture2D backgroundmap;
         Texture2D hotelMaster;
-        HotelMaster test;
+        Texture2D rowChief;
+        Texture2D waiter;
+        Texture2D apprentice;
+
+        HotelMaster hotelmaster;
+        RowChief rowchief;
+        Waiter waiteR;
+        Apprentice apprenticE;
 
         public Restaurant()
         {
@@ -28,12 +37,15 @@ namespace TopChefRestaurant.View
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
-            test = new HotelMaster(this.GraphicsDevice);
+            hotelmaster = new HotelMaster(this.GraphicsDevice);
+            rowchief = new RowChief(this.GraphicsDevice);
+            waiteR = new Waiter(this.GraphicsDevice);
+            apprenticE = new Apprentice(this.GraphicsDevice);
 
             redSquare = new Texture2D(this.GraphicsDevice, 100, 100);
             Color[] colorData = new Color[100 * 100];
             for (int i = 0; i < 10000; i++)
-                colorData[i] = Color.Red;
+                colorData[i] = Color.Pink;
 
             redSquare.SetData<Color>(colorData);
 
@@ -46,6 +58,9 @@ namespace TopChefRestaurant.View
 
             backgroundmap = Content.Load<Texture2D>("Restaurant");
             hotelMaster = Content.Load<Texture2D>("HotelMaster");
+            rowChief = Content.Load<Texture2D>("RowChief");
+            //waiter = Content.Load<Texture2D>("Waiter");
+            //apprentice = Content.Load<Texture2D>("Apprentice");
             // TODO: use this.Content to load your game content here
         }
         protected override void UnloadContent()
@@ -79,7 +94,10 @@ namespace TopChefRestaurant.View
             spriteBatch.Draw(redSquare, position);
             spriteBatch.End();
 
-            test.Draw(spriteBatch, hotelMaster);
+            hotelmaster.Draw(spriteBatch, hotelMaster);
+            rowchief.Draw(spriteBatch, rowChief);
+            //waiteR.Draw(spriteBatch, waiter);
+            //apprenticE.Draw(spriteBatch, apprentice);
 
             base.Draw(gameTime);
         }

@@ -1,15 +1,14 @@
 ﻿using System.Reflection;
-using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("TopChefRestaurant")]
-[assembly: AssemblyProduct("TopChefRestaurant")]
-[assembly: AssemblyConfiguration("")]
+[assembly: AssemblyTitle("TopChefRestaurantTest")]
 [assembly: AssemblyDescription("")]
+[assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
+[assembly: AssemblyProduct("TopChefRestaurantTest")]
 [assembly: AssemblyCopyright("Copyright ©  2018")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +19,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("c8900ec9-eec2-44b0-be1b-93af3f5697bd")]
+[assembly: Guid("83D173F3-922B-48DC-9197-B493CDDCADEC")]
 
 // Version information for an assembly consists of the following four values:
 //
@@ -34,6 +33,3 @@ using System.Runtime.InteropServices;
 // [assembly: AssemblyVersion("1.0.*")]
 [assembly: AssemblyVersion("1.0.0.0")]
 [assembly: AssemblyFileVersion("1.0.0.0")]
-[assembly: InternalsVisibleTo("TopChefRestaurant.Tests")]
-[assembly: InternalsVisibleTo("TopChefRestaurant.Explorables")]
-

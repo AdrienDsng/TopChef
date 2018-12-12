@@ -2,6 +2,9 @@ using TopChefRestaurant.Model.Actions;
 
 namespace TopChefRestaurant.Model
 {
+    /// <summary>
+    /// Intermediate model used to log events
+    /// </summary>
     public class Event
     {
         public string Type { get; set; }

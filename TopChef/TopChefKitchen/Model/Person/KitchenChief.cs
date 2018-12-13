@@ -36,9 +36,19 @@ namespace TopChefKitchen.Model.Person
             }
         }
 
-        public void CheckStock(Stock stock)
+        public Dictionary<string, int> CheckStock(Stock stock, string name)
         {
-            
+            Dictionary<string, int> recipes = stock.GetRecipeNameWithTypes();
+
+            foreach(KeyValuePair<string, int> recipe in recipes)
+            {
+                if (!stock.CheckIfResourceAvailable(recipe.Key))
+                {
+                    recipes.Remove(recipe.Key);
+                }
+            }
+
+            return recipes;
         }
         
         public void PutIngredientInTheFridge(Tool.Tool tool, Machine machine)

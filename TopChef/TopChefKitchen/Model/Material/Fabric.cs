@@ -18,7 +18,7 @@ namespace TopChefKitchen.Model.Material
         public string State { get; set; }
         public bool IsDirty { get; set; }
 
-        public void move(Position position)
+        public void Move(Position position)
         {
             Position = position;
         }

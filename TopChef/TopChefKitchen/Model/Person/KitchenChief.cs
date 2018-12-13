@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using TopChefKitchen.Model.Interface;
 using TopChefKitchen.Model.Machines;
@@ -14,6 +15,7 @@ namespace TopChefKitchen.Model.Person
 
     class KitchenChief : Person, IObserver
     {
+        public static Semaphore semaphore = new Semaphore(0, 1);
         private Recipe.Recipe recipe;
         public KitchenChief(string name, Position position, int time) : base(name, position, time)
         {

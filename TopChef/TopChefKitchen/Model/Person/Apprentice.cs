@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using TopChefKitchen.Model.Machines;
 using TopChefKitchen.Model.position;
@@ -11,6 +12,7 @@ namespace TopChefKitchen.Model.Person
 {
     class Apprentice : Person
     {
+        public static Semaphore semaphore = new Semaphore(0, 1);
         public Apprentice(string name, Position position, int time) : base(name, position, time)
         {
             IsAlive = true;

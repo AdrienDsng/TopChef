@@ -4,9 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TopChefRestaurant.Model.Recipe
+namespace TopChefKitchen.Model.Recipe
 {
     class AvailableRecipes
     {
+        public List<string> entries;
+        public List<string> plats;
+        public List<string> desserts;
+
+
     }
 }

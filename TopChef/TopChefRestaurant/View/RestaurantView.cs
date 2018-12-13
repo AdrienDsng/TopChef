@@ -13,6 +13,9 @@ namespace TopChefRestaurant.View
         public const int WINDOWS_WIDTH = 568;
         public const int WINDOWS_HEIGHT = 784;
 
+        private SpriteFont font;
+        private int numTable = 0;
+
         Vector2 squarePosition;
 
         Texture2D redSquare;
@@ -29,7 +32,7 @@ namespace TopChefRestaurant.View
 
         void ChangePosition(Person person)
         {
-            
+            var position = person.Position;
         }
 
         public RestaurantView()
@@ -65,6 +68,8 @@ namespace TopChefRestaurant.View
             backgroundmap = Content.Load<Texture2D>("Restaurant");
             hotelMaster = Content.Load<Texture2D>("HotelMaster");
             rowChief = Content.Load<Texture2D>("RowChief");
+
+            font = Content.Load<SpriteFont>("NumTable");
             //waiter = Content.Load<Texture2D>("Waiter");
             //apprentice = Content.Load<Texture2D>("Apprentice");
             // TODO: use this.Content to load your game content here
@@ -83,8 +88,12 @@ namespace TopChefRestaurant.View
             if (squarePosition.X > this.GraphicsDevice.Viewport.Width)
                 squarePosition.X = 0;
 
+            numTable++;
+
             base.Update(gameTime);
         }
+
+
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
@@ -93,6 +102,7 @@ namespace TopChefRestaurant.View
             //Draw background
             spriteBatch.Begin();
             spriteBatch.Draw(backgroundmap, new Vector2(0, 0), Color.White);
+            spriteBatch.DrawString(font, "NumTable :" + numTable, new Vector2(100, 100), Color.Black);
             spriteBatch.End();
 
             //Draw square

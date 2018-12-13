@@ -28,6 +28,16 @@ namespace TopChefKitchen.Model.Person
             Arrive();
             Position = position;
         }
+        public Person( Position position, int time)
+        {
+            WorkingTime = time;
+            IsAlive = true;
+            IsStatic = false;
+            Name = "person";
+            Arrive();
+            Position = position;
+        }
+
 
         public void Arrive()
         {

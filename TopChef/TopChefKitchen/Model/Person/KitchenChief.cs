@@ -17,8 +17,9 @@ namespace TopChefKitchen.Model.Person
     {
         public static Semaphore semaphore = new Semaphore(0, 1);
         private Recipe.Recipe recipe;
-        public KitchenChief(string name, Position position, int time) : base(name, position, time)
+        public KitchenChief( Position position, int time) : base( position, time)
         {
+            Name = "KitchenChief";
             IsAlive = true;
             IsStatic = false;           
             Arrive();            
@@ -37,7 +38,7 @@ namespace TopChefKitchen.Model.Person
 
         public void CheckStock(Stock stock)
         {
-
+            
         }
         
         public void PutIngredientInTheFridge(Tool.Tool tool, Machine machine)

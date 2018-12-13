@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using TopChefKitchen.Model.Interface;
 using TopChefKitchen.Model.position;
@@ -49,6 +50,9 @@ namespace TopChefKitchen.Model.Machines
         public void IsWorking()
         {
             this.State = "IsWorking";
+            Thread.Sleep(WorkingTime);
+            this.State = "standby";
+
         }
 
         public void Move(Position position)
@@ -66,9 +70,9 @@ namespace TopChefKitchen.Model.Machines
             Observers.Remove(observer);
         }
 
-        public string Notify()
+        public void Notify()
         {
-            return this.State;
+           
         }
     }
 }

@@ -51,7 +51,7 @@ namespace TopChefKitchen.Model.Person
             ToolFactory.GetInstance(name, position);
         }
         
-        public void Update()
+        public void Update(String name)
         {
             throw new NotImplementedException();
         }

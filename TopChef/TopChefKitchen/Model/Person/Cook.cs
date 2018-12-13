@@ -4,15 +4,19 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using TopChefKitchen.Model.Interface;
 using TopChefKitchen.Model.Machines;
 using TopChefKitchen.Model.position;
 using TopChefKitchen.Model.Tool;
 
 namespace TopChefKitchen.Model.Person
 {
-    class Cook : Person
+    class Cook : Person, IObservable
     {
         public static Semaphore semaphore = new Semaphore(0, 2);
+
+        public List<IObserver> Observers { get ; set ; }
+
         public Cook(string name, Position position, int time) : base(name, position, time)
         {
             IsAlive = true;
@@ -53,6 +57,25 @@ namespace TopChefKitchen.Model.Person
         {
             Move(new Position(table.Position.X + 1, table.Position.Y));
             tool.IsDirty = true;
+        }
+
+        public void AddObserver(IObserver observer)
+        {
+            Observers.Add(observer);
+        }
+
+        public void DelObserver(IObserver observer)
+        {
+            Observers.Remove(observer);
+        }
+
+        public void Notify()
+        {
+            foreach (var observer in Observers)
+            {
+                observer.Update(State);
+            }
+            
         }
     }
 }

@@ -8,6 +8,6 @@ namespace TopChefKitchen.Model.Interface
 {
     interface IObserver
     {
-        void Update();
+        void Update(string name);
     }
 }

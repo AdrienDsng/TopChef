@@ -11,6 +11,6 @@ namespace TopChefKitchen.Model.Interface
         List<IObserver> Observers { get; set; }
         void AddObserver(IObserver observer);
         void DelObserver(IObserver observer);        
-        string Notify();
+        void Notify();
     }
 }

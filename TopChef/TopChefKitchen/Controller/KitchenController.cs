@@ -24,10 +24,10 @@ namespace TopChefKitchen.Controller
             this.PersonController = new PersonController(StockController, MachineController);         
         }
 
-        public void loop()
+        public void Loop()
         {
             StockController.MainLoop();
-            MachineController.MainLoop();
+            MachineController.MainLoop();s
             PersonController.MainLoop();
         }
     }

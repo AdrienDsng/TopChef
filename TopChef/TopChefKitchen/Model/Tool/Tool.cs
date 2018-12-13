@@ -25,7 +25,7 @@ namespace TopChefKitchen.Model.Tool
             this.Preparation = preparation;
         }
 
-        public void move(Position position)
+        public void Move(Position position)
         {
             Position = position;
         }

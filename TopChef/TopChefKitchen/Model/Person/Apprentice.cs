@@ -26,7 +26,7 @@ namespace TopChefKitchen.Model.Person
 
         public void TakeTool(String name, Position position)
         {
-            this.State = "IsWorking";
+            this.State = "TakingT";
             Move(new Position(position.X+1,position.Y));
             ToolFactory.GetInstance(name, position);
             this.State = "Standby";

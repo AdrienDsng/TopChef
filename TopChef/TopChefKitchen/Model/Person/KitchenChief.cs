@@ -35,6 +35,10 @@ namespace TopChefKitchen.Model.Person
                 }
             }
         }
+        public void GiveRecipeToCook(Cook cook)
+        {
+            cook.Recipe = recipe;
+        }
 
         public Dictionary<string, int> CheckStock(Stock stock, string name)
         {
@@ -61,6 +65,7 @@ namespace TopChefKitchen.Model.Person
             Move(position);
             ToolFactory.GetInstance(name, position);
         }
+
         
         public void Update(String name)
         {

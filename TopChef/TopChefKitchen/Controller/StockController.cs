@@ -20,5 +20,10 @@ namespace TopChefKitchen.Controller
         {
             Stock.UpdateStock();
         }
+
+        internal void MainLoop()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

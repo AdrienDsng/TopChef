@@ -12,20 +12,20 @@ namespace TopChefKitchen.Model
     class Stock
     {
         public Recipe.Recipe Recipe { get; set; }
-        public DataSet DataSet { get ; set ; }    
-        public SqlConnection Connection { get ; set ; }
-        public SqlCommand Command { get ; set ; }
-        public SqlDataReader ReaderRecipe { get; set; }
-        public SqlDataReader ReaderSteps { get; set; }
-        public SqlDataReader ReaderStep_Tool { get; set; }
-        public SqlDataReader Readertools { get; set; }
-        public SqlDataReader ReaderRecipe_Resource { get; set; }
-        public SqlDataReader ReaderResource { get; set; }
-        public SqlDataReader ReaderStock { get; set; }
-        public string Cnx { get ; set; }
-        public string Rq_sql { get; set ; }
-        public int Id { get; set; }
-        public Dictionary<string, int> Dictionary { get; set; }
+        private DataSet DataSet { get ; set ; }
+        private SqlConnection Connection { get ; set ; }
+        private SqlCommand Command { get ; set ; }
+        private SqlDataReader ReaderRecipe { get; set; }
+        private SqlDataReader ReaderSteps { get; set; }
+        private SqlDataReader ReaderStep_Tool { get; set; }
+        private SqlDataReader Readertools { get; set; }
+        private SqlDataReader ReaderRecipe_Resource { get; set; }
+        private SqlDataReader ReaderResource { get; set; }
+        private SqlDataReader ReaderStock { get; set; }
+        private string Cnx { get ; set; }
+        private string Rq_sql { get; set ; }
+        private int Id { get; set; }
+        private Dictionary<string, int> Dictionary { get; set; }
 
 
         public Stock()
@@ -99,7 +99,7 @@ namespace TopChefKitchen.Model
             Readertools = Command.ExecuteReader();
             if (Readertools.Read() != false)
             {
-                step.Tool_Needed = Readertools.GetString(1);
+                step.Resource_Needed = Readertools.GetString(1);
             }               
             Readertools.Close();   
         }
@@ -178,7 +178,7 @@ namespace TopChefKitchen.Model
             return ReaderRecipe_Resource;
         }
 
-        private void CheckResourceQuantity()
+        public void CheckResourceQuantity()
         {
             Rq_sql = "DELETE * FROM stock WHERE quantity = 0";
             Command = new System.Data.SqlClient.SqlCommand(Rq_sql, Connection);

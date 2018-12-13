@@ -17,6 +17,7 @@ namespace TopChefKitchen.Model.Person
         public static Semaphore semaphore = new Semaphore(0, 2);
 
         public List<IObserver> Observers { get ; set ; }
+        public Recipe.Recipe Recipe { get; set; }
 
         public Cook( Position position, int time) : base( position, time)
         {
@@ -31,7 +32,7 @@ namespace TopChefKitchen.Model.Person
             this.State = "IsWorking";
             Move(new Position(position.X + 1, position.Y));
             tool.IsDirty = true;
-            tool.Preparation.State = "On progress";
+            tool.Preparation.State = "IsWorking";
             Thread.Sleep(step.Wait_Time);
             this.State = "Standby";
         }

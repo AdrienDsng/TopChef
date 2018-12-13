@@ -26,6 +26,7 @@ namespace TopChefKitchen.Model.Person
             IsStatic = false;
             Name = name;
             Arrive();
+            Move(position);
             Position = position;
         }
         public Person( Position position, int time)
@@ -35,6 +36,7 @@ namespace TopChefKitchen.Model.Person
             IsStatic = false;
             Name = "person";
             Arrive();
+            Move(position);
             Position = position;
         }
 

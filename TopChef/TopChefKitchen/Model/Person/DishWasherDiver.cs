@@ -83,6 +83,10 @@ namespace TopChefKitchen.Model.Person
             ToolFactory.GetInstance(name, position);
 
         }
+        public void PowerOn(Machine machine)
+        {
+            machine.State = "IsWorking";
+        }
 
         public void Update(string name)
         {

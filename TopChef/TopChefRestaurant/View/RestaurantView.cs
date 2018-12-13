@@ -46,11 +46,15 @@ namespace TopChefRestaurant.View
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
+            this.IsMouseVisible = true;
+
             hotelmaster = new HotelMaster(this.GraphicsDevice);
             rowchief = new RowChief(this.GraphicsDevice);
             waiteR = new Waiter(this.GraphicsDevice);
             apprenticE = new Apprentice(this.GraphicsDevice);
 
+          
+            
             redSquare = new Texture2D(this.GraphicsDevice, 100, 100);
             Color[] colorData = new Color[100 * 100];
             for (int i = 0; i < 10000; i++)
@@ -83,6 +87,8 @@ namespace TopChefRestaurant.View
             if (Keyboard.GetState().IsKeyDown(Keys.Escape))
                 this.Exit();
 
+
+
             // TODO: Add your update logic here
             squarePosition.X += 1;
             if (squarePosition.X > this.GraphicsDevice.Viewport.Width)
@@ -109,6 +115,17 @@ namespace TopChefRestaurant.View
             spriteBatch.Begin();
             spriteBatch.Draw(redSquare, squarePosition);
             spriteBatch.End();
+
+            var mouseState = Mouse.GetState();
+            var mousePosition = new Point(mouseState.X, mouseState.Y);
+            Rectangle area = new Rectangle(0, 0, 100, 100);
+
+            if (area.Contains(mousePosition))
+            {
+                spriteBatch.Begin();
+                spriteBatch.DrawString(font, "NumTable :" + numTable, new Vector2(200, 200), Color.Black);
+                spriteBatch.End();
+            }
 
             hotelmaster.Draw(spriteBatch, hotelMaster);
             rowchief.Draw(spriteBatch, rowChief);

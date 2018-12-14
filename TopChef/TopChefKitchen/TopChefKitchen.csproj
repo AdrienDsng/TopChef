@@ -43,6 +43,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Model\Bar.cs" />
+    <Compile Include="Model\Interface\IObserver.cs" />
     <Compile Include="Model\Interface\IObserverChief.cs" />
     <Compile Include="Model\Interface\IObserverDiver.cs" />
     <Compile Include="Model\Recipe\AvailableRecipes.cs" />

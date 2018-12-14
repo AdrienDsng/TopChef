@@ -18,11 +18,11 @@ namespace TopChefKitchen.Model.Machines
         public string State { get ; set; }
         public string Name { get ; set ; }
         public Position Position { get ; set; }
-        public List<IObserver> Observers { get ; set ; }
+        public List<IObserverChief> Observers { get ; set ; }
 
         public Machine(Position position, string name)
         {
-            this.Observers = new List<IObserver>();
+            this.Observers = new List<IObserverChief>();
             this.Position = position;
             this.Capacity = 1;
             this.WorkingTime = 5;
@@ -65,12 +65,12 @@ namespace TopChefKitchen.Model.Machines
             Position = position;
         }
 
-        public void AddObserver(IObserver observer)
+        public void AddObserver(IObserverChief observer)
         {
             Observers.Add(observer);
         }
 
-        public void DelObserver(IObserver observer)
+        public void DelObserver(IObserverChief observer)
         {
             Observers.Remove(observer);
         }

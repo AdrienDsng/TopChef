@@ -17,6 +17,7 @@ namespace TopChefKitchen.Model.Person
     {
         public static Semaphore semaphore = new Semaphore(0, 1);
         private Recipe.Recipe recipe;
+
         public KitchenChief( Position position, int time) : base( position, time)
         {
             Name = "KitchenChief";
@@ -35,9 +36,11 @@ namespace TopChefKitchen.Model.Person
                 }
             }
         }
+
         public void GiveRecipeToCook(Cook cook)
         {
             cook.Recipe = recipe;
+            cook.ActualStep = recipe.Steps[0];
         }
 
         public Dictionary<string, int> CheckStock(Stock stock, string name)

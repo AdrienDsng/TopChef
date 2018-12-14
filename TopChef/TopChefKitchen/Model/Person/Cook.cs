@@ -22,13 +22,17 @@ namespace TopChefKitchen.Model.Person
         private String MachineNeeded { get; set; }
         private String ToolNeeded { get; set; }
         private int ActualNbStep { get; set; }
+        private Tool.Tool ToolUsed { get; set; }
+        private Machine MachineUsed { get; set; }
 
         public Cook( Position position, int time) : base( position, time)
         {
+            
             Name = "Cook";
             IsAlive = true;
             IsStatic = false;
             ActualNbStep = 0;
+            ToolUsed = new Tool.Tool(new Position(50,50));
             Arrive();
         }
 
@@ -104,21 +108,61 @@ namespace TopChefKitchen.Model.Person
             }
         }
 
-        public void DoStep()
+        public void MakeRecipe(List<Machine> machines)
         {
+            
+            foreach (var value in Recipe.Steps)
+            {               
+                CheckIfNeedToolOrMachine();
+                DoStep(machines, ToolFactory.GetInstance(ActualStep.Resource_Needed, new Position(50, 50)));
+                NextStep();
+            }
+        }
+
+        public void DoStep(List<Machine> machines , Tool.Tool tool)
+        {
+            foreach (var value in machines)
+            {
+                if (value.Name == MachineNeeded)
+                {
+                    MachineUsed = value;
+                }
+                
+            }           
             if (ToolNeeded == null)
             {
-
+                UseMachine(MachineUsed, new Position(MachineUsed.Position.X, MachineUsed.Position.Y));
             }
             else if (MachineNeeded == null)
             {
+                foreach (var value in machines)
+                {
+                    if (value.Name == "CookingTable" && value.State == "Standby")
+                    {
+                        MachineUsed = value;
+                    }
 
+                }
+                TakeTool(tool.Name, new Position(tool.Position.X, tool.Position.Y+1));
+                UseMachine(MachineUsed, new Position(MachineUsed.Position.X, MachineUsed.Position.Y));
             }
         }
+
+        private void UseMachine(Machine machine, Position position)
+        {
+            this.State = "IsWorking";
+            Move(new Position(machine.Position.X, machine.Position.Y+1));
+            machine.ReadyToStart(ToolUsed);
+            this.State = "Standby";
+        }
+
         public void GiveStepToApprentice(Apprentice apprentice)
         {
-            apprentice.Step = ActualStep;
+            apprentice.Step = ActualStep;           
+            apprentice.ResourceNeeded = ActualStep.Resource_Needed;            
+            NextStep();
         }
+
         public void NextStep()
         {
             ActualNbStep++;
@@ -129,7 +173,7 @@ namespace TopChefKitchen.Model.Person
         {
             this.State = "IsWorking";
             Move(new Position(position.X + 1, position.Y));
-            ToolFactory.GetInstance(name, position);
+            Tool = ToolFactory.GetInstance(name, position);
             this.State = "Standby";
         }
        

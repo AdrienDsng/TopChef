@@ -16,6 +16,11 @@ namespace TopChefKitchen.Model.Person
     {
         public static Semaphore semaphore = new Semaphore(0, 1);
         public Step Step { get; set; }
+        public string ResourceNeeded { get; set; }
+        public string MachineNeeded { get;  set; }
+        public string ToolNeeded { get;  set; }
+        public Machine MachineUsed { get;  set; }
+        public Tool.Tool ToolUsed { get;  set; }
 
         public Apprentice( Position position, int time) : base( position, time)
         {
@@ -25,29 +30,110 @@ namespace TopChefKitchen.Model.Person
             Arrive();
         }
 
+        public void CheckIfNeedToolOrMachine()
+        {
+            switch (Step.Resource_Needed)
+            {
+                case "Fridge":
+                    this.MachineNeeded = "Fridge";
+                    this.ToolNeeded = null;
+                    break;
+                case "Mixer":
+                    this.MachineNeeded = "Mixer";
+                    this.ToolNeeded = null;
+                    break;
+                case "CookingFire":
+                    this.MachineNeeded = "CookingFire";
+                    this.ToolNeeded = null;
+                    break;
+                case "Oven":
+                    this.MachineNeeded = "Oven";
+                    this.ToolNeeded = null;
+                    break;
+                case "CookingKnife":
+                    this.ToolNeeded = "Cookingknife";
+                    this.MachineNeeded = null;
+                    break;
+
+                case "Juicer":
+                    this.ToolNeeded = "Juicer";
+                    this.MachineNeeded = null;
+                    break;
+
+                case "Funnel":
+                    this.ToolNeeded = "Funnel";
+                    this.MachineNeeded = null;
+                    break;
+
+                case "Pan":
+                    this.ToolNeeded = "Pan";
+                    this.MachineNeeded = null;
+                    break;
+
+                case "PressureCooker":
+                    this.ToolNeeded = "PressureCooker";
+                    this.MachineNeeded = null;
+                    break;
+
+                case "SaladBowl":
+                    this.ToolNeeded = "SaladBowl";
+                    this.MachineNeeded = null;
+                    break;
+
+                case "Sieve":
+                    this.ToolNeeded = "Sieve";
+                    this.MachineNeeded = null;
+                    break;
+
+                case "Stove":
+                    this.ToolNeeded = "Stove";
+                    this.MachineNeeded = null;
+                    break;
+
+                case "WoodenSpoon":
+                    this.ToolNeeded = "WoodenSpoon";
+                    this.MachineNeeded = null;
+                    break;
+
+
+                default:
+                    new Tool.Tool(Step.Resource_Needed, new Position(5, 5));
+                    break;
+            }
+        }
+
         public void TakeTool(String name, Position position)
         {
             this.State = "TakingT";
             Move(new Position(position.X+1,position.Y));
-            ToolFactory.GetInstance(name, position);
+            ToolUsed = ToolFactory.GetInstance(name, position);
             this.State = "Standby";
         }
 
-        public void CutIngredient(Tool.Tool tool, CookingTable table, Step step)
+        public void DoStep(List<Machine> machines, Tool.Tool tool)
         {
-            this.State = "IsWorking";
-            Move(new Position(table.Position.X + 1, table.Position.Y));
-            tool.IsDirty = true;
-            Thread.Sleep(step.Wait_Time);
-            this.State = "Standby";
+            foreach (var value in machines)
+            {
+                if (value.Name == MachineNeeded)
+                {
+                    MachineUsed = value;
+                }
+            }
+            if (ToolNeeded == null)
+            {
+                UseMachine(MachineUsed, new Position(MachineUsed.Position.X, MachineUsed.Position.Y));
+            }
+            else if (MachineNeeded == null)
+            {
+                TakeTool(tool.Name, new Position(tool.Position.X, tool.Position.Y + 1));
+            }
         }
 
-        public void PeelIngredient(Tool.Tool tool, CookingTable table, Step step)
+        private void UseMachine(Machine machine, Position position)
         {
             this.State = "IsWorking";
-            Move(new Position(table.Position.X + 1, table.Position.Y));
-            tool.IsDirty = true;
-            Thread.Sleep(step.Wait_Time);
+            Move(new Position(machine.Position.X, machine.Position.Y + 1));
+            machine.ReadyToStart(ToolUsed);
             this.State = "Standby";
         }
 

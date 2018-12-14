@@ -39,20 +39,20 @@ namespace TopChefKitchen.Controller
             Machines.Add(new CookingTable(new Position(27, 26)));
             Machines.Add(new Bar(new Position(10, 10)));
         }
-        public void MachineExecution()
+        public void MachineExecution(PersonController personController)
         {
             foreach (var value in Machines)
             {
-                if(value.State == "IsWorking")
+                if(value.State == "WaitToStart")
                 {                   
                     new Thread(new ThreadStart(value.IsWorking));                        
                 }
             }
         }
 
-        internal void MainLoop()
+        internal void MainLoop(PersonController personController)
         {
-            MachineExecution();
+            MachineExecution(personController);
         }
     }
 }

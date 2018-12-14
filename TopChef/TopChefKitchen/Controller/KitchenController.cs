@@ -27,7 +27,7 @@ namespace TopChefKitchen.Controller
         public void Loop()
         {
             StockController.MainLoop();
-            MachineController.MainLoop();s
+            MachineController.MainLoop(PersonController);
             PersonController.MainLoop();
         }
     }

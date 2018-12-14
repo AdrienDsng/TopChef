@@ -12,7 +12,7 @@ using TopChefKitchen.Model.Tool;
 
 namespace TopChefKitchen.Model.Person
 {
-    class DishWasherDiver : Person, IObserver
+    class DishWasherDiver : Person, IObserverDiver
     {
         public static Semaphore semaphore = new Semaphore(0, 1);
         public DishWasherDiver( Position position, int time) : base( position, time)
@@ -90,9 +90,12 @@ namespace TopChefKitchen.Model.Person
             machine.State = "IsWorking";
         }
 
-        public void Update(string name)
+        public void Update(string state, Tool.Tool tool, Tap tap)
         {
-            throw new NotImplementedException();
+            if (tool.IsDirty)
+            {
+                WashDishes(tool, tap);
+            }
         }
     }
 }

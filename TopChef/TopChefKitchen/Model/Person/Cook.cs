@@ -16,7 +16,7 @@ namespace TopChefKitchen.Model.Person
     {
         public static Semaphore semaphore = new Semaphore(0, 2);
 
-        public List<IObserver> Observers { get ; set ; }
+        public List<IObserverChief> Observers { get ; set ; }
         public Recipe.Recipe Recipe { get; set; }
         public Step ActualStep { get; set; }
         private String MachineNeeded { get; set; }
@@ -187,12 +187,12 @@ namespace TopChefKitchen.Model.Person
             this.State = "Standby";
         }
        
-        public void AddObserver(IObserver observer)
+        public void AddObserver(IObserverChief observer)
         {
             Observers.Add(observer);
         }
 
-        public void DelObserver(IObserver observer)
+        public void DelObserver(IObserverChief observer)
         {
             Observers.Remove(observer);
         }
@@ -201,7 +201,7 @@ namespace TopChefKitchen.Model.Person
         {
             foreach (var observer in Observers)
             {
-                observer.Update(State);
+                observer.Update(State, this);
             }
             
         }

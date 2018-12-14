@@ -1,6 +1,8 @@
-﻿using System.Net;
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Net;
 using System.Net.Sockets;
-using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using System.Threading;
 using System.Xml.Serialization;
@@ -108,17 +110,11 @@ namespace Common
             return Encoding.ASCII.GetString(message, 0, message.Length);
         }
 
-        public static bool SendObject(object serializable)
+        public static bool SendObject(Serialized serialized)
         {
             try
             {
-                var sw = new StringWriter();
-
-                var s = new XmlSerializer(serializable.GetType());
-
-                s.Serialize(sw, serializable);
-
-                SendMessage(sw.ToString());
+                SendMessage(serialized.Name + '|' + serialized.Data);
 
                 return true;
             }
@@ -128,19 +124,18 @@ namespace Common
             }
         }
 
-        public static T ReceiveObject<T>() where T : class
+        public static Serialized ReceiveObject()
         {
             try
             {
-                byte[] array = Encoding.ASCII.GetBytes(ReceiveMessage());
+                string[] tokens = ReceiveMessage().Split(new char[] { '|' }, 2);
 
-                MemoryStream stream = new MemoryStream(array);
+                if (tokens.Length != 2)
+                {
+                    return null;
+                }
 
-                var sr = new StreamReader(stream);
-
-                var s = new XmlSerializer(typeof(T));
-
-                return s.Deserialize(sr) as T;
+                return new Serialized(tokens[0], tokens[1]);
             }
             catch (Exception)
             {
@@ -222,6 +217,7 @@ namespace Common
         //message += Encoding.ASCII.GetString(section, 0, length);
     }
 }
+
 
 
 

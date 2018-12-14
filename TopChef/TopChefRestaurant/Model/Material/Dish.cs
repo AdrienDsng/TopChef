@@ -8,7 +8,7 @@ using TopChefRestaurant.Model.Positions;
 
 namespace TopChefRestaurant.Model.Material
 {
-    public class Dish : Material, IStatic, INamed, IWashable, IState, IDisplayable
+    public class Dish : Material, INamed, IDisplayable
     {
         public bool IsStatic { get; set; }
         public string Name { get; set; }

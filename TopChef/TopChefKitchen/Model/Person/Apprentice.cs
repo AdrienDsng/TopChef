@@ -15,6 +15,7 @@ namespace TopChefKitchen.Model.Person
     class Apprentice : Person, IObserver
     {
         public static Semaphore semaphore = new Semaphore(0, 1);
+        public Step Step { get; set; }
 
         public Apprentice( Position position, int time) : base( position, time)
         {

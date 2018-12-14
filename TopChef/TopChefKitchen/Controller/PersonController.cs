@@ -29,23 +29,7 @@ namespace TopChefKitchen.Controller
         {
             foreach (var value in Persons)
             {
-                switch(value.State)
-                {
-                    case "Cuting":
-                        break;
-                    case "Peeling":
-                        break;
-                    case "Bringing":
-                        break;
-                    case "Cooking":
-                        break;
-                    case "Cleaning":
-                        break;
-                    case "TakingT":
-                        break;
-                    case "CookingWF":
-                        break;
-                }                      
+                  
             }
         }
         internal void MainLoop()

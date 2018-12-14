@@ -18,43 +18,113 @@ namespace TopChefKitchen.Model.Person
 
         public List<IObserver> Observers { get ; set ; }
         public Recipe.Recipe Recipe { get; set; }
+        public Step ActualStep { get; set; }
+        private String MachineNeeded { get; set; }
+        private String ToolNeeded { get; set; }
+        private int ActualNbStep { get; set; }
 
         public Cook( Position position, int time) : base( position, time)
         {
             Name = "Cook";
             IsAlive = true;
             IsStatic = false;
+            ActualNbStep = 0;
             Arrive();
         }
 
-        public void CookIngredient(Tool.Tool tool, Step step, Position position)
+        public void CheckIfNeedToolOrMachine()
         {
-            this.State = "IsWorking";
-            Move(new Position(position.X + 1, position.Y));
-            tool.IsDirty = true;
-            tool.Preparation.State = "IsWorking";
-            Thread.Sleep(step.Wait_Time);
-            this.State = "Standby";
+            switch (ActualStep.Resource_Needed)
+            {
+                case "Fridge":
+                    this.MachineNeeded = "Fridge";
+                    this.ToolNeeded = null;
+                    break;
+                case "Mixer":
+                    this.MachineNeeded = "Mixer";
+                    this.ToolNeeded = null;
+                    break;
+                case "CookingFire":
+                    this.MachineNeeded = "CookingFire";
+                    this.ToolNeeded = null;
+                    break;
+                case "Oven":
+                    this.MachineNeeded = "Oven";
+                    this.ToolNeeded = null;
+                    break;
+                case "CookingKnife":
+                    this.ToolNeeded = "Cookingknife";
+                    this.MachineNeeded = null;
+                    break;
+
+                case "Juicer":
+                    this.ToolNeeded = "Juicer";
+                    this.MachineNeeded = null;
+                    break;
+
+                case "Funnel":
+                    this.ToolNeeded = "Funnel";
+                    this.MachineNeeded = null;
+                    break;
+
+                case "Pan":
+                    this.ToolNeeded = "Pan";
+                    this.MachineNeeded = null;
+                    break;
+
+                case "PressureCooker":
+                    this.ToolNeeded = "PressureCooker";
+                    this.MachineNeeded = null;
+                    break;
+
+                case "SaladBowl":
+                    this.ToolNeeded = "SaladBowl";
+                    this.MachineNeeded = null;
+                    break;
+
+                case "Sieve":
+                    this.ToolNeeded = "Sieve";
+                    this.MachineNeeded = null;
+                    break;
+
+                case "Stove":
+                    this.ToolNeeded = "Stove";
+                    this.MachineNeeded = null;
+                    break;
+
+                case "WoodenSpoon":
+                    this.ToolNeeded = "WoodenSpoon";
+                    this.MachineNeeded = null;
+                    break;
+
+
+                default:
+                    new Tool.Tool(ActualStep.Resource_Needed, new Position(5, 5));
+                    break;
+            }
         }
 
-        public void CookIngredientWithFire(Tool.Tool tool, CookingFire machine, Step step)
+        public void DoStep()
         {
-            this.State = "IsWorking";
-            Move(new Position(machine.Position.X + 1, machine.Position.Y));
-            machine.IsDirty = true;
-            Thread.Sleep(step.Wait_Time);
-            this.State = "Standby";
-        }
+            if (ToolNeeded == null)
+            {
 
-        public void PutIngredientInTheFridge(Tool.Tool tool, Fridge machine)
+            }
+            else if (MachineNeeded == null)
+            {
+
+            }
+        }
+        public void GiveStepToApprentice(Apprentice apprentice)
         {
-            this.State = "IsWorking";
-            Move(new Position(machine.Position.X + 1, machine.Position.Y));
-            machine.AddItem(tool);
-            tool.IsDirty = true;
-            this.State = "Standby";
+            apprentice.Step = ActualStep;
         }
-
+        public void NextStep()
+        {
+            ActualNbStep++;
+            ActualStep = Recipe.Steps[ActualNbStep];
+        }
+              
         public void TakeTool(String name, Position position)
         {
             this.State = "IsWorking";
@@ -62,24 +132,7 @@ namespace TopChefKitchen.Model.Person
             ToolFactory.GetInstance(name, position);
             this.State = "Standby";
         }
-
-        public void CutIngredient(Tool.Tool tool, CookingTable table, Step step)
-        {
-            this.State = "IsWorking";
-            Move(new Position(table.Position.X + 1, table.Position.Y));
-            tool.IsDirty = true;
-            Thread.Sleep(step.Wait_Time);
-            this.State = "Standby";
-        }
-
-        public void PeelIngredient(Tool.Tool tool, CookingTable table, Step step)
-        {
-            this.State = "IsWorking";
-            Move(new Position(table.Position.X + 1, table.Position.Y));
-            tool.IsDirty = true;
-            Thread.Sleep(step.Wait_Time);
-            this.State = "Standby";
-        }
+       
         public void AddObserver(IObserver observer)
         {
             Observers.Add(observer);

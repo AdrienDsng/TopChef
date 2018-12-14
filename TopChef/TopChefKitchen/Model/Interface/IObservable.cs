@@ -8,9 +8,9 @@ namespace TopChefKitchen.Model.Interface
 {
     interface IObservable
     {
-        List<IObserver> Observers { get; set; }
-        void AddObserver(IObserver observer);
-        void DelObserver(IObserver observer);        
+        List<IObserverChief> Observers { get; set; }
+        void AddObserver(IObserverChief observer);
+        void DelObserver(IObserverChief observer);        
         void Notify();
     }
 }

@@ -19,7 +19,7 @@ namespace TopChefKitchen.Model.Tool
         public string State { get ; set ; }
         public bool IsDirty { get ; set ; }
         public Preparation Preparation { get ; set ; }
-        public List<IObserver> Observers { get ; set ; }
+        public List<IObserverChief> Observers { get ; set ; }
 
         public Tool(string name ,position.Position position)
         {
@@ -42,12 +42,12 @@ namespace TopChefKitchen.Model.Tool
             IsDirty = false;
         }
 
-        public void AddObserver(IObserver observer)
+        public void AddObserver(IObserverChief observer)
         {
             Observers.Add(observer);
         }
 
-        public void DelObserver(IObserver observer)
+        public void DelObserver(IObserverChief observer)
         {
             Observers.Remove(observer);
         }
@@ -64,7 +64,10 @@ namespace TopChefKitchen.Model.Tool
 
         public void Notify()
         {
-            throw new NotImplementedException();
+            foreach (var observer in Observers)
+            {
+                observer.Update(State);
+            }
         }
     }
 }

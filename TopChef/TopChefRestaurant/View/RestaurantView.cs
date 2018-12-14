@@ -30,7 +30,7 @@ namespace TopChefRestaurant.View
         Waiter waiteR;
         Apprentice apprenticE;
 
-        void ChangePosition(Person person)
+        public void ChangePosition(Person person)
         {
             var position = person.Position;
         }

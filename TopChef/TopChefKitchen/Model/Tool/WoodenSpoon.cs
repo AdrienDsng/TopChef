@@ -8,7 +8,7 @@ namespace TopChefKitchen.Model.Tool
 {
     class WoodenSpoon : Tool
     {
-        public WoodenSpoon(position.Position position)
+        public WoodenSpoon(position.Position position) :base (position)
         {
             Position = position;
             Quantity = 10;

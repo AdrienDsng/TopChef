@@ -46,14 +46,11 @@ namespace TopChefKitchen.Model.Machines
         {
             this.State = "Standby";
         }
-
-        public void IsWorking(Tool.Tool tool)
+        public void ReadyToStart(Tool.Tool tool)
         {
-            this.State = "IsWorking";
-            Thread.Sleep(WorkingTime);
-            this.State = "Standby";
-
+            this.State = "WaitToStart";
         }
+
         public void IsWorking()
         {
             this.State = "IsWorking";
@@ -61,7 +58,6 @@ namespace TopChefKitchen.Model.Machines
             this.State = "Standby";
 
         }
-
 
         public void Move(Position position)
         {

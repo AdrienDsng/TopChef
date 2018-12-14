@@ -36,15 +36,8 @@ namespace TopChefKitchen.Model.Machines
         {
             Tools.Remove(tool);
         }
-        new public void IsWorking(Tool.Tool tool)
-        {
-            this.State = "IsWorking";
-            this.Tools.Add(tool);
-            Thread.Sleep(WorkingTime);
-            this.State = "standby";
 
-        }
-        new public void readyToStart(Tool.Tool tool)
+        new public void ReadyToStart(Tool.Tool tool)
         {
             this.Tools.Add(tool);
             this.State = "WaitToStart";

@@ -80,7 +80,7 @@ namespace TopChefKitchen.Model.Person
         public void TakeTool(String name, Position position)
         {
             Move(new Position(position.X + 1, position.Y));
-            ToolFactory.GetInstance(name, position);
+            Tool = ToolFactory.GetInstance(name, position);
 
         }
         public void PowerOn(Machine machine)

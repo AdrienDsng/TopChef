@@ -15,7 +15,7 @@ namespace TopChefKitchen.Model.Material
         {
             Position = position;
             Quantity = 50;
-            Size = "Small";s
+            Size = "Small";
             Name = "CoffeeCup";
             State = "Standby";
             IsStatic = false;

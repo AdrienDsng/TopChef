@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TopChefKitchen.Model.Tool
 {
-    class ToolFactory : Tool
+    class ToolFactory 
     {
         public ToolFactory()
         {

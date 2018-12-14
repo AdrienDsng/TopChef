@@ -15,18 +15,20 @@ namespace TopChefKitchen.Model.Person
     class DishWasherDiver : Person, IObserverDiver
     {
         public static Semaphore semaphore = new Semaphore(0, 1);
-        public DishWasherDiver( Position position, int time) : base( position, time)
+        public Tap Tap { get; set; }
+        public DishWasherDiver( Position position, int time, Tap tap) : base( position, time)
         {
+            Tap = tap;
             Name = "DishWasherDiver";
             IsAlive = true;
             IsStatic = false;
             Arrive();
             Move(new Position(10, 10));
         }
-        public void WashDishes(ITool tool,Tap tap)
+        public void WashDishes(ITool tool)
         {
             this.State = "IsWorking";
-            Move(new Position(tap.Position.X + 1, tap.Position.Y));
+            Move(new Position(Tap.Position.X + 1, Tap.Position.Y));
             TakeTimeForwash(tool);
             this.State = "Standby";
 
@@ -90,11 +92,11 @@ namespace TopChefKitchen.Model.Person
             machine.State = "IsWorking";
         }
 
-        public void Update(string state, Tool.Tool tool, Tap tap)
+        public void Update(string state, Tool.Tool tool)
         {
             if (tool.IsDirty)
             {
-                WashDishes(tool, tap);
+                WashDishes(tool);
             }
         }
     }

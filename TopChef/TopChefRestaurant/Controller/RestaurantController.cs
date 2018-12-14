@@ -16,16 +16,14 @@ namespace TopChefRestaurant.Controller
         private TableController TableController;
         private ClientController ClientController;
         private RecipeController RecipeController;
-        private RestaurantView RestaurantView;
         private bool ShouldLoop = true;
         
-        public RestaurantController(RestaurantView view)
+        public RestaurantController()
         {
-            this.RestaurantView = view;
-            this.PersonController = new PersonController(RestaurantView);
+            this.PersonController = new PersonController();
             this.RecipeController = new RecipeController(PersonController);
-            this.TableController = new TableController(RestaurantView, PersonController, RecipeController);
-            this.ClientController = new ClientController(RestaurantView, PersonController, TableController);
+            this.TableController = new TableController(PersonController, RecipeController);
+            this.ClientController = new ClientController(PersonController, TableController);
         }
 
         public void Loop()

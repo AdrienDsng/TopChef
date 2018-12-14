@@ -19,7 +19,7 @@ namespace TopChefRestaurant.Model.Actions
 
         public override void Realize()
         {
-            Table.Orders = new List<Recipe>(); //todo
+            Table.Orders = new List<Order>(); //todo
             Table.Client.EatingTimeLeft = (new Random()).Next(30, 90) * 60;
             LogController.Log(new Event(this));
         }

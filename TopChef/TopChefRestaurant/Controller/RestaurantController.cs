@@ -24,6 +24,8 @@ namespace TopChefRestaurant.Controller
             this.RecipeController = new RecipeController(PersonController);
             this.TableController = new TableController(PersonController, RecipeController);
             this.ClientController = new ClientController(PersonController, TableController);
+            
+            RecipeController.SetTableController(TableController);
         }
 
         public void Loop()

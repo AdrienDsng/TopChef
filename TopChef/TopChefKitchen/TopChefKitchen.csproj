@@ -53,6 +53,7 @@
     <Compile Include="Model\Interface\IObserverDiver.cs" />
     <Compile Include="Model\Machines\Bar.cs" />
     <Compile Include="Model\Recipe\AvailableRecipes.cs" />
+    <Compile Include="Model\Recipe\Order.cs" />
     <Compile Include="Model\Serialized.cs" />
     <Compile Include="Model\ServerSocket.cs" />
     <Compile Include="Model\Sleeper.cs" />

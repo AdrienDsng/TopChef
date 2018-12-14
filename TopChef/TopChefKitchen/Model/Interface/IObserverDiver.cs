@@ -7,8 +7,8 @@ using TopChefKitchen.Model.Machines;
 
 namespace TopChefKitchen.Model.Interface
 {
-    interface IObserverDiver
+    interface IObserverDiver 
     {
-        void Update(string state, Tool.Tool tool, Tap tap);
+        void Update(string state, Tool.Tool tool);
     }
 }

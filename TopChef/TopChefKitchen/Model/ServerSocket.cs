@@ -114,7 +114,7 @@ namespace Common
         {
             try
             {
-                SendMessage(serialized.Name + '|' + serialized.Data);
+                SendMessage(serialized.Name + "|" + serialized.Data);
 
                 return true;
             }

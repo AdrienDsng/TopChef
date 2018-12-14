@@ -68,6 +68,7 @@ namespace TopChefKitchen.Model.Person
             Thread.Sleep(60);
             this.State = "Standby";
         }
+
         public void DisposeWashingMachine(WashMachine machine)
         {
             this.State = "IsWorking";
@@ -83,6 +84,7 @@ namespace TopChefKitchen.Model.Person
             Tool = ToolFactory.GetInstance(name, position);
 
         }
+
         public void PowerOn(Machine machine)
         {
             machine.State = "IsWorking";

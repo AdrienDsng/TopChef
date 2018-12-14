@@ -46,6 +46,7 @@ namespace TopChefKitchen.Model.Machines
         {
             this.State = "Standby";
         }
+
         public void ReadyToStart(Tool.Tool tool)
         {
             this.State = "WaitToStart";

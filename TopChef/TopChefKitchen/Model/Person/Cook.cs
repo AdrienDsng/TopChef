@@ -108,7 +108,7 @@ namespace TopChefKitchen.Model.Person
             }
         }
 
-        public void MakeRecipe(List<Machine> machines)
+        public Preparation MakeRecipe(List<Machine> machines)
         {
             
             foreach (var value in Recipe.Steps)
@@ -117,6 +117,8 @@ namespace TopChefKitchen.Model.Person
                 DoStep(machines, ToolFactory.GetInstance(ActualStep.Resource_Needed, new Position(50, 50)));
                 NextStep();
             }
+
+            return new Preparation("Done");
         }
 
         public void DoStep(List<Machine> machines , Tool.Tool tool)
@@ -153,6 +155,14 @@ namespace TopChefKitchen.Model.Person
             this.State = "IsWorking";
             Move(new Position(machine.Position.X, machine.Position.Y+1));
             machine.ReadyToStart(ToolUsed);
+            this.State = "Standby";
+        }
+
+        private void PutInFridge(Fridge fridge)
+        {
+            this.State = "IsWorking";
+            Move(new Position(fridge.Position.X, fridge.Position.Y + 1));           
+            fridge.ReadyToStart(ToolUsed,ActualStep.Wait_Time);
             this.State = "Standby";
         }
 

@@ -60,7 +60,7 @@ public class ClientSocket
             {
                 Console.WriteLine("Unexpected exception : {0}", e.ToString());
             }
-
+            //  var obj = Newtonsoft.Json.JsonConvert.DeserializeObject<Object>(jsonString );
         }
         catch (Exception e)
         {

@@ -14,7 +14,7 @@ namespace TopChefKitchen.Model.Machines
         public List<ITool> Tools { get; set; }
         public bool IsDirty { get; set; }
 
-        public static Semaphore semaphore = new Semaphore(0, 15);
+        public static Semaphore semaphore = new Semaphore(0, 16);
 
 
         public CookingTable(Position position) : base(position)
@@ -34,6 +34,11 @@ namespace TopChefKitchen.Model.Machines
         public void RemoveItem(ITool tool)
         {
             Tools.Remove(tool);
+        }
+        new public void ReadyToStart(Tool.Tool tool)
+        {
+            this.Tools.Add(tool);
+            this.State = "WaitToStart";
         }
     }
 }

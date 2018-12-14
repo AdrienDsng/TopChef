@@ -13,12 +13,14 @@ namespace TopChefKitchen.Model.Recipe
         public int Id { get; set; }
         public int Wait_Time { get; set; }
         public int Sync { get; set; }
-        public string Tool_Needed { get; set; }
+        public string Resource_Needed { get; set; }
+        public string Machine_Needed { get; set; }
         public string People_Needed { get; set; }
 
         public Step()
         {
 
         }
+
     }
 }

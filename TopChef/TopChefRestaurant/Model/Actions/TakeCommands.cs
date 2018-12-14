@@ -3,6 +3,7 @@ using Newtonsoft.Json.Linq;
 using TopChefRestaurant.Controller;
 using TopChefRestaurant.Model.Material;
 using TopChefRestaurant.Model.Person;
+using TopChefRestaurant.Model.Positions;
 
 namespace TopChefRestaurant.Model.Actions
 {
@@ -15,6 +16,7 @@ namespace TopChefRestaurant.Model.Actions
         {
             this.Table = table;
             this._recipeController = recipeController;
+            this.Position = new Position(Table.Position.X + 1, Table.Position.Y);
         }
         public override void Realize()
         {
@@ -33,5 +35,7 @@ namespace TopChefRestaurant.Model.Actions
         {
             return person is RowChief;
         }
+
+        public Position Position { get; set; }
     }
 }

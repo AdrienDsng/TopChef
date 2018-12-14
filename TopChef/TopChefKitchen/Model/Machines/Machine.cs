@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using TopChefKitchen.Model.Interface;
 using TopChefKitchen.Model.position;
@@ -17,11 +18,11 @@ namespace TopChefKitchen.Model.Machines
         public string State { get ; set; }
         public string Name { get ; set ; }
         public Position Position { get ; set; }
-        public List<IObserver> Observers { get ; set ; }
+        public List<IObserverChief> Observers { get ; set ; }
 
         public Machine(Position position, string name)
         {
-            this.Observers = new List<IObserver>();
+            this.Observers = new List<IObserverChief>();
             this.Position = position;
             this.Capacity = 1;
             this.WorkingTime = 5;
@@ -38,17 +39,25 @@ namespace TopChefKitchen.Model.Machines
 
         public void Off()
         {
-            this.State = "off";
+            this.State = "Off";
         }
 
         public void On()
         {
-            this.State = "standby";
+            this.State = "Standby";
+        }
+
+        public void ReadyToStart(Tool.Tool tool)
+        {
+            this.State = "WaitToStart";
         }
 
         public void IsWorking()
         {
             this.State = "IsWorking";
+            Thread.Sleep(WorkingTime);
+            this.State = "Standby";
+
         }
 
         public void Move(Position position)
@@ -56,19 +65,19 @@ namespace TopChefKitchen.Model.Machines
             Position = position;
         }
 
-        public void AddObserver(IObserver observer)
+        public void AddObserver(IObserverChief observer)
         {
             Observers.Add(observer);
         }
 
-        public void DelObserver(IObserver observer)
+        public void DelObserver(IObserverChief observer)
         {
             Observers.Remove(observer);
         }
 
-        public string Notify()
+        public void Notify()
         {
-            return this.State;
-        }
+           
+        }       
     }
 }

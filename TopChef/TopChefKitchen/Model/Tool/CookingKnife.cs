@@ -8,7 +8,7 @@ namespace TopChefKitchen.Model.Tool
 {
     class CookingKnife : Tool
     {
-        public CookingKnife(position.Position position)
+        public CookingKnife(position.Position position) : base(position)
         {
             Position = position;
             Quantity = 5;

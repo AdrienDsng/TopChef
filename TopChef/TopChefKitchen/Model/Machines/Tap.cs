@@ -32,5 +32,6 @@ namespace TopChefKitchen.Model.Machines
         {
             Dishes.Remove(dish);
         }
+       
     }
 }

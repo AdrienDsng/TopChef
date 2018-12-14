@@ -5,7 +5,7 @@ using TopChefRestaurant.Model.Positions;
 
 namespace TopChefRestaurant.Model.Material
 {
-    public class Table : IDisplayable, IStatic, INamed, IState
+    public class Table : IDisplayable, INamed
     {
         public int MaxNbClients { get; set; }
         public Client Client { get; set; }

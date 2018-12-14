@@ -35,6 +35,12 @@ namespace TopChefKitchen.Model.Machines
         public void RemoveItem(ITool tool)
         {
             Tools.Remove(tool);
-        }      
+        }
+
+        new public void ReadyToStart(Tool.Tool tool)
+        {
+            this.Tools.Add(tool);
+            this.State = "WaitToStart";
+        }
     }
 }

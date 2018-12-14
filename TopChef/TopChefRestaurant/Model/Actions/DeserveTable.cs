@@ -3,6 +3,7 @@ using System.Net.WebSockets;
 using TopChefRestaurant.Controller;
 using TopChefRestaurant.Model.Material;
 using TopChefRestaurant.Model.Person;
+using TopChefRestaurant.Model.Positions;
 
 namespace TopChefRestaurant.Model.Actions
 {
@@ -10,11 +11,13 @@ namespace TopChefRestaurant.Model.Actions
     {
         public Table Table { get; set; }
         private PersonController _personController;
+        public Position Position { get; set; }
         
         public DeserveTable(Table table, PersonController personController) : base(60)
         {
             this.Table = table;
             this._personController = personController;
+            this.Position = new Position(Table.Position.X + 1, Table.Position.Y);
         }
         public override void Realize()
         {
@@ -33,5 +36,6 @@ namespace TopChefRestaurant.Model.Actions
             return person is Waiter;
         }
 
+        
     }
 }

@@ -1,23 +1,25 @@
 using System;
 using System.Collections.Generic;
 using TopChefRestaurant.Model.Actions;
-using TopChefRestaurant.Model.Person;
 using TopChefRestaurant.Model.Positions;
+using TopChefRestaurant.View;
+using Client = TopChefRestaurant.Model.Person.Client;
 
 namespace TopChefRestaurant.Controller
 {
     /// <summary>
-    /// Controller to manage all the clients
+    /// Controller managing all the clients
     /// </summary>
     public class ClientController
     {
         private List<Client> _clients = new List<Client>();
         private PersonController _personController;
         private TableController _tableController;
-        
+
         /// <summary>
         /// ClientController constructor
         /// </summary>
+        /// <param name="restaurantView"></param>
         /// <param name="personController"></param>
         /// <param name="tableController"></param>
         public ClientController(PersonController personController, TableController tableController)
@@ -25,9 +27,9 @@ namespace TopChefRestaurant.Controller
             _personController = personController;
             _tableController = tableController;
             
-            Client client = new Client("Michel et sa famille", new Position(0, 0));
+            Client client = new Client("Michel et sa famille", new Position(44, 96));
             _clients.Add(client);
-            _personController.AddAction(new WelcomeClient(client, _tableController));
+            _personController.AddAction(new WelcomeClient(client, this._tableController));
         }
 
         /// <summary>
@@ -47,7 +49,7 @@ namespace TopChefRestaurant.Controller
             Random random = new Random();
             if (random.Next(60 * 10) != 0) return;
 
-            Client client = new Client($"Client {random.Next(1000)}", new Position(0, 0));
+            Client client = new Client($"Client {random.Next(1000)}", new Position(44, 96));
             _clients.Add(client);
             _personController.AddAction(new WelcomeClient(client, _tableController));
         }

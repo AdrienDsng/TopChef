@@ -8,7 +8,7 @@ namespace TopChefKitchen.Model.Tool
 {
     class Stove : Tool
     {
-        public Stove(position.Position position)
+        public Stove(position.Position position) : base(position)
         {
             Position = position;
             Quantity = 10;

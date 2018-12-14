@@ -8,7 +8,7 @@ namespace TopChefKitchen.Model.Tool
 {
     class PressureCooker : Tool
     {
-        public PressureCooker(position.Position position)
+        public PressureCooker(position.Position position) : base(position)
         {
             Position = position;
             Quantity = 2;

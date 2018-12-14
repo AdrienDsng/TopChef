@@ -8,7 +8,7 @@ namespace TopChefKitchen.Model.Tool
 {
     class Juicer : Tool
     {
-        public Juicer(position.Position position)
+        public Juicer(position.Position position) : base(position)
         {
             Position = position;
             Quantity = 1;

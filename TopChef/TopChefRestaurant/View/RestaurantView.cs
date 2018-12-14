@@ -13,8 +13,11 @@ namespace TopChefRestaurant.View
         public const int WINDOWS_WIDTH = 568;
         public const int WINDOWS_HEIGHT = 784;
 
-        Vector2 squarePosition;
+        private SpriteFont font;
+        private int numTable = 0;
 
+        Vector2 squarePosition;
+        
         Texture2D redSquare;
         Texture2D backgroundmap;
         Texture2D hotelMaster;
@@ -27,9 +30,10 @@ namespace TopChefRestaurant.View
         Waiter waiteR;
         Apprentice apprenticE;
 
-        void ChangePosition(Person person)
+        public void ChangePosition(Person person)
         {
-            
+            var position = person.Position;
+            var persName = person.Name;
         }
 
         public RestaurantView()
@@ -43,6 +47,8 @@ namespace TopChefRestaurant.View
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
+            this.IsMouseVisible = true;
+
             hotelmaster = new HotelMaster(this.GraphicsDevice);
             rowchief = new RowChief(this.GraphicsDevice);
             waiteR = new Waiter(this.GraphicsDevice);
@@ -65,6 +71,8 @@ namespace TopChefRestaurant.View
             backgroundmap = Content.Load<Texture2D>("Restaurant");
             hotelMaster = Content.Load<Texture2D>("HotelMaster");
             rowChief = Content.Load<Texture2D>("RowChief");
+
+            font = Content.Load<SpriteFont>("NumTable");
             //waiter = Content.Load<Texture2D>("Waiter");
             //apprentice = Content.Load<Texture2D>("Apprentice");
             // TODO: use this.Content to load your game content here
@@ -77,14 +85,18 @@ namespace TopChefRestaurant.View
         {
             if (Keyboard.GetState().IsKeyDown(Keys.Escape))
                 this.Exit();
-
+            
             // TODO: Add your update logic here
             squarePosition.X += 1;
             if (squarePosition.X > this.GraphicsDevice.Viewport.Width)
                 squarePosition.X = 0;
 
+            numTable++;
+                       
             base.Update(gameTime);
         }
+
+
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
@@ -93,6 +105,7 @@ namespace TopChefRestaurant.View
             //Draw background
             spriteBatch.Begin();
             spriteBatch.Draw(backgroundmap, new Vector2(0, 0), Color.White);
+            spriteBatch.DrawString(font, "" + numTable, new Vector2(100, 100), Color.Black);
             spriteBatch.End();
 
             //Draw square
@@ -100,6 +113,51 @@ namespace TopChefRestaurant.View
             spriteBatch.Draw(redSquare, squarePosition);
             spriteBatch.End();
 
+            var mouseState = Mouse.GetState();
+            var mousePosition = new Point(mouseState.X, mouseState.Y);
+            //Rectangle area = new Rectangle(0, 0, 100, 100);
+
+            
+            if (new Rectangle(40, 120, 25, 30).Contains(mousePosition))
+            {
+                spriteBatch.Begin();
+                spriteBatch.DrawString(font, "" + numTable, new Vector2(40, 120), Color.Black);
+                spriteBatch.End();
+            }
+
+            if (new Rectangle(40, 180, 25, 30).Contains(mousePosition))
+            {
+                spriteBatch.Begin();
+                spriteBatch.DrawString(font, "" + numTable, new Vector2(40, 190), Color.Black);
+                spriteBatch.End();
+            }
+
+            if (new Rectangle(40, 240, 25, 30).Contains(mousePosition))
+            {
+                spriteBatch.Begin();
+                spriteBatch.DrawString(font, "" + numTable, new Vector2(40, 240), Color.Black);
+                spriteBatch.End();
+            }
+            if (new Rectangle(140, 180, 25, 30).Contains(mousePosition))
+            {
+                spriteBatch.Begin();
+                spriteBatch.DrawString(font, "" + numTable, new Vector2(140, 180), Color.Black);
+                spriteBatch.End();
+            }
+            if (new Rectangle(140, 240, 25, 30).Contains(mousePosition))
+            {
+                spriteBatch.Begin();
+                spriteBatch.DrawString(font, "" + numTable, new Vector2(140, 240), Color.Black);
+                spriteBatch.End();
+            }
+
+                if (new Rectangle(125, 630, 80, 30).Contains(mousePosition))
+            {
+                spriteBatch.Begin();
+                spriteBatch.DrawString(font, "" + numTable, new Vector2(150, 640), Color.Black);
+                spriteBatch.End();
+            }
+            
             hotelmaster.Draw(spriteBatch, hotelMaster);
             rowchief.Draw(spriteBatch, rowChief);
             //waiteR.Draw(spriteBatch, waiter);

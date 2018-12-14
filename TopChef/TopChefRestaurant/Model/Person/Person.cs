@@ -1,38 +1,31 @@
 using System.Collections.Generic;
+using TopChefRestaurant.Controller;
 using TopChefRestaurant.Model.Actions;
 using TopChefRestaurant.Model.Interfaces;
 using TopChefRestaurant.Model.Positions;
+using TopChefRestaurant.View;
 
 namespace TopChefRestaurant.Model.Person
 {
-    public class Person : IPerson, IDisplayable, IState, IStatic, INamed
+    public class Person : IDisplayable, INamed
     {
-        public int WorkingTime { get; set; }
         public bool Available { get; set; }
-        
-        public void Arrive()
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public void Leave()
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public bool IsAlive()
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public string Sprite { get; set; }
-        public Position Position { get; set; }
-        public string State { get; set; }
-        public bool IsStatic { get; set; }
         public string Name { get; set; }
         public IAction CurrentAction { get; set; }
-        
+        public string Sprite { get; set; }
+        private Position _position;
         private Queue<IAction> ActionsList = new Queue<IAction>();
+        private RestaurantView _restaurantView;
+        
+        public Position Position
+        {
+            get { return _position; }
+            set
+            {
+                _position = value;
+                Program.RestaurantView.ChangePosition(this);
+            }
+        }
 
         public void AddAction(IAction action) => ActionsList.Enqueue(action);
         public void NextAction() => CurrentAction = ActionsList.Dequeue();

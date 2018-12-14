@@ -61,7 +61,7 @@ public class ServerSocket
                 handler.Shutdown(SocketShutdown.Both);
                 handler.Close();
             }
-
+            var obj = Newtonsoft.Json.JsonConvert.DeserializeObject<Object>(jsonString);
         }
         catch (Exception e)
         {

@@ -8,7 +8,7 @@ namespace TopChefKitchen.Model.Tool
 {
     class SaladBowl : Tool
     {
-        public SaladBowl(position.Position position)
+        public SaladBowl(position.Position position) : base(position)
         {
             Position = position;
             Quantity = 5;

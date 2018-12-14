@@ -3,17 +3,29 @@ using System.Linq;
 using TopChefRestaurant.Model.Actions;
 using TopChefRestaurant.Model.Person;
 using TopChefRestaurant.Model.Positions;
+using TopChefRestaurant.View;
+using Apprentice = TopChefRestaurant.Model.Person.Apprentice;
+using HotelMaster = TopChefRestaurant.Model.Person.HotelMaster;
+using RowChief = TopChefRestaurant.Model.Person.RowChief;
+using Waiter = TopChefRestaurant.Model.Person.Waiter;
 
 namespace TopChefRestaurant.Controller
 {
+    /// <summary>
+    /// Controller managing all the employee
+    /// </summary>
     public class PersonController
     {
         private List<IAction> _runningActions = new List<IAction>();
         private List<IAction> _actionsNotAttributed = new List<IAction>();
         private List<Person> _restaurantEmployees = new List<Person>();
-
+        
+        /// <summary>
+        /// Person controller constructor
+        /// </summary>
         public PersonController()
         {
+            RestaurantView restaurantView = Program.RestaurantView;
             _restaurantEmployees.Add(new Apprentice("Jacquie", new Position(0, 0)));
             _restaurantEmployees.Add(new HotelMaster("Jean-Jacque", new Position(0, 0)));
             _restaurantEmployees.Add(new RowChief("Adrien", new Position(0, 0)));
@@ -25,6 +37,9 @@ namespace TopChefRestaurant.Controller
             _restaurantEmployees.Add(new Apprentice("Dodo l'escabo", new Position(0, 0)));
         }
         
+        /// <summary>
+        /// Main loop called from the restaurant controller
+        /// </summary>
         public void MainLoop()
         {
             AttributeActions();
@@ -32,6 +47,9 @@ namespace TopChefRestaurant.Controller
             ChangeRunningActions();
         }
 
+        /// <summary>
+        /// Attribute an action to an employee
+        /// </summary>
         private void AttributeActions()
         {
             foreach (IAction action in _actionsNotAttributed.ToList())
@@ -57,6 +75,9 @@ namespace TopChefRestaurant.Controller
             }
         }
 
+        /// <summary>
+        /// Run all employee's current actions
+        /// </summary>
         private void RunActions()
         {
             foreach (IAction action in _runningActions.ToList())
@@ -69,6 +90,9 @@ namespace TopChefRestaurant.Controller
             }
         }
 
+        /// <summary>
+        /// Change the current action for an employee
+        /// </summary>
         private void ChangeRunningActions()
         {
             foreach (Person employee in _restaurantEmployees)
@@ -78,6 +102,8 @@ namespace TopChefRestaurant.Controller
                 employee.NextAction();
                 employee.Available = false;
                 _runningActions.Add(employee.CurrentAction);
+
+                employee.Position = employee.CurrentAction.Position;
             }
         }
 

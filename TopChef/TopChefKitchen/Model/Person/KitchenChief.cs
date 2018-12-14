@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using TopChefKitchen.Model.Interface;
 using TopChefKitchen.Model.Machines;
@@ -12,11 +13,14 @@ using TopChefKitchen.Model.Tool;
 namespace TopChefKitchen.Model.Person
 {
 
-    class KitchenChief : Person, IObserver
+    class KitchenChief : Person, IObserverChief
     {
+        public static Semaphore semaphore = new Semaphore(0, 1);
         private Recipe.Recipe recipe;
-        public KitchenChief(string name, Position position, int time) : base(name, position, time)
+
+        public KitchenChief( Position position, int time) : base( position, time)
         {
+            Name = "KitchenChief";
             IsAlive = true;
             IsStatic = false;           
             Arrive();            
@@ -33,9 +37,25 @@ namespace TopChefKitchen.Model.Person
             }
         }
 
-        public void CheckStock(Stock stock)
+        public void GiveRecipeToCook(Cook cook)
         {
+            cook.Recipe = recipe;
+            cook.ActualStep = recipe.Steps[0];
+        }
 
+        public Dictionary<string, int> CheckStock(Stock stock, string name)
+        {
+            Dictionary<string, int> recipes = stock.GetRecipeNameWithTypes();
+
+            foreach(KeyValuePair<string, int> recipe in recipes)
+            {
+                if (!stock.CheckIfResourceAvailable(recipe.Key))
+                {
+                    recipes.Remove(recipe.Key);
+                }
+            }
+
+            return recipes;
         }
         
         public void PutIngredientInTheFridge(Tool.Tool tool, Machine machine)
@@ -48,10 +68,17 @@ namespace TopChefKitchen.Model.Person
             Move(position);
             ToolFactory.GetInstance(name, position);
         }
-        
-        public void Update()
+
+        public void Update(String state, Cook cook)
         {
-            throw new NotImplementedException();
+            if(state == "Standby")
+            {
+                GiveRecipeToCook(cook);
+            }
+            else
+            {
+                
+            }
         }
     }
 }

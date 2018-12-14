@@ -1,5 +1,6 @@
 using TopChefRestaurant.Controller;
 using TopChefRestaurant.Model.Person;
+using TopChefRestaurant.Model.Positions;
 
 namespace TopChefRestaurant.Model.Actions
 {
@@ -12,6 +13,7 @@ namespace TopChefRestaurant.Model.Actions
         {
             this.Client = client;
             this._clientController = clientController;
+            this.Position = new Position(Client.Position.X + 1, Client.Position.Y);
         }
         
         public override void Realize()
@@ -24,5 +26,7 @@ namespace TopChefRestaurant.Model.Actions
         {
             return person is HotelMaster;
         }
+
+        public Position Position { get; set; }
     }
 }

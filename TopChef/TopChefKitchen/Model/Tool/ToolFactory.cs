@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TopChefKitchen.Model.Tool
 {
-    class ToolFactory : Tool
+    class ToolFactory 
     {
         public ToolFactory()
         {
@@ -44,7 +44,7 @@ namespace TopChefKitchen.Model.Tool
                     return new WoodenSpoon(position);
                     
                 default:
-                    return new CookingKnife(position);
+                    return null;
             }           
         }
     }

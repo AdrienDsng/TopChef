@@ -1,4 +1,5 @@
 using TopChefRestaurant.Model.Positions;
+using TopChefRestaurant.View;
 
 namespace TopChefRestaurant.Model.Person
 {

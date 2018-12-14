@@ -1,11 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using MonoGame.Extended;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace TopChefKitchen.View
 {
@@ -18,7 +13,7 @@ namespace TopChefKitchen.View
             
         }
 
-        public void draw(SpriteBatch spritebatch, int x, int y)
+        public void Draw(SpriteBatch spritebatch, int x, int y)
         {
             Vector2 tilePosition = Vector2.Zero;
             spriteBatch.Begin();

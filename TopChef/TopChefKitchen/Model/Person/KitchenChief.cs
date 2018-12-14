@@ -13,7 +13,7 @@ using TopChefKitchen.Model.Tool;
 namespace TopChefKitchen.Model.Person
 {
 
-    class KitchenChief : Person, IObserver
+    class KitchenChief : Person, IObserverChief
     {
         public static Semaphore semaphore = new Semaphore(0, 1);
         private Recipe.Recipe recipe;
@@ -69,9 +69,16 @@ namespace TopChefKitchen.Model.Person
             ToolFactory.GetInstance(name, position);
         }
 
-        public void Update(string name)
+        public void Update(String state, Cook cook)
         {
-            throw new NotImplementedException();
+            if(state == "Standby")
+            {
+                GiveRecipeToCook(cook);
+            }
+            else
+            {
+                
+            }
         }
     }
 }

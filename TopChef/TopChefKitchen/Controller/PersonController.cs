@@ -35,12 +35,9 @@ namespace TopChefKitchen.Controller
             Persons.Add(Apprentice);
         }
 
-        public void PersonAction()
+        void ExecuteMachine()
         {
-            foreach (var value in Persons)
-            {
-                  
-            }
+
         }
         internal void MainLoop()
         {

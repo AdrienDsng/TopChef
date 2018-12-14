@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Runtime.CompilerServices;
 using System.Threading;
 using TopChefRestaurant;
 using TopChefRestaurant.Controller;
@@ -15,6 +16,7 @@ namespace TopChefRestaurant
     
     public static class Program
     {
+        public static RestaurantView RestaurantView;
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
@@ -24,9 +26,11 @@ namespace TopChefRestaurant
         {
             using (var game = new RestaurantView())
             {
+                RestaurantView = game;
+                
                 Thread loop = new Thread(() =>
                 {
-                    RestaurantController controller = new RestaurantController(game);
+                    RestaurantController controller = new RestaurantController();
 
                     try
                     {
@@ -37,7 +41,7 @@ namespace TopChefRestaurant
                         controller.StopLoop();
                     }
                 });
-
+                
                 loop.Start();
 
                 game.Run();

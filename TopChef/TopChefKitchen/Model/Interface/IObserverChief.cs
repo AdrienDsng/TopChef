@@ -8,7 +8,7 @@ using TopChefKitchen.Model.Person;
 
 namespace TopChefKitchen.Model.Interface
 {
-    interface IObserverChief
+    interface IObserverChief 
     {
         void Update(string state, Cook cook);
     }

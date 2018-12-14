@@ -55,9 +55,10 @@ namespace TopChefKitchen.Model.Person
             return recipes;
         }
         
-        public void PutIngredientInTheFridge(Tool.Tool tool, Machine machine)
+        public void PutIngredientInTheFridge(Tool.Tool tool, Fridge fridge)
         {
-            throw new NotImplementedException();
+            Move(fridge.Position);
+            fridge.AddItem(tool);
         }
 
         public void TakeTool(String name, Position position)
@@ -66,8 +67,7 @@ namespace TopChefKitchen.Model.Person
             ToolFactory.GetInstance(name, position);
         }
 
-        
-        public void Update(String name)
+        public void Update(String name, Cook cook)
         {
             throw new NotImplementedException();
         }

@@ -39,21 +39,29 @@ namespace TopChefKitchen.Model.Machines
 
         public void Off()
         {
-            this.State = "off";
+            this.State = "Off";
         }
 
         public void On()
         {
-            this.State = "standby";
+            this.State = "Standby";
         }
 
+        public void IsWorking(Tool.Tool tool)
+        {
+            this.State = "IsWorking";
+            Thread.Sleep(WorkingTime);
+            this.State = "Standby";
+
+        }
         public void IsWorking()
         {
             this.State = "IsWorking";
             Thread.Sleep(WorkingTime);
-            this.State = "standby";
+            this.State = "Standby";
 
         }
+
 
         public void Move(Position position)
         {
@@ -73,6 +81,6 @@ namespace TopChefKitchen.Model.Machines
         public void Notify()
         {
            
-        }
+        }       
     }
 }

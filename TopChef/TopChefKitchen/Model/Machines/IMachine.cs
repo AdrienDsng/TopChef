@@ -15,6 +15,7 @@ namespace TopChefKitchen.Model.Machines
         void On();
         void Off();
         void IsWorking();
+        void ReadyToStart(Tool.Tool tool);
 
     }
 }

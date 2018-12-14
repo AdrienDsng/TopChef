@@ -27,14 +27,22 @@ namespace TopChefKitchen.Model.Machines
             this.Tools = new List<ITool>();
         }
 
-        public void addItem(ITool tool)
+        public void AddItem(ITool tool)
         {
             Tools.Add(tool);
         }
 
-        public void removeItem(ITool tool)
+        public void RemoveItem(ITool tool)
         {
             Tools.Remove(tool);
+        }
+        new public void IsWorking(Tool.Tool tool)
+        {
+            this.State = "IsWorking";
+            this.Tools.Add(tool);
+            Thread.Sleep(WorkingTime);
+            this.State = "standby";
+
         }
     }
 }

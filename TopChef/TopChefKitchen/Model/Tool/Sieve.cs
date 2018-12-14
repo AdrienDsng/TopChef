@@ -8,7 +8,7 @@ namespace TopChefKitchen.Model.Tool
 {
     class Sieve : Tool
     {
-        public Sieve(position.Position position)
+        public Sieve(position.Position position) : base(position)
         {
             Position = position;
             Quantity = 1;

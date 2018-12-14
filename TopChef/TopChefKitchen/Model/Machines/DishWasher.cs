@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using TopChefKitchen.Model.Interface;
 using TopChefKitchen.Model.Material;
 using TopChefKitchen.Model.position;
 
@@ -27,12 +28,12 @@ namespace TopChefKitchen.Model.Machines
             this.WorkingTime = 8;
         }
 
-        public void addItem(IDish dish)
+        public void AddItem(IDish dish)
         {
             Dishes.Add(dish);
         }
 
-        public void removeItem(IDish dish)
+        public void RemoveItem(IDish dish)
         {
             Dishes.Remove(dish);
         }

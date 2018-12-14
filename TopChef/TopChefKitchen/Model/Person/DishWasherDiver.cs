@@ -53,12 +53,12 @@ namespace TopChefKitchen.Model.Person
         public void PutDishInDishWasher(IDish dish, DishWasher machine)
         {
             Move(new Position(machine.Position.X + 1, machine.Position.Y));
-            machine.addItem(dish);
+            machine.AddItem(dish);
         }
         public void PutFabricInWashMachine(Fabric fabric, WashMachine machine)
         {
             Move(new Position(machine.Position.X+1,machine.Position.Y));
-            machine.addItem(fabric);
+            machine.AddItem(fabric);
         }
         public void DisposeDishWasher(DishWasher machine)
         {

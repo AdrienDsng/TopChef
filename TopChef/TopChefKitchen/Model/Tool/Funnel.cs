@@ -8,7 +8,7 @@ namespace TopChefKitchen.Model.Tool
 {
     class Funnel : Tool
     {
-        public Funnel(position.Position position)
+        public Funnel(position.Position position) : base(position)
         {
             Position = position;
             Quantity = 1;

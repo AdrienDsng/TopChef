@@ -44,7 +44,7 @@ namespace TopChefKitchen.Model.Tool
                     return new WoodenSpoon(position);
                     
                 default:
-                    return new CookingKnife(position);
+                    return null;
             }           
         }
     }

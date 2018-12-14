@@ -22,17 +22,17 @@ namespace TopChefKitchen.Model.Machines
             this.WorkingTime = 10;
         }
 
-        public void addItem(Fabric fabric)
+        public void AddItem(Fabric fabric)
         {
             Fabrics.Add(fabric);
         }
 
-        public void removeItem(Fabric fabric)
+        public void RemoveItem(Fabric fabric)
         {
             Fabrics.Remove(fabric);
         }
 
-        public void check()
+        public void Check()
         {
             if(Fabrics.Count() > 10)
             {

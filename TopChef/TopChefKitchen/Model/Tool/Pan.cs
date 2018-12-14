@@ -8,7 +8,7 @@ namespace TopChefKitchen.Model.Tool
 {
     class Pan : Tool
     {
-        public Pan(position.Position position)
+        public Pan(position.Position position) : base(position)
         {
             Position = position;
             Quantity = 10;

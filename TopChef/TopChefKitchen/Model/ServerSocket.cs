@@ -1,82 +1,225 @@
-﻿using System;
-using System.Net;
+﻿using System.Net;
 using System.Net.Sockets;
+using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
+using System.Threading;
+using System.Xml.Serialization;
 
-public class ServerSocket
+namespace Common
 {
-
-    // Incoming data from the client.  
-    public static string data = null;
-
-    public static void StartListening()
+    public static class Communicator
     {
-        // Data buffer for incoming data.  
-        byte[] bytes = new Byte[1024];
+        private static ManualResetEvent ready = new ManualResetEvent(false);
 
-        // Establish the local endpoint for the socket.  
-        // Dns.GetHostName returns the name of the   
-        // host running the application.  
-        //IPHostEntry ipHostInfo = Dns.GetHostEntry(Dns.GetHostName());
-        IPAddress ipAddress = IPAddress.Parse("0.0.0.0");
-        IPEndPoint localEndPoint = new IPEndPoint(ipAddress, 11000);
+        private static ManualResetEvent locker = new ManualResetEvent(true);
 
-        // Create a TCP/IP socket.  
-        Socket listener = new Socket(ipAddress.AddressFamily,
-            SocketType.Stream, ProtocolType.Tcp);
+        private static Socket listen = null;
 
-        // Bind the socket to the local endpoint and   
-        // listen for incoming connections.  
-        try
+        private static Socket socket = null;
+
+        public static void Start(int port)
         {
-            listener.Bind(localEndPoint);
-            listener.Listen(10);
+            listen = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
 
-            // Start listening for connections.  
-            while (true)
+            listen.Bind(new IPEndPoint(IPAddress.Parse("0.0.0.0"), port));
+
+            listen.Listen(256);
+
+            new Thread(() =>
             {
-                Console.WriteLine("Waiting for a connection...");
-                // Program is suspended while waiting for an incoming connection.  
-                Socket handler = listener.Accept();
-                data = null;
-
-                // An incoming connection needs to be processed.  
-                while (true)
+                for (; ; )
                 {
-                    int bytesRec = handler.Receive(bytes);
-                    data += Encoding.ASCII.GetString(bytes, 0, bytesRec);
-                    if (data.IndexOf("<EOF>") > -1)
+                    try
                     {
+                        Socket temp = listen.Accept();
+
+                        if (socket == null)
+                        {
+                            socket = temp;
+                        }
+
                         break;
+                    }
+                    catch (Exception)
+                    {
+                        if (socket != null)
+                        {
+                            break;
+                        }
                     }
                 }
 
-                // Show the data on the console.  
-                Console.WriteLine("Text received : {0}", data);
+                Connected();
 
-                // Echo the data back to the client.  
-                byte[] msg = Encoding.ASCII.GetBytes(data);
-
-                handler.Send(msg);
-                handler.Shutdown(SocketShutdown.Both);
-                handler.Close();
-            }
-            var obj = Newtonsoft.Json.JsonConvert.DeserializeObject<Object>(jsonString);
+            }).Start();
         }
-        catch (Exception e)
+
+        public static bool Connect(string address, int port)
         {
-            Console.WriteLine(e.ToString());
+            try
+            {
+                if (socket != null)
+                {
+                    return false;
+                }
+
+                Socket temp = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+
+                temp.Connect(new IPEndPoint(IPAddress.Parse(address), port));
+
+                if (socket != null)
+                {
+                    return false;
+                }
+
+                socket = temp;
+
+                Connected();
+
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
         }
 
-        Console.WriteLine("\nPress ENTER to continue...");
-        Console.Read();
+        private static void Connected()
+        {
+            listen.Close();
 
-    }
+            ready.Set();
+        }
 
-    public static int Main(String[] args)
-    {
-        StartListening();
-        return 0;
+        public static void Ready()
+        {
+            ready.WaitOne();
+        }
+
+        public static void SendMessage(string message)
+        {
+            SendBinary(Encoding.ASCII.GetBytes(message));
+        }
+
+        public static string ReceiveMessage()
+        {
+            Byte[] message = ReceiveBinary();
+
+            return Encoding.ASCII.GetString(message, 0, message.Length);
+        }
+
+        public static bool SendObject(object serializable)
+        {
+            try
+            {
+                var sw = new StringWriter();
+
+                var s = new XmlSerializer(serializable.GetType());
+
+                s.Serialize(sw, serializable);
+
+                SendMessage(sw.ToString());
+
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+
+        public static T ReceiveObject<T>() where T : class
+        {
+            try
+            {
+                byte[] array = Encoding.ASCII.GetBytes(ReceiveMessage());
+
+                MemoryStream stream = new MemoryStream(array);
+
+                var sr = new StreamReader(stream);
+
+                var s = new XmlSerializer(typeof(T));
+
+                return s.Deserialize(sr) as T;
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+        }
+
+        private static void SendBinary(Byte[] message)
+        {
+            lock (socket)
+            {
+                Byte[] header = Encoding.ASCII.GetBytes(message.Length.ToString() + "|");
+
+                Byte[] total = new Byte[message.Length + header.Length];
+
+                header.CopyTo(total, 0);
+                message.CopyTo(total, header.Length);
+
+                socket.Send(total, total.Length, SocketFlags.None);
+            }
+        }
+
+        private static Byte[] ReceiveBinary()
+        {
+            lock (socket)
+            {
+                int size = ReceiveSize();
+
+                Byte[] buffer = new Byte[256];
+
+                List<Byte> message = new List<Byte>();
+
+                int i = 0;
+
+                do
+                {
+                    Byte[] temp = new Byte[socket.Receive(buffer, buffer.Length, SocketFlags.None)];
+
+                    Array.Copy(buffer, temp, temp.Length);
+
+                    message.AddRange(new List<Byte>(temp));
+
+                    i += temp.Length;
+                }
+                while (i < size);
+
+                return message.ToArray();
+            }
+        }
+
+        private static int ReceiveSize()
+        {
+            Byte[] digit = new Byte[1];
+
+            string content = "";
+
+            do
+            {
+                Communicator.socket.Receive(digit, 1, SocketFlags.None);
+
+                char character = Convert.ToChar(digit[0]);
+
+                if (character == '|')
+                {
+                    break;
+                }
+
+                content += character;
+            }
+            while (true);
+
+            int.TryParse(content, out int size);
+
+            return size;
+        }
+
+        //Byte[] content = Encoding.ASCII.GetBytes(message);
+
+        //message += Encoding.ASCII.GetString(section, 0, length);
     }
 }
 

@@ -1,3 +1,5 @@
+using TopChefRestaurant.Model.Positions;
+
 namespace TopChefRestaurant.Model.Actions
 {
     public interface IAction
@@ -6,6 +8,7 @@ namespace TopChefRestaurant.Model.Actions
         int RemainingTime { get; set; }
         int DecreaseTime();
         bool CanRealize(object person);
+        Position Position { get; set; }
         Person.Person Employee { get; set; }
     }
 }

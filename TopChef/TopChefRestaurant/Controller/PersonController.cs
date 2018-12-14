@@ -102,6 +102,7 @@ namespace TopChefRestaurant.Controller
                 employee.NextAction();
                 employee.Available = false;
                 _runningActions.Add(employee.CurrentAction);
+                
             }
         }
 

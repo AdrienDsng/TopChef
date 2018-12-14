@@ -15,14 +15,6 @@ namespace TopChefRestaurant.View
 
         }
 
-        protected void Update(GameTime gameTime)
-        {
-            if (y > 200)
-            {
-                y--;
-            }
-        }
-
         public void Draw(SpriteBatch spriteBatch, Texture2D rowChief)
         {            
             spriteBatch.Begin();

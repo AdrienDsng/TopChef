@@ -19,15 +19,13 @@ namespace TopChefRestaurant.Controller
         private List<IAction> _runningActions = new List<IAction>();
         private List<IAction> _actionsNotAttributed = new List<IAction>();
         private List<Person> _restaurantEmployees = new List<Person>();
-        private RestaurantView _restaurantView;
         
         /// <summary>
         /// Person controller constructor
         /// </summary>
-        public PersonController(RestaurantView restaurantView)
+        public PersonController()
         {
-            this._restaurantView = restaurantView;
-            
+            RestaurantView restaurantView = Program.RestaurantView;
             _restaurantEmployees.Add(new Apprentice("Jacquie", new Position(0, 0)));
             _restaurantEmployees.Add(new HotelMaster("Jean-Jacque", new Position(0, 0)));
             _restaurantEmployees.Add(new RowChief("Adrien", new Position(0, 0)));

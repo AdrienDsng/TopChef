@@ -15,22 +15,21 @@ namespace TopChefRestaurant.Controller
         private List<Client> _clients = new List<Client>();
         private PersonController _personController;
         private TableController _tableController;
-        private RestaurantView _restaurantView;
-        
+
         /// <summary>
         /// ClientController constructor
         /// </summary>
+        /// <param name="restaurantView"></param>
         /// <param name="personController"></param>
         /// <param name="tableController"></param>
-        public ClientController(RestaurantView restaurantView, PersonController personController, TableController tableController)
+        public ClientController(PersonController personController, TableController tableController)
         {
-            _restaurantView = restaurantView;
             _personController = personController;
             _tableController = tableController;
             
-            Client client = new Client("Michel et sa famille", new Position(0, 0));
+            Client client = new Client("Michel et sa famille", new Position(44, 96));
             _clients.Add(client);
-            _personController.AddAction(new WelcomeClient(client, _tableController));
+            _personController.AddAction(new WelcomeClient(client, this._tableController));
         }
 
         /// <summary>
@@ -50,7 +49,7 @@ namespace TopChefRestaurant.Controller
             Random random = new Random();
             if (random.Next(60 * 10) != 0) return;
 
-            Client client = new Client($"Client {random.Next(1000)}", new Position(0, 0));
+            Client client = new Client($"Client {random.Next(1000)}", new Position(44, 96));
             _clients.Add(client);
             _personController.AddAction(new WelcomeClient(client, _tableController));
         }

@@ -12,7 +12,7 @@ using TopChefKitchen.Model.Tool;
 
 namespace TopChefKitchen.Model.Person
 {
-    class Apprentice : Person, IObserverChief
+    class Apprentice : Person, IObservable
     {
         public static Semaphore semaphore = new Semaphore(0, 1);
         public Step Step { get; set; }
@@ -137,7 +137,17 @@ namespace TopChefKitchen.Model.Person
             this.State = "Standby";
         }
 
-        public void Update(string name)
+        public void AddObserver(IObserver observer)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void DelObserver(IObserver observer)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Notify()
         {
             throw new NotImplementedException();
         }

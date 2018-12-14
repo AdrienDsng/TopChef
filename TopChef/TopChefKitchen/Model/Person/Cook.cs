@@ -25,6 +25,8 @@ namespace TopChefKitchen.Model.Person
         private Tool.Tool ToolUsed { get; set; }
         private Machine MachineUsed { get; set; }
 
+       
+
         public Cook( Position position, int time) : base( position, time)
         {
             
@@ -186,24 +188,24 @@ namespace TopChefKitchen.Model.Person
             Tool = ToolFactory.GetInstance(name, position);
             this.State = "Standby";
         }
-       
-        public void AddObserver(IObserverChief observer)
-        {
-            Observers.Add(observer);
-        }
-
-        public void DelObserver(IObserverChief observer)
-        {
-            Observers.Remove(observer);
-        }
 
         public void Notify()
         {
             foreach (var observer in Observers)
             {
-                observer.Update(State, this);
+                observer.Update("state",this);
             }
             
+        }
+
+        public void AddObserver(IObserver observer)
+        {
+            Observers.Add(observer);
+        }
+
+        public void DelObserver(IObserver observer)
+        {
+            Observers.Remove(observer);
         }
     }
 }

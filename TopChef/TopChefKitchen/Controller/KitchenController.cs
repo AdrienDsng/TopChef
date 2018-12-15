@@ -28,7 +28,6 @@ namespace TopChefKitchen.Controller
         {
             StockController.MainLoop();
             MachineController.MainLoop(PersonController);
-            SocketController.MainLoop();
         }
     }
 }

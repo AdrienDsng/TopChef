@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\MonoGame\v3.0\MonoGame.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\MonoGame\v3.0\MonoGame.Common.props')" />
   <PropertyGroup>
@@ -48,8 +48,11 @@
     <Compile Include="Controller\SocketController.cs" />
     <Compile Include="Controller\StockController.cs" />
     <Compile Include="Controller\ToolController.cs" />
-    <Compile Include="Model\Interface\IObserver.cs" />
+    <Compile Include="Model\Interface\IObservableByDiver.cs" />
+    <Compile Include="Model\Interface\IObservableByChief.cs" />
+    <Compile Include="Model\Interface\IObservableByCook.cs" />
     <Compile Include="Model\Interface\IObserverChief.cs" />
+    <Compile Include="Model\Interface\IObserverCook.cs" />
     <Compile Include="Model\Interface\IObserverDiver.cs" />
     <Compile Include="Model\Machines\Bar.cs" />
     <Compile Include="Model\Recipe\AvailableRecipes.cs" />
@@ -57,9 +60,8 @@
     <Compile Include="Model\Serialized.cs" />
     <Compile Include="Model\ServerSocket.cs" />
     <Compile Include="Model\Sleeper.cs" />
-    <Compile Include="Model\Command.cs" />
+    <Compile Include="Model\Order.cs" />
     <Compile Include="Model\Interface\INamed.cs" />
-    <Compile Include="Model\Interface\IObservable.cs" />
     <Compile Include="Model\Interface\IState.cs" />
     <Compile Include="Model\Interface\IStatic.cs" />
     <Compile Include="Model\Interface\IWashable.cs" />

@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace TopChefKitchen.Model.Recipe
+namespace TopChefRestaurant.Model
 {
     public class AvailableRecipes
     {

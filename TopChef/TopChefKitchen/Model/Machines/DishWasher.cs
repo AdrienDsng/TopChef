@@ -10,10 +10,16 @@ using TopChefKitchen.Model.position;
 
 namespace TopChefKitchen.Model.Machines
 {
-    class DishWasher : Machine
+    //<summary>
+    //Class DishWasher : class to represent DishWasher in the kitchen
+    //<summary>
+    class DishWasher : Machine, IObservableByDiver
     {
-
+        //<summary>
+        //List with all dish
+        //<summary>
         public List<IDish> Dishes { get; set ; }
+        new public List<IObserverDiver> Observers { get; set; }
         public static Semaphore semaphore = new Semaphore(0, 1);
         public int maxCuttelry = 24;
         public int maxGlass = 24;
@@ -36,6 +42,22 @@ namespace TopChefKitchen.Model.Machines
         public void RemoveItem(IDish dish)
         {
             Dishes.Remove(dish);
+        }
+        new public void AddObserver(IObserverDiver observer)
+        {
+            Observers.Add(observer);
+        }
+
+        new public void DelObserver(IObserverDiver observer)
+        {
+            Observers.Remove(observer);
+        }
+        new void Notify()
+        {
+            foreach (var observer in Observers)
+            {
+                observer.UpdateMD(this);
+            }
         }
     }
 }

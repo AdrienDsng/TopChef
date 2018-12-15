@@ -4,15 +4,17 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using TopChefKitchen.Model.Interface;
 using TopChefKitchen.Model.Material;
 using TopChefKitchen.Model.position;
 
 namespace TopChefKitchen.Model.Machines
 {
-    class WashMachine : Machine
+    class WashMachine : Machine , IObservableByDiver
     {
         public List<Fabric> Fabrics { get; set; }
         public static Semaphore semaphore = new Semaphore(0, 1);
+        new public List<IObserverDiver> Observers { get; set; }
 
         public WashMachine(Position position) : base(position)
         {
@@ -39,7 +41,23 @@ namespace TopChefKitchen.Model.Machines
                 this.State = "Working";
             }
         }
+        new public void AddObserver(IObserverDiver observer)
+        {
+            Observers.Add(observer);
+        }
 
+        new public void DelObserver(IObserverDiver observer)
+        {
+            Observers.Remove(observer);
+        }
+
+        new void Notify()
+        {
+            foreach (var observer in Observers)
+            {
+                observer.UpdateMW(this);
+            }
+        }
 
     }
 }

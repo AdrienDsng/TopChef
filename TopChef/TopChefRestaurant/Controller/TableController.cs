@@ -39,42 +39,42 @@ namespace TopChefRestaurant.Controller
             
             Random random = new Random();
 
-            _availableTable[2].Add(new Table(2, $"Table {random.Next(1000)}", new Position(6, 16)));
-            _availableTable[2].Add(new Table(2, $"Table {random.Next(1000)}", new Position(6, 24)));
-            _availableTable[2].Add(new Table(2, $"Table {random.Next(1000)}", new Position(6, 32)));
-            _availableTable[2].Add(new Table(2, $"Table {random.Next(1000)}", new Position(19, 24)));
-            _availableTable[2].Add(new Table(2, $"Table {random.Next(1000)}", new Position(19, 32)));
-            _availableTable[2].Add(new Table(2, $"Table {random.Next(1000)}", new Position(48, 70)));
-            _availableTable[2].Add(new Table(2, $"Table {random.Next(1000)}", new Position(48, 78)));
-            _availableTable[2].Add(new Table(2, $"Table {random.Next(1000)}", new Position(48, 84)));
-            _availableTable[2].Add(new Table(2, $"Table {random.Next(1000)}", new Position(60, 78)));
-            _availableTable[2].Add(new Table(2, $"Table {random.Next(1000)}", new Position(60, 84)));
+            _availableTable[2].Add(new Table(2, "Table 1", new Position(6, 16)));
+            _availableTable[2].Add(new Table(2, "Table 2", new Position(6, 24)));
+            _availableTable[2].Add(new Table(2, "Table 3", new Position(6, 32)));
+            _availableTable[2].Add(new Table(2, "Table 4", new Position(19, 24)));
+            _availableTable[2].Add(new Table(2, "Table 5", new Position(19, 32)));
+            _availableTable[2].Add(new Table(2, "Table 6", new Position(48, 70)));
+            _availableTable[2].Add(new Table(2, "Table 7", new Position(48, 78)));
+            _availableTable[2].Add(new Table(2, "Table 8", new Position(48, 84)));
+            _availableTable[2].Add(new Table(2, "Table 9", new Position(60, 78)));
+            _availableTable[2].Add(new Table(2, "Table 10", new Position(60, 84)));
+            
+            _availableTable[4].Add(new Table(4, "Table 11", new Position(18, 16)));
+            _availableTable[4].Add(new Table(4, "Table 12", new Position(18, 42)));
+            _availableTable[4].Add(new Table(4, "Table 13", new Position(6, 42)));
+            _availableTable[4].Add(new Table(4, "Table 14", new Position(6, 52)));
+            _availableTable[4].Add(new Table(4, "Table 15", new Position(18, 52)));
+            _availableTable[4].Add(new Table(4, "Table 16", new Position(48, 48)));
+            _availableTable[4].Add(new Table(4, "Table 17", new Position(62, 48)));
+            _availableTable[4].Add(new Table(4, "Table 18", new Position(62, 60)));
+            _availableTable[4].Add(new Table(4, "Table 19", new Position(48, 60)));
+            _availableTable[4].Add(new Table(4, "Table 20", new Position(62, 68)));
+            
+            _availableTable[6].Add(new Table(6, "Table 21", new Position(4, 62)));
+            _availableTable[6].Add(new Table(6, "Table 22", new Position(4, 72)));
+            _availableTable[6].Add(new Table(6, "Table 23", new Position(18, 62)));
+            _availableTable[6].Add(new Table(6, "Table 24", new Position(48, 40)));
+            _availableTable[6].Add(new Table(6, "Table 25", new Position(62, 40)));
+            
+            _availableTable[8].Add(new Table(8, "Table 26", new Position(20, 72)));
+            _availableTable[8].Add(new Table(8, "Table 27", new Position(6, 80)));
+            _availableTable[8].Add(new Table(8, "Table 28", new Position(48, 30)));
+            _availableTable[8].Add(new Table(8, "Table 29", new Position(68, 30)));
+            _availableTable[8].Add(new Table(8, "Table 30", new Position(48, 22)));
 
-            _availableTable[4].Add(new Table(4, $"Table {random.Next(1000)}", new Position(18, 16)));
-            _availableTable[4].Add(new Table(4, $"Table {random.Next(1000)}", new Position(18, 42)));
-            _availableTable[4].Add(new Table(4, $"Table {random.Next(1000)}", new Position(6, 42)));
-            _availableTable[4].Add(new Table(4, $"Table {random.Next(1000)}", new Position(6, 52)));
-            _availableTable[4].Add(new Table(4, $"Table {random.Next(1000)}", new Position(18, 52)));
-            _availableTable[4].Add(new Table(4, $"Table {random.Next(1000)}", new Position(48, 48)));
-            _availableTable[4].Add(new Table(4, $"Table {random.Next(1000)}", new Position(62, 48)));
-            _availableTable[4].Add(new Table(4, $"Table {random.Next(1000)}", new Position(62, 60)));
-            _availableTable[4].Add(new Table(4, $"Table {random.Next(1000)}", new Position(48, 60)));
-            _availableTable[4].Add(new Table(4, $"Table {random.Next(1000)}", new Position(62, 68)));
-
-            _availableTable[6].Add(new Table(6, $"Table {random.Next(1000)}", new Position(4, 62)));
-            _availableTable[6].Add(new Table(6, $"Table {random.Next(1000)}", new Position(4, 72)));
-            _availableTable[6].Add(new Table(6, $"Table {random.Next(1000)}", new Position(18, 62)));
-            _availableTable[6].Add(new Table(6, $"Table {random.Next(1000)}", new Position(48, 40)));
-            _availableTable[6].Add(new Table(6, $"Table {random.Next(1000)}", new Position(62, 40)));
-
-            _availableTable[8].Add(new Table(8, $"Table {random.Next(1000)}", new Position(20, 72)));
-            _availableTable[8].Add(new Table(8, $"Table {random.Next(1000)}", new Position(6, 80)));
-            _availableTable[8].Add(new Table(8, $"Table {random.Next(1000)}", new Position(48, 30)));
-            _availableTable[8].Add(new Table(8, $"Table {random.Next(1000)}", new Position(68, 30)));
-            _availableTable[8].Add(new Table(8, $"Table {random.Next(1000)}", new Position(48, 22)));
-
-            _availableTable[10].Add(new Table(10, $"Table {random.Next(1000)}", new Position(20, 82)));
-            _availableTable[10].Add(new Table(10, $"Table {random.Next(1000)}", new Position(64, 22)));
+            _availableTable[10].Add(new Table(10, "Table 31", new Position(20, 82)));
+            _availableTable[10].Add(new Table(10, "Table 32", new Position(64, 22)));
         }
         
         /// <summary>
@@ -137,6 +137,17 @@ namespace TopChefRestaurant.Controller
             {
                 _clientsWaiting.Add(client);
             }
+        }
+
+        public Table GetTableByName(string name)
+        {
+            foreach (var table in _busyTable)
+            {
+                if (table.Name == name)
+                    return table;
+            }
+
+            return null;
         }
     }
 }

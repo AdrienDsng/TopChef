@@ -99,5 +99,19 @@ namespace TopChefKitchen.Model.Person
                 WashDishes(tool);
             }
         }
+        public void UpdateMW(WashMachine machine)
+        {
+            if (machine.State == "Standby" && this.State == "Standby")
+            {               
+                        DisposeWashingMachine(machine);             
+            }
+        }
+        public void UpdateMD(DishWasher machine)
+        {
+            if (machine.State == "Standby" && this.State == "Standby")
+            {
+                DisposeDishWasher(machine);
+            }
+        }
     }
 }

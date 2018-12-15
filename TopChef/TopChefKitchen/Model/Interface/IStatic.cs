@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace TopChefKitchen.Model.Interface
 {
+    //<summary>
+    //Interface to Give attribute to know if the class Is Static
+    //<summary>
     interface IStatic
     {
         bool IsStatic { get; set; }

@@ -6,12 +6,10 @@ using System.Threading.Tasks;
 
 namespace TopChefKitchen.Model.Interface
 {
-    //<summary>
-    //Interface to Give state to classes
-    //<summary>
-    interface IState
+    interface IObservableByDiver
     {
-        string State { get; set; }
+        void AddObserver(IObserverDiver observer);
+        void DelObserver(IObserverDiver observer);
+        void Notify();
     }
 }
-

@@ -10,11 +10,21 @@ using TopChefKitchen.Model.Interface;
 
 namespace TopChefKitchen.Model.Machines
 {
+
+    //<summary>
+    //Class CookingFire : class to represent Cooking fire in the kitchen
+    //<summary>
     class CookingFire : Machine , IWashable
     {
+        //<summary>
+        //List with all tools
+        //<summary>
         public List<ITool> Tools { get; set; }
         public bool IsDirty { get ; set ; }
 
+        //<summary>
+        //Semaphore implemented
+        //<summary>
         public static Semaphore semaphore = new Semaphore(0, 5);
 
        
@@ -37,6 +47,9 @@ namespace TopChefKitchen.Model.Machines
             Tools.Remove(tool);
         }
 
+        //<summary>
+        //Method to make machine ready to start
+        //<summary>
         new public void ReadyToStart(Tool.Tool tool)
         {
             this.Tools.Add(tool);

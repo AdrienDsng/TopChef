@@ -13,7 +13,7 @@ namespace TopChefRestaurant.Model.Material
         public bool HasBread { get; set; }
         public bool HasWater { get; set; }
         public List<Dish> Dishes = new List<Dish>();
-        public List<Recipe> Orders = new List<Recipe>();
+        public List<Order> Orders = new List<Order>();
 
         public string Sprite { get; set; }
         public Position Position { get; set; }

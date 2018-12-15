@@ -25,7 +25,7 @@ namespace TopChefKitchen.Controller
             Stock = stockController.Stock;
             KitchenChief = new KitchenChief(new Position(5, 5), 10000);
             Persons.Add(KitchenChief);
-            DishWasherDiver = new DishWasherDiver(new Position(5, 5), 10000);
+            DishWasherDiver = new DishWasherDiver(new Position(5, 5), 10000, machineController.Tap);
             Persons.Add(DishWasherDiver);
             Cook1 = new Cook(new Position(5, 5), 10000);
             Cook2 = new Cook(new Position(5, 5), 10000);
@@ -33,6 +33,35 @@ namespace TopChefKitchen.Controller
             Persons.Add(Cook2);
             Apprentice = new Apprentice(new Position(5, 5), 10000);
             Persons.Add(Apprentice);
+        }
+
+        public void AddObserversOnMachines(MachineController machineController)
+        {
+            foreach (var value in machineController.Machines)
+            {
+                switch (value.Name)
+                {
+                    case "DishWasher":
+                        value.AddObserver(DishWasherDiver);
+                        break;
+                    case "WashingMachine":
+                        value.AddObserver(DishWasherDiver);
+                        break;                   
+                    default:
+                        value.AddObserver(Cook1);
+                        value.AddObserver(Cook2);
+                        break;
+
+                }
+            }
+        }
+
+        public void AddObserversOnPerson()
+        {
+            Cook1.AddObserver(KitchenChief);
+            Cook2.AddObserver(KitchenChief);
+            Apprentice.AddObserver(Cook1);
+            Apprentice.AddObserver(Cook2);
         }
 
         void ExecuteMachine()

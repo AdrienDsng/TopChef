@@ -24,10 +24,12 @@ namespace TopChefRestaurant.Model.Actions
 
             for (var i = 0; i < Table.Client.Number; i++)//TODO update this to check recipe availability in real time & select full menu
             {
-                Table.Orders.Add(_recipeController.AvailableRecipe[random.Next(_recipeController.AvailableRecipe.Count)]);
+                Table.Orders.Add(_recipeController.AvailableRecipe.entries[random.Next(_recipeController.AvailableRecipe.entries.Count)]);
+                Table.Orders.Add(_recipeController.AvailableRecipe.plats[random.Next(_recipeController.AvailableRecipe.plats.Count)]);
+                Table.Orders.Add(_recipeController.AvailableRecipe.desserts[random.Next(_recipeController.AvailableRecipe.desserts.Count)]);
             }
 
-            _recipeController.SendOrders(Table);
+            _recipeController.SendOrders(Table.Orders);
             LogController.Log(new Event(this));
         }
 

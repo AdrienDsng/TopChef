@@ -26,36 +26,23 @@ namespace TopChefKitchen.Model.Person
             Arrive();            
         }
 
-        public void GetCommand(List<string> commands, Stock stock)
+        public List<Order> GetCommand(List<Order> commands, Stock stock)
         {
-            foreach (string command in commands)
+            foreach (var command in commands)
             {
-                if(stock.CheckIfResourceAvailable(command))
+                if(stock.CheckIfResourceAvailable(command.Name))
                 {
-                    recipe = stock.SelectRecipe(command);
+                    recipe = stock.SelectRecipe(command.Name);
                 }
             }
+
+            return CheckStock(commands, stock);
         }
 
         public void GiveRecipeToCook(Cook cook)
         {
             cook.Recipe = recipe;
             cook.ActualStep = recipe.Steps[0];
-        }
-
-        public Dictionary<string, int> CheckStock(Stock stock, string name)
-        {
-            Dictionary<string, int> recipes = stock.GetRecipeNameWithTypes();
-
-            foreach(KeyValuePair<string, int> recipe in recipes)
-            {
-                if (!stock.CheckIfResourceAvailable(recipe.Key))
-                {
-                    recipes.Remove(recipe.Key);
-                }
-            }
-
-            return recipes;
         }
         
         public void PutIngredientInTheFridge(Tool.Tool tool, Machine machine)
@@ -75,10 +62,17 @@ namespace TopChefKitchen.Model.Person
             {
                 GiveRecipeToCook(cook);
             }
-            else
+        }
+
+        public List<Order> CheckStock(List<Order> commands, Stock stock)
+        {
+            foreach(Order command in commands)
             {
-                
+                if (!stock.CheckIfResourceAvailable(command.Name)){
+                    command.Type = 0;
+                }
             }
+            return commands;
         }
     }
 }

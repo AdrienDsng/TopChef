@@ -10,9 +10,18 @@ using TopChefKitchen.Model.Tool;
 
 namespace TopChefKitchen.Model.Machines
 {
+    //<summary>
+    //Class Fridge : class to represent the fridge in the kitchen
+    //<summary>
     class Fridge : Machine
     {
+        //<summary>
+        //List with all tools
+        //<summary>
         public List<Tool.Tool> Tools { get; set; }
+        //<summary>
+        //List with all Times for each tool to stay in the fridge
+        //<summary>
         public List<int> WaitTime { get; set; }
         public static Semaphore semaphore = new Semaphore(0,1);
         public int i = 0;
@@ -34,6 +43,9 @@ namespace TopChefKitchen.Model.Machines
             Tools.Remove(tool);
         }
 
+        //<summary>
+        //Method to make machine ready to start
+        //<summary>
         public void ReadyToStart(Tool.Tool ToolUsed, int time)
         {
             AddItem(ToolUsed);
@@ -41,6 +53,9 @@ namespace TopChefKitchen.Model.Machines
             ToolUsed.State = "ReadyToWait";
         }
 
+        //<summary>
+        //Method to make machine Start 
+        //<summary>
         new void IsWorking()
         {
             foreach (var value in Tools)

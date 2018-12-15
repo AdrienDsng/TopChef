@@ -9,7 +9,7 @@ using TopChefKitchen.Model.Recipe;
 
 namespace TopChefKitchen.Model.Tool
 {
-    class Tool : ITool, INamed , IStatic, IState, IWashable , IObservable
+    class Tool : ITool, INamed , IStatic, IState, IWashable , IObservableByDiver
     {
         public int Quantity { get ; set ; }
         public string Size { get ; set ; }
@@ -19,7 +19,7 @@ namespace TopChefKitchen.Model.Tool
         public string State { get ; set ; }
         public bool IsDirty { get ; set ; }
         public Preparation Preparation { get ; set ; }
-        public List<IObserverChief> Observers { get ; set ; }
+        public List<IObserverDiver> Observers { get ; set ; }
 
         public Tool(string name ,position.Position position)
         {
@@ -42,12 +42,12 @@ namespace TopChefKitchen.Model.Tool
             IsDirty = false;
         }
 
-        public void AddObserver(IObserverChief observer)
+        public void AddObserver(IObserverDiver observer)
         {
             Observers.Add(observer);
         }
 
-        public void DelObserver(IObserverChief observer)
+        public void DelObserver(IObserverDiver observer)
         {
             Observers.Remove(observer);
         }
@@ -66,7 +66,7 @@ namespace TopChefKitchen.Model.Tool
         {
             foreach (var observer in Observers)
             {
-                observer.Update(State);
+                observer.Update(State,this);
             }
         }
     }

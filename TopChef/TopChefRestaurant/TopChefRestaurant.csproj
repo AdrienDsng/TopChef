@@ -58,6 +58,7 @@
     <Compile Include="Model\Actions\ServeTable.cs" />
     <Compile Include="Model\Actions\TakeCommands.cs" />
     <Compile Include="Model\Actions\WelcomeClient.cs" />
+    <Compile Include="Model\AvailableRecipes.cs" />
     <Compile Include="Model\Event.cs" />
     <Compile Include="Model\Interfaces\INamed.cs" />
     <Compile Include="Model\Material\BigSpoon.cs" />
@@ -79,7 +80,7 @@
     <Compile Include="Model\Material\TableCloth.cs" />
     <Compile Include="Model\Material\TableNapkin.cs" />
     <Compile Include="Model\Material\WineGlass.cs" />
-    <Compile Include="Model\PacketHandler.cs" />
+    <Compile Include="Model\Order.cs" />
     <Compile Include="Model\Person\Apprentice.cs" />
     <Compile Include="Model\Person\Client.cs" />
     <Compile Include="Model\Person\HotelMaster.cs" />
@@ -88,11 +89,10 @@
     <Compile Include="Model\Person\Waiter.cs" />
     <Compile Include="Model\Positions\IDisplayable.cs" />
     <Compile Include="Model\Positions\Position.cs" />
-    <Compile Include="Model\Recipe.cs" />
-    <Compile Include="Model\RestaurantModel.cs" />
+    <Compile Include="Model\Serialized.cs" />
     <Compile Include="Model\Sleeper.cs" />
     <Compile Include="Program.cs" />
-    <Compile Include="Model\ClientSocket.cs" />
+    <Compile Include="Model\Communicator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="View\Apprentice.cs" />
     <Compile Include="View\Client.cs" />

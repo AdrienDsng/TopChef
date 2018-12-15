@@ -26,7 +26,7 @@ namespace TopChefKitchen.Model.Person
             Arrive();            
         }
 
-        public void GetCommand(List<string> commands, Stock stock)
+        public List<string> GetCommand(List<string> commands, Stock stock)
         {
             foreach (string command in commands)
             {
@@ -35,6 +35,8 @@ namespace TopChefKitchen.Model.Person
                     recipe = stock.SelectRecipe(command);
                 }
             }
+
+            return CheckStock(commands, stock);
         }
 
         public void GiveRecipeToCook(Cook cook)
@@ -75,10 +77,17 @@ namespace TopChefKitchen.Model.Person
             {
                 GiveRecipeToCook(cook);
             }
-            else
+        }
+
+        public List<String> CheckStock(List<string> commands, Stock stock)
+        {
+            foreach(string command in commands)
             {
-                
+                if (!stock.CheckIfResourceAvailable(command)){
+                    commands.Remove(command);
+                }
             }
+            return commands;
         }
     }
 }

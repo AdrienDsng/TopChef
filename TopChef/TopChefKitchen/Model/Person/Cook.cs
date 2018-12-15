@@ -110,7 +110,7 @@ namespace TopChefKitchen.Model.Person
             }
         }
 
-        public Preparation MakeRecipe(List<Machine> machines)
+        public void MakeRecipe(List<Machine> machines)
         {
             
             foreach (var value in Recipe.Steps)
@@ -120,8 +120,9 @@ namespace TopChefKitchen.Model.Person
 
                 NextStep();
             }
+            
             Notify();
-            return new Preparation("Done");
+            
         }
 
         public void DoStep(List<Machine> machines , Tool.Tool tool)
@@ -151,15 +152,7 @@ namespace TopChefKitchen.Model.Person
                 TakeTool(tool.Name, new Position(tool.Position.X, tool.Position.Y+1));
                 UseMachine(MachineUsed, new Position(MachineUsed.Position.X, MachineUsed.Position.Y));
             }
-            CheckIfCanContinue();
-        }
-
-        private void CheckIfCanContinue()
-        {
-            while (MachineUsed.State != "Standby")
-            {
-                Move(new Position(5, 5));
-            }
+           
         }
 
         private void UseMachine(Machine machine, Position position)
@@ -204,7 +197,7 @@ namespace TopChefKitchen.Model.Person
         {
             foreach (var observer in Observers)
             {
-                observer.Update("state",this);
+                observer.Update("Standby",this);
             }
             
         }

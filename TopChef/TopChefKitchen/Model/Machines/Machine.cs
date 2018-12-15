@@ -9,7 +9,7 @@ using TopChefKitchen.Model.position;
 
 namespace TopChefKitchen.Model.Machines
 {
-    class Machine : IMachine, IState, IStatic, INamed, IPosition, IObservable
+    class Machine : IMachine, IState, IStatic, INamed, IPosition, IObservableByCook, IObservableByDiver
     {
          
         public int Capacity { get ; set; }
@@ -18,11 +18,11 @@ namespace TopChefKitchen.Model.Machines
         public string State { get ; set; }
         public string Name { get ; set ; }
         public Position Position { get ; set; }
-        public List<IObserverChief> Observers { get ; set ; }
+        public List<IObserverCook> Observers { get ; set ; }
 
         public Machine(Position position, string name)
         {
-            this.Observers = new List<IObserverChief>();
+            this.Observers = new List<IObserverCook>();
             this.Position = position;
             this.Capacity = 1;
             this.WorkingTime = 5;
@@ -65,19 +65,32 @@ namespace TopChefKitchen.Model.Machines
             Position = position;
         }
 
-        public void AddObserver(IObserverChief observer)
+        public void AddObserver(IObserverCook observer)
         {
             Observers.Add(observer);
         }
 
-        public void DelObserver(IObserverChief observer)
+        public void DelObserver(IObserverCook observer)
         {
             Observers.Remove(observer);
         }
 
         public void Notify()
         {
-           
-        }       
+           foreach (var value in Observers)
+            {
+                value.Update(this.State, this);
+            }
+        }
+
+        public void AddObserver(IObserverDiver observer)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void DelObserver(IObserverDiver observer)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

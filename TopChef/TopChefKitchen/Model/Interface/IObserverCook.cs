@@ -3,15 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TopChefKitchen.Model.Machines;
 
 namespace TopChefKitchen.Model.Interface
 {
     //<summary>
-    //Interface to Give state to classes
+    //Interface to Observe Obervable Class for the Cook
     //<summary>
-    interface IState
+    interface IObserverCook
     {
-        string State { get; set; }
+       void Update(string state, Machine machine);       
     }
 }
-

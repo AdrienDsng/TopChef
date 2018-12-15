@@ -9,13 +9,22 @@ using TopChefKitchen.Model.Recipe;
 
 namespace TopChefKitchen.Model.Machines
 {
+    //<summary>
+    //Class Bar : class to stock preparation before give it to the client 
+    //<summary>
     class Bar : Machine
     {
+        //<summary>
+        //List with all preparation
+        //<summary>
         public List<Preparation> Tools { get; set; }
+
         public bool IsDirty { get; set; }
-
+        
+        //<summary>
+        //Semaphore implemented
+        //<summary>
         public static Semaphore semaphore = new Semaphore(0, 1);
-
 
         public Bar(Position position) : base(position)
         {

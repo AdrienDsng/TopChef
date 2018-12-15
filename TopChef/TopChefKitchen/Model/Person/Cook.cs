@@ -12,7 +12,7 @@ using TopChefKitchen.Model.Tool;
 
 namespace TopChefKitchen.Model.Person
 {
-    class Cook : Person, IObservable
+    class Cook : Person, IObservableByChief, IObserverCook
     {
         public static Semaphore semaphore = new Semaphore(0, 2);
 
@@ -117,9 +117,10 @@ namespace TopChefKitchen.Model.Person
             {               
                 CheckIfNeedToolOrMachine();
                 DoStep(machines, ToolFactory.GetInstance(ActualStep.Resource_Needed, new Position(50, 50)));
+
                 NextStep();
             }
-
+            Notify();
             return new Preparation("Done");
         }
 
@@ -150,6 +151,15 @@ namespace TopChefKitchen.Model.Person
                 TakeTool(tool.Name, new Position(tool.Position.X, tool.Position.Y+1));
                 UseMachine(MachineUsed, new Position(MachineUsed.Position.X, MachineUsed.Position.Y));
             }
+            CheckIfCanContinue();
+        }
+
+        private void CheckIfCanContinue()
+        {
+            while (MachineUsed.State != "Standby")
+            {
+                Move(new Position(5, 5));
+            }
         }
 
         private void UseMachine(Machine machine, Position position)
@@ -163,7 +173,8 @@ namespace TopChefKitchen.Model.Person
         private void PutInFridge(Fridge fridge)
         {
             this.State = "IsWorking";
-            Move(new Position(fridge.Position.X, fridge.Position.Y + 1));           
+            Move(new Position(fridge.Position.X, fridge.Position.Y + 1));
+            ToolUsed.State = "IsWorking";
             fridge.ReadyToStart(ToolUsed,ActualStep.Wait_Time);
             this.State = "Standby";
         }
@@ -188,7 +199,7 @@ namespace TopChefKitchen.Model.Person
             Tool = ToolFactory.GetInstance(name, position);
             this.State = "Standby";
         }
-
+        
         public void Notify()
         {
             foreach (var observer in Observers)
@@ -198,14 +209,22 @@ namespace TopChefKitchen.Model.Person
             
         }
 
-        public void AddObserver(IObserver observer)
+        public void AddObserver(IObserverChief observer)
         {
             Observers.Add(observer);
         }
 
-        public void DelObserver(IObserver observer)
+        public void DelObserver(IObserverChief observer)
         {
             Observers.Remove(observer);
+        }
+
+        public void Update(string state, Machine machine)
+        {         
+                if (machine.State == "Standby" && this.State == "Standby")
+                {
+                MachineUsed.State = "Standby";
+                }                   
         }
     }
 }

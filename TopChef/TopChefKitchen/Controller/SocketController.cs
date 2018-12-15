@@ -9,8 +9,23 @@ namespace TopChefKitchen.Controller
 {
     public class SocketController
     {
-        private List<Order> Orders { get; set; }
-        private Dish PendingDirtyDish { get; set; }
+        private List<Order> availableRecipes;
+        private List<Order> orders { get; set; }
+        private List<Order> availableOrders { get; set; }
+        private Dish pendingDirtyDish { get; set; }
+
+        internal List<Order> AvailableRecipes
+        {
+            get
+            {
+                return availableRecipes;
+            }
+
+            set
+            {
+                availableRecipes = value;
+            }
+        }
 
         public SocketController()
         {
@@ -27,12 +42,17 @@ namespace TopChefKitchen.Controller
             switch (obj.Name)
             {
                 case "List<Order>":
-                    Orders = Serialized.Deserialize<List<Order>>(obj);
+                    orders = Serialized.Deserialize<List<Order>>(obj);
                     break;
                 case "Dish":
-                    PendingDirtyDish = Serialized.Deserialize<Dish>(obj);
+                    pendingDirtyDish = Serialized.Deserialize<Dish>(obj);
                     break;
             }
+        }
+
+        private void CommunicationSender()
+        {
+            Communicator.SendObject(Serialized.Serialize(AvailableRecipes));
         }
 
 

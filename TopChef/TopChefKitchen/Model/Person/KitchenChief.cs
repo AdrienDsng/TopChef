@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using TopChefKitchen.Controller;
 using TopChefKitchen.Model.Interface;
 using TopChefKitchen.Model.Machines;
 using TopChefKitchen.Model.Person;
@@ -15,6 +16,7 @@ namespace TopChefKitchen.Model.Person
 
     class KitchenChief : Person, IObserverChief
     {
+        private List<Order> Orders;
         public static Semaphore semaphore = new Semaphore(0, 1);
         private Recipe.Recipe recipe;
 
@@ -26,7 +28,7 @@ namespace TopChefKitchen.Model.Person
             Arrive();            
         }
 
-        public List<Order> GetCommand(List<Order> commands, Stock stock)
+        public void GetCommand(List<Order> commands, Stock stock)
         {
             foreach (var command in commands)
             {
@@ -36,7 +38,7 @@ namespace TopChefKitchen.Model.Person
                 }
             }
 
-            return CheckStock(commands, stock);
+            Orders = CheckStock(commands, stock);
         }
 
         public void GiveRecipeToCook(Cook cook)
@@ -69,10 +71,15 @@ namespace TopChefKitchen.Model.Person
             foreach(Order command in commands)
             {
                 if (!stock.CheckIfResourceAvailable(command.Name)){
-                    command.Type = 0;
+                    commands.Remove(command);
                 }
             }
             return commands;
+        }
+
+        public List<Order> SendBackAvailableRecipes()
+        {
+            return Orders;
         }
     }
 }

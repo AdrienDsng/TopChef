@@ -1,13 +1,15 @@
 ﻿using Common;
 using System.Collections.Generic;
 using System.Threading;
+using TopChefKitchen.Model;
 using TopChefKitchen.Model.Material;
+
 
 namespace TopChefKitchen.Controller
 {
     public class SocketController
     {
-        private List<string> Orders { get; set; }
+        private List<Order> Orders { get; set; }
         private Dish PendingDirtyDish { get; set; }
 
         public SocketController()
@@ -24,14 +26,16 @@ namespace TopChefKitchen.Controller
             var obj = Communicator.ReceiveObject();
             switch (obj.Name)
             {
-                case "Order":
-                    Orders = Serialized.Deserialize<List<string>>(obj);
+                case "List<Order>":
+                    Orders = Serialized.Deserialize<List<Order>>(obj);
                     break;
                 case "Dish":
                     PendingDirtyDish = Serialized.Deserialize<Dish>(obj);
                     break;
             }
         }
+
+
     }
 
 }

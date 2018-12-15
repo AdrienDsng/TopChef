@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using TopChefKitchen.Model;
 using TopChefKitchen.Model.Machines;
 using TopChefKitchen.Model.position;
 
@@ -11,15 +12,17 @@ namespace TopChefKitchen.Controller
 {
     class MachineController
     {
-        private List<Machine> Machines { get; set; }
+        public List<Machine> Machines { get; set; }
         private Fridge Fridge { get; set; }
+        public Tap Tap { get; set; }
         public MachineController()
         {
             Fridge = new Fridge(new Position(10, 10));
             Machines.Add(Fridge); 
             Machines.Add(new DishWasher(new Position(10, 9)));
             Machines.Add(new Oven(new Position(10, 8)));
-            Machines.Add(new Tap(new Position(10, 7)));
+            Tap = new Tap(new Position(10, 7));
+            Machines.Add(Tap);
             Machines.Add(new Mixer(new Position(10, 6)));
             Machines.Add(new WashMachine(new Position(10, 5)));
             Machines.Add(new CookingFire(new Position(10, 4)));

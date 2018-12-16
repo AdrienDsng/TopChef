@@ -39,7 +39,7 @@ namespace TopChefRestaurant.Controller
                     break;
                 case "List<Order>":
                     List<Order> orders = Serialized.Deserialize<List<Order>>(obj);
-                    OrdersReceived(_tableController.GetTableByName(orders[0].tableName));
+                    OrdersReceived(_tableController.GetTableByName(orders[0].TableName));
                     break;
             }
         }

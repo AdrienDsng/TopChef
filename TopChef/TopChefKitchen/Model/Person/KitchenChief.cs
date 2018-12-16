@@ -21,6 +21,7 @@ namespace TopChefKitchen.Model.Person
         public static Semaphore semaphore = new Semaphore(0, 1);
         private Recipe.Recipe recipe;
         private Recipe.Recipe Cookrecipe;
+        private Recipe.Recipe ReturnRecipe;
 
         public KitchenChief( Position position, int time) : base( position, time)
         {
@@ -71,6 +72,8 @@ namespace TopChefKitchen.Model.Person
             {
                 GiveRecipeToCook(cook, stock);
             }
+
+            ReturnRecipe = cook.Recipe;
         }
 
         public List<Order> CheckStock(List<Order> commands, Stock stock)
@@ -87,6 +90,11 @@ namespace TopChefKitchen.Model.Person
         public List<Order> SendBackAvailableRecipes()
         {
             return Orders;
+        }
+
+        public Recipe.Recipe ReturnDoneRecipe()
+        {
+            return ReturnRecipe;
         }
     }
 }

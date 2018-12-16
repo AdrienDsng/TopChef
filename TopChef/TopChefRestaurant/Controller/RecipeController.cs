@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Threading;
 using Common;
 using TopChefRestaurant.Model;
@@ -12,7 +13,8 @@ namespace TopChefRestaurant.Controller
         public AvailableRecipes AvailableRecipe = new AvailableRecipes();
         private PersonController _personController;
         private TableController _tableController;
-
+        private Dictionary<Table, List<Order>> _tableOrders = new Dictionary<Table, List<Order>>();
+        
         public RecipeController(PersonController personController)
         {
             this._personController = personController;
@@ -20,8 +22,9 @@ namespace TopChefRestaurant.Controller
             Communicator.Start(5555);
             (new Thread(KitchenCommunicationReceiver)).Start();
 
-            Communicator.Connect("127.0.0.1", 4444);
+            Debug.WriteLine("Connected");
             Communicator.Ready();
+            Debug.WriteLine("RDY !");
         }
 
         public void SetTableController(TableController tableController)
@@ -44,17 +47,25 @@ namespace TopChefRestaurant.Controller
                     case "AvailableRecipes":
                         AvailableRecipe = Serialized.Deserialize<AvailableRecipes>(obj);
                         break;
-                    case "List<Order>":
-                        List<Order> orders = Serialized.Deserialize<List<Order>>(obj);
-                        OrdersReceived(_tableController.GetTableByName(orders[0].TableName));
+                    case "Order":
+                        Order order = Serialized.Deserialize<Order>(obj);
+                        Table table = _tableController.GetTableByName(order.TableName);
+                        
+                        _tableOrders[table].Add(order);
+                        if (_tableOrders[table].Count == table.Orders.Count)
+                        {
+                            _tableOrders.Remove(table);
+                            OrdersReceived(table);
+                        }
                         break;
                 }
             }
         }
 
-        public void SendOrders(List<Order> orders)
+        public void SendOrders(Table table)
         {
-            Communicator.SendObject(Serialized.Serialize(orders));
+            _tableOrders.Add(table, new List<Order>());
+            Communicator.SendObject(Serialized.Serialize(table.Orders));
         }
 
         public void OrdersReceived(Table table)

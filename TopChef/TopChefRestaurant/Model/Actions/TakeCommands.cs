@@ -29,7 +29,7 @@ namespace TopChefRestaurant.Model.Actions
                 Table.Orders.Add(_recipeController.AvailableRecipe.desserts[random.Next(_recipeController.AvailableRecipe.desserts.Count)]);
             }
 
-            _recipeController.SendOrders(Table.Orders);
+            _recipeController.SendOrders(Table);
             LogController.Log(new Event(this));
         }
 

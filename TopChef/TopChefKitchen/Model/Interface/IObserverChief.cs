@@ -13,6 +13,6 @@ namespace TopChefKitchen.Model.Interface
     //<summary>
     public interface IObserverChief 
     {
-        void Update(string state, Cook cook);
+        void Update(string state, Cook cook, Stock stock);
     }
 }

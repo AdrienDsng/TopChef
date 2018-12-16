@@ -13,8 +13,8 @@ namespace TopChefKitchen.Controller
 {
     public class PersonController
     {
-        private List<Person> Persons { get; set; }
-        private List<Machine> Machines { get; set; }
+        private List<Person> Persons = new List<Person>();
+        private List<Machine> Machines = new List<Machine>();
         public Stock Stock { get; set; }
         public KitchenChief KitchenChief { get; set; }
         public DishWasherDiver DishWasherDiver { get; set; }

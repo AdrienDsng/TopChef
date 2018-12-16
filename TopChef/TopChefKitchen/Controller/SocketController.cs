@@ -1,6 +1,7 @@
 ﻿using Common;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Threading;
 using TopChefKitchen.Model;
 using TopChefKitchen.Model.Machines;
@@ -25,10 +26,6 @@ namespace TopChefKitchen.Controller
         private PersonController PersonController { get; set; }
         private int i = 0;
 
-       
-
-
-
         public SocketController(PersonController personController, MachineController machineController)
         {
             AvailableRecipes = new List<Order>();
@@ -43,14 +40,12 @@ namespace TopChefKitchen.Controller
             this.Stock = personController.Stock;
             Cooks.Add(personController.Cook1);
             Cooks.Add(personController.Cook2);
+            Debug.WriteLine("TRY TO CONNECT");
+            Communicator.Start(4444);
+            (new Thread(CommunicationReceiver)).Start();
 
-            Communicator.Start(5555);
-            //(new Thread(CommunicationReceiver)).Start();
-
-            Communicator.Connect("127.0.0.1", 4444);
             Communicator.Ready();
-
-            
+            Debug.WriteLine("RDY !");
         }
 
         private void CommunicationReceiver()

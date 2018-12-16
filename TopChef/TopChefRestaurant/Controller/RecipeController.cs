@@ -10,7 +10,7 @@ namespace TopChefRestaurant.Controller
 {
     public class RecipeController
     {
-        public AvailableRecipes AvailableRecipe = new AvailableRecipes();
+        public List<Order> AvailableRecipe = new List<Order>();
         private PersonController _personController;
         private TableController _tableController;
         private Dictionary<Table, List<Order>> _tableOrders = new Dictionary<Table, List<Order>>();
@@ -21,7 +21,7 @@ namespace TopChefRestaurant.Controller
 
             Communicator.Start(5555);
             (new Thread(KitchenCommunicationReceiver)).Start();
-
+            Communicator.Connect("127.0.0.1", 4444);
             Debug.WriteLine("Connected");
             Communicator.Ready();
             Debug.WriteLine("RDY !");
@@ -44,8 +44,8 @@ namespace TopChefRestaurant.Controller
                 }
                 switch (obj.Name)
                 {
-                    case "AvailableRecipes":
-                        AvailableRecipe = Serialized.Deserialize<AvailableRecipes>(obj);
+                    case "List<Order>":
+                        AvailableRecipe = Serialized.Deserialize<List<Order>>(obj);
                         break;
                     case "Order":
                         Order order = Serialized.Deserialize<Order>(obj);

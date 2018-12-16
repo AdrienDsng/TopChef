@@ -12,7 +12,7 @@ namespace TopChefKitchen.Controller
 {
     public class MachineController
     {
-        public List<Machine> Machines { get; set; }
+        public List<Machine> Machines = new List<Machine>();
         private Fridge Fridge { get; set; }
         public Tap Tap { get; set; }
         public DishWasher DishWasher { get; set; }

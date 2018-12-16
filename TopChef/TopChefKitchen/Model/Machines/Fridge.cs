@@ -63,9 +63,7 @@ namespace TopChefKitchen.Model.Machines
             {
                 if (value.State == "ReadyToWait")
                 {
-                    void Sleep(){
-                        Thread.Sleep(WaitTime[i]);
-                    }
+                    
 
                     new Thread(new ThreadStart(Sleep));
                     value.State = "Standby";
@@ -74,6 +72,8 @@ namespace TopChefKitchen.Model.Machines
             }
         }
 
-
+        void Sleep(){
+            Thread.Sleep(WaitTime[i]);
+        }
     }
 }

@@ -15,7 +15,7 @@ namespace TopChefKitchen.Controller
     {
         private List<Person> Persons { get; set; }
         private List<Machine> Machines { get; set; }
-        private Stock Stock { get; set; }
+        public Stock Stock { get; set; }
         public KitchenChief KitchenChief { get; set; }
         public DishWasherDiver DishWasherDiver { get; set; }
         public Cook Cook1 { get; set; }
@@ -38,6 +38,7 @@ namespace TopChefKitchen.Controller
 
             AddObserversOnMachines(machineController);
             AddObserversOnPerson();
+            new Thread(new ThreadStart(ExecuteDishWasher));
         }
 
         public void AddObserversOnMachines(MachineController machineController)
@@ -81,15 +82,15 @@ namespace TopChefKitchen.Controller
             }
         }
         
-        public void GiveToSocketController()
+        public Order GiveToSocketController()
         {
-
+            return KitchenChief.ReturnRecipe; 
         }
 
         internal void MainLoop(MachineController machineController)
         {
-            this.Machines = machineController.Machines;
-            ExecuteDishWasher();
+            this.Machines = machineController.Machines;          
+            GiveToSocketController();
         }
     }
 }

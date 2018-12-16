@@ -17,7 +17,13 @@ namespace TopChefKitchen.Controller
         private Dish PendingDirtyDish { get; set; }
         private KitchenChief KitchenChief { get; set; }
         private DishWasherDiver DishWasherDiver { get; set; }
+        private List<Cook> Cooks { get; set; }
         private DishWasher DishWasher { get; set; }
+        private WashMachine WashMachine { get; set; }
+        private Stock Stock { get; set; }
+        private TableNapkin PendingTableNapkin { get;  set; }
+        private PersonController PersonController { get; set; }
+        private int i = 0;
 
         internal List<Order> AvailableRecipes
         {
@@ -32,12 +38,19 @@ namespace TopChefKitchen.Controller
             }
         }
 
+
+
         public SocketController(PersonController personController, MachineController machineController)
         {
+            this.PersonController = personController;
             this.DishWasherDiver = personController.DishWasherDiver;
             this.KitchenChief = personController.KitchenChief;
             this.DishWasher = machineController.DishWasher;
-            
+            this.WashMachine = machineController.WashMachine;
+            this.Stock = personController.Stock;
+            Cooks.Add(personController.Cook1);
+            Cooks.Add(personController.Cook2);
+
             Communicator.Start(5555);
             (new Thread(CommunicationReceiver)).Start();
 
@@ -62,8 +75,17 @@ namespace TopChefKitchen.Controller
                         PendingDirtyDish = Serialized.Deserialize<Dish>(obj);
                         GiveDishes(PendingDirtyDish);
                         break;
+                    case "TableNapkin":
+                        PendingTableNapkin = Serialized.Deserialize<TableNapkin>(obj);
+                        GiveTableNapkin(PendingTableNapkin);
+                        break;
                 }
             }
+        }
+
+        private void GiveTableNapkin(TableNapkin pendingTableNapkin)
+        {
+            DishWasherDiver.PutFabricInWashMachine(pendingTableNapkin, WashMachine);
         }
 
         private void GiveDishes(Dish pendingDirtyDish)
@@ -73,18 +95,34 @@ namespace TopChefKitchen.Controller
 
         private void GiveOrders(List<Order> orders)
         {
+            foreach (var value in orders)
+            {
+                KitchenChief.PendingOrders.Add(value);
+            }
+            if (i == 0)
+            {
+                InitializeCooks();
+                i++;
+            }                     
+        }
 
-            //KitchenChief.GiveRecipeToCook();
+        private void InitializeCooks()
+        {
+
+            KitchenChief.GiveRecipeToCook(Cooks[0],Stock);
+            KitchenChief.GiveRecipeToCook(Cooks[1],Stock);
+            
         }
 
         public void MainLoop()
         {
-            CommunicationReceiver();
+            //CommunicationReceiver();
         }
 
         private void CommunicationSender()
         {
             Communicator.SendObject(Serialized.Serialize(AvailableRecipes));
+            Communicator.SendObject(Serialized.Serialize(PersonController.GiveToSocketController()));
         }
 
     }

@@ -16,6 +16,7 @@ namespace TopChefKitchen.Model.Person
     {
         public static Semaphore semaphore = new Semaphore(0, 1);
         public Tap Tap { get; set; }
+
         public DishWasherDiver( Position position, int time, Tap tap) : base( position, time)
         {
             Tap = tap;
@@ -25,6 +26,7 @@ namespace TopChefKitchen.Model.Person
             Arrive();
             Move(new Position(10, 10));
         }
+
         public void WashDishes(ITool tool)
         {
             this.State = "IsWorking";
@@ -57,11 +59,13 @@ namespace TopChefKitchen.Model.Person
             Move(new Position(machine.Position.X + 1, machine.Position.Y));
             machine.AddItem(dish);
         }
+
         public void PutFabricInWashMachine(Fabric fabric, WashMachine machine)
         {
             Move(new Position(machine.Position.X+1,machine.Position.Y));
             machine.AddItem(fabric);
         }
+
         public void DisposeDishWasher(DishWasher machine)
         {
             this.State = "IsWorking";
@@ -99,6 +103,7 @@ namespace TopChefKitchen.Model.Person
                 WashDishes(tool);
             }
         }
+
         public void UpdateMW(WashMachine machine)
         {
             if (machine.State == "Standby" && this.State == "Standby")
@@ -106,6 +111,7 @@ namespace TopChefKitchen.Model.Person
                         DisposeWashingMachine(machine);             
             }
         }
+
         public void UpdateMD(DishWasher machine)
         {
             if (machine.State == "Standby" && this.State == "Standby")

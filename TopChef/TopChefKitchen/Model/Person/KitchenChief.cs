@@ -16,12 +16,12 @@ namespace TopChefKitchen.Model.Person
 
     public class KitchenChief : Person, IObserverChief
     {
-        private List<Order> Orders;
-        private List<Order> PendingOrders;
+        private List<Order> Orders { get; set; }
+        public List<Order> PendingOrders { get; set; }
         public static Semaphore semaphore = new Semaphore(0, 1);
-        private Recipe.Recipe recipe;
-        private Recipe.Recipe Cookrecipe;
-        private Recipe.Recipe ReturnRecipe;
+        private Recipe.Recipe Recipe { get; set; }
+        private Recipe.Recipe Cookrecipe { get; set; }
+        public Order ReturnRecipe { get; set; }
 
         public KitchenChief( Position position, int time) : base( position, time)
         {
@@ -37,7 +37,7 @@ namespace TopChefKitchen.Model.Person
             {
                 if(stock.CheckIfResourceAvailable(command.Name))
                 {
-                    recipe = stock.SelectRecipe(command.Name);
+                    Recipe = stock.SelectRecipe(command.Name);
                 }
             }
 
@@ -52,7 +52,7 @@ namespace TopChefKitchen.Model.Person
             }
             cook.Recipe = Cookrecipe;
             Orders.RemoveAt(0);
-            cook.ActualStep = recipe.Steps[0];
+            cook.ActualStep = Recipe.Steps[0];
         }
         
         public void PutIngredientInTheFridge(Tool.Tool tool, Machine machine)
@@ -73,7 +73,11 @@ namespace TopChefKitchen.Model.Person
                 GiveRecipeToCook(cook, stock);
             }
 
-            ReturnRecipe = cook.Recipe;
+            ReturnRecipe = new Order();
+            ReturnRecipe.Name = cook.Recipe.Name;
+            ReturnRecipe.Type = cook.Recipe.Type;
+
+
         }
 
         public List<Order> CheckStock(List<Order> commands, Stock stock)
@@ -92,9 +96,6 @@ namespace TopChefKitchen.Model.Person
             return Orders;
         }
 
-        public Recipe.Recipe ReturnDoneRecipe()
-        {
-            return ReturnRecipe;
-        }
+       
     }
 }

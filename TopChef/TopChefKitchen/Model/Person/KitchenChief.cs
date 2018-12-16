@@ -17,8 +17,10 @@ namespace TopChefKitchen.Model.Person
     public class KitchenChief : Person, IObserverChief
     {
         private List<Order> Orders;
+        private List<Order> PendingOrders;
         public static Semaphore semaphore = new Semaphore(0, 1);
         private Recipe.Recipe recipe;
+        private Recipe.Recipe Cookrecipe;
 
         public KitchenChief( Position position, int time) : base( position, time)
         {
@@ -41,9 +43,14 @@ namespace TopChefKitchen.Model.Person
             Orders = CheckStock(commands, stock);
         }
 
-        public void GiveRecipeToCook(Cook cook)
+        public void GiveRecipeToCook(Cook cook, Stock stock)
         {
-            cook.Recipe = recipe;
+            if (stock.CheckIfResourceAvailable(Orders[0].Name))
+            {
+                Cookrecipe = stock.SelectRecipe(Orders[0].Name);
+            }
+            cook.Recipe = Cookrecipe;
+            Orders.RemoveAt(0);
             cook.ActualStep = recipe.Steps[0];
         }
         
@@ -58,11 +65,11 @@ namespace TopChefKitchen.Model.Person
             ToolFactory.GetInstance(name, position);
         }
 
-        public void Update(String state, Cook cook)
+        public void Update(String state, Cook cook, Stock stock)
         {
             if(state == "Standby")
             {
-                GiveRecipeToCook(cook);
+                GiveRecipeToCook(cook, stock);
             }
         }
 

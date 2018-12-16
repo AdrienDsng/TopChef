@@ -1,4 +1,5 @@
 ﻿using System;
+using TopChefKitchen.Controller;
 
 namespace TopChefKitchen
 {
@@ -14,7 +15,10 @@ namespace TopChefKitchen
         static void Main()
         {
             using (var game = new kitchen())
+            {
+                KitchenController controller = new KitchenController();
                 game.Run();
+            }
         }
     }
 }

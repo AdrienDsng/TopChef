@@ -18,24 +18,21 @@ namespace TopChefKitchen.Controller
        
         
         public KitchenController()
-        {          
+        {      
+            
             this.MachineController = new MachineController();            
             this.PersonController = new PersonController(Stock, MachineController);
             this.SocketController = new SocketController(PersonController, MachineController);
+            new Thread(new ThreadStart(SocketController.MainLoop));
         }
 
         public void Loop()
         {
             int i= 0;
             while (true)
-            {               
-                if (i == 0){
-                    new Thread(new ThreadStart(SocketController.MainLoop));
-                    i++;
-                }
+            {                              
                 MachineController.MainLoop();
-                PersonController.MainLoop(MachineController);
-                
+                PersonController.MainLoop(MachineController);               
             }
             
         }

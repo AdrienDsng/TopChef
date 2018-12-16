@@ -12,7 +12,7 @@ namespace TopChefKitchen.Model.Machines
     //<summary>
     //Class Bar : class to stock preparation before give it to the client 
     //<summary>
-    class Bar : Machine
+    public class Bar : Machine
     {
         //<summary>
         //List with all preparation

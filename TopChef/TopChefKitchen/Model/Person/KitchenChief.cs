@@ -14,7 +14,7 @@ using TopChefKitchen.Model.Tool;
 namespace TopChefKitchen.Model.Person
 {
 
-    class KitchenChief : Person, IObserverChief
+    public class KitchenChief : Person, IObserverChief
     {
         private List<Order> Orders;
         public static Semaphore semaphore = new Semaphore(0, 1);

@@ -8,7 +8,7 @@ using TopChefKitchen.Model.position;
 
 namespace TopChefKitchen.Model.Recipe
 {
-    class Preparation : Recipe, IState, IPosition
+    public class Preparation : Recipe, IState, IPosition
     {
         public string State { get ; set ; }
         public Position Position { get ; set; }

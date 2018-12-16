@@ -12,7 +12,7 @@ using TopChefKitchen.Model.Tool;
 
 namespace TopChefKitchen.Model.Person
 {
-    class Cook : Person, IObservableByChief, IObserverCook
+    public class Cook : Person, IObservableByChief, IObserverCook
     {
         public static Semaphore semaphore = new Semaphore(0, 2);
 

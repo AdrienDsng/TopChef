@@ -8,7 +8,7 @@ using TopChefKitchen.Model.Interface;
 
 namespace TopChefKitchen.Model.Recipe
 {
-    class Recipe : INamed
+    public class Recipe : INamed
     {
         
         public string Name { get ; set ; }

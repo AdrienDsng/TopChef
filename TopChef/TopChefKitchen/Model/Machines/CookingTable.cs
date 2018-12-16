@@ -13,7 +13,7 @@ namespace TopChefKitchen.Model.Machines
     //<summary>
     //Class CookingTable : class to represent Cooking table in the kitchen
     //<summary>
-    class CookingTable : Machine
+    public class CookingTable : Machine
     {
         //<summary>
         //List with all tools

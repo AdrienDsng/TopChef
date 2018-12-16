@@ -10,7 +10,7 @@ using TopChefKitchen.Model.Tool;
 
 namespace TopChefKitchen.Model.Machines
 {
-    class Oven : Machine, IWashable
+    public class Oven : Machine, IWashable
     {
         public List<ITool> Tools { get; set; }
         public bool IsDirty { get; set ; }

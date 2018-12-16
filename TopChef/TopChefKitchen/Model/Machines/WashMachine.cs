@@ -10,7 +10,7 @@ using TopChefKitchen.Model.position;
 
 namespace TopChefKitchen.Model.Machines
 {
-    class WashMachine : Machine , IObservableByDiver
+    public class WashMachine : Machine , IObservableByDiver
     {
         public List<Fabric> Fabrics { get; set; }
         public static Semaphore semaphore = new Semaphore(0, 1);

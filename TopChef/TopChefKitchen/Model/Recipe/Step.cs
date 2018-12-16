@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TopChefKitchen.Model.Recipe
 {
-    class Step
+    public class Step
     {
         public string RecipeName { get; set; }
         public int Nb_step { get; set; }

@@ -7,7 +7,7 @@ using TopChefKitchen.Model.Interface;
 
 namespace TopChefKitchen.Model.Machines
 {
-    interface IMachine
+    public interface IMachine
     {
         int Capacity { get; set; }
         int WorkingTime { get; set; }

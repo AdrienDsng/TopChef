@@ -13,7 +13,7 @@ namespace TopChefKitchen.Model.Machines
     //<summary>
     //Class Fridge : class to represent the fridge in the kitchen
     //<summary>
-    class Fridge : Machine
+    public class Fridge : Machine
     {
         //<summary>
         //List with all tools

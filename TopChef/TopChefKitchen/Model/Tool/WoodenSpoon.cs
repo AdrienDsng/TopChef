@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TopChefKitchen.Model.Tool
 {
-    class WoodenSpoon : Tool
+    public class WoodenSpoon : Tool
     {
         public WoodenSpoon(position.Position position) :base (position)
         {

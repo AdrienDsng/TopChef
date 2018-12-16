@@ -9,7 +9,7 @@ using TopChefKitchen.Model.position;
 
 namespace TopChefKitchen.Model.Machines
 {
-    class Mixer : Machine
+    public class Mixer : Machine
     {
         public List<ITool> Tools { get; set; }
         public bool IsDirty { get; set; }

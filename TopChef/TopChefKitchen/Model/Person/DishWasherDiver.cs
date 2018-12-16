@@ -12,7 +12,7 @@ using TopChefKitchen.Model.Tool;
 
 namespace TopChefKitchen.Model.Person
 {
-    class DishWasherDiver : Person, IObserverDiver
+    public class DishWasherDiver : Person, IObserverDiver
     {
         public static Semaphore semaphore = new Semaphore(0, 1);
         public Tap Tap { get; set; }
@@ -89,7 +89,7 @@ namespace TopChefKitchen.Model.Person
 
         public void PowerOn(Machine machine)
         {
-            machine.State = "IsWorking";
+            machine.State = "ReadyToStart";
         }
 
         public void Update(string state, Tool.Tool tool)

@@ -9,7 +9,7 @@ using TopChefKitchen.Model.Recipe;
 
 namespace TopChefKitchen.Model
 {
-    class Stock
+    public class Stock
     {
         public Recipe.Recipe Recipe { get; set; }
         private DataSet DataSet { get ; set ; }

@@ -14,7 +14,7 @@ namespace TopChefKitchen.Model.Machines
     //<summary>
     //Class CookingFire : class to represent Cooking fire in the kitchen
     //<summary>
-    class CookingFire : Machine , IWashable
+    public class CookingFire : Machine , IWashable
     {
         //<summary>
         //List with all tools

@@ -9,7 +9,7 @@ using TopChefKitchen.Model.Tool;
 
 namespace TopChefKitchen.Model.Person
 {
-    class Person : IPerson , INamed, IPosition,IState, IStatic
+    public class Person : IPerson , INamed, IPosition,IState, IStatic
     {
         public int WorkingTime { get ; set ; }
         public bool IsAlive { get ; set ; }

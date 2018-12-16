@@ -8,7 +8,7 @@ using TopChefKitchen.Model.position;
 
 namespace TopChefKitchen.Model.Material
 {
-    abstract class Dish : IDish, INamed, IStatic, IState, IWashable
+    public abstract class Dish : IDish, INamed, IStatic, IState, IWashable
     {
         public int Quantity { get; set; }
         public string Size { get; set; }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TopChefKitchen.Model.Tool
 {
-    class SaladBowl : Tool
+    public class SaladBowl : Tool
     {
         public SaladBowl(position.Position position) : base(position)
         {

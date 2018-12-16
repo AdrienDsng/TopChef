@@ -9,7 +9,7 @@ namespace TopChefKitchen.Model.Interface
     //<summary>
     //Interface to named classes
     //<summary>
-    interface INamed
+    public interface INamed
     {
       string Name { get; set; }
     }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TopChefKitchen.Model.position
 {
-    interface IPosition
+    public interface IPosition
     {
         Position Position { get; set; }
         void Move(Position position);

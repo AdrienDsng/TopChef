@@ -4,12 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using TopChefKitchen.Controller;
 using TopChefKitchen.Model.Interface;
 using TopChefKitchen.Model.position;
 
 namespace TopChefKitchen.Model.Machines
 {
-    class Machine : IMachine, IState, IStatic, INamed, IPosition, IObservableByCook, IObservableByDiver
+    public class Machine : IMachine, IState, IStatic, INamed, IPosition, IObservableByCook, IObservableByDiver
     {
          
         public int Capacity { get ; set; }
@@ -55,8 +56,11 @@ namespace TopChefKitchen.Model.Machines
         public void IsWorking()
         {
             this.State = "IsWorking";
+            LogController.Log(this.Name+this.State);
             Thread.Sleep(WorkingTime);
             this.State = "Standby";
+            LogController.Log(this.Name + this.State);
+            Notify();
 
         }
 

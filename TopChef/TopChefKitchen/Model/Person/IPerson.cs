@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TopChefKitchen.Model.Person
 {
-    interface IPerson
+    public interface IPerson
     {
         int WorkingTime { get; set; }
         bool IsAlive { get; set; }

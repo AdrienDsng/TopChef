@@ -43,10 +43,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Controller\KitchenController.cs" />
+    <Compile Include="Controller\LogController.cs" />
     <Compile Include="Controller\MachineController.cs" />
     <Compile Include="Controller\PersonController.cs" />
     <Compile Include="Controller\SocketController.cs" />
-    <Compile Include="Controller\StockController.cs" />
     <Compile Include="Controller\ToolController.cs" />
     <Compile Include="Model\Interface\IObservableByDiver.cs" />
     <Compile Include="Model\Interface\IObservableByChief.cs" />
@@ -56,7 +56,6 @@
     <Compile Include="Model\Interface\IObserverDiver.cs" />
     <Compile Include="Model\Machines\Bar.cs" />
     <Compile Include="Model\Recipe\AvailableRecipes.cs" />
-    <Compile Include="Model\Recipe\Order.cs" />
     <Compile Include="Model\Serialized.cs" />
     <Compile Include="Model\ServerSocket.cs" />
     <Compile Include="Model\Sleeper.cs" />
@@ -65,7 +64,6 @@
     <Compile Include="Model\Interface\IState.cs" />
     <Compile Include="Model\Interface\IStatic.cs" />
     <Compile Include="Model\Interface\IWashable.cs" />
-    <Compile Include="Model\kitchenModel.cs" />
     <Compile Include="Model\Machines\DishWasher.cs" />
     <Compile Include="Model\Machines\Fridge.cs" />
     <Compile Include="Model\Machines\IMachine.cs" />

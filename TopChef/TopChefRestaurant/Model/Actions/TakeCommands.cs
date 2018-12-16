@@ -22,7 +22,7 @@ namespace TopChefRestaurant.Model.Actions
         {
             Random random = new Random();
 
-            for (var i = 0; i < Table.Client.Number; i++)//TODO update this to check recipe availability in real time & select full menu
+            for (var i = 0; i < Table.Client.Number; i++)
             {
                 Table.Orders.Add(_recipeController.AvailableRecipe.entries[random.Next(_recipeController.AvailableRecipe.entries.Count)]);
                 Table.Orders.Add(_recipeController.AvailableRecipe.plats[random.Next(_recipeController.AvailableRecipe.plats.Count)]);

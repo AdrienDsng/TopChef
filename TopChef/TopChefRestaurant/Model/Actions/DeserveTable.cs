@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Net.WebSockets;
+using Common;
 using TopChefRestaurant.Controller;
 using TopChefRestaurant.Model.Material;
 using TopChefRestaurant.Model.Person;
@@ -21,8 +22,8 @@ namespace TopChefRestaurant.Model.Actions
         }
         public override void Realize()
         {
-//            ClientSocket.send(Table.Dishes); TODO
-//            ClientSocket.send(Table.TableNapkin);
+            Communicator.SendObject(Serialized.Serialize(Table.Dishes));
+            Communicator.SendObject(Serialized.Serialize(Table.TableNapkin));
             Table.Dishes = null;
             Table.TableNapkin = null;
             Table.Client = null;

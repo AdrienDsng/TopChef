@@ -14,7 +14,7 @@ namespace TopChefRestaurant.Model.Actions
 
         public virtual void Realize()
         {
-            throw new System.NotImplementedException();
+            
         }
 
         public int DecreaseTime()

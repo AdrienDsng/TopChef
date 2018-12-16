@@ -24,9 +24,15 @@ namespace TopChefRestaurant.Model.Actions
 
             for (var i = 0; i < Table.Client.Number; i++)
             {
-                Table.Orders.Add(_recipeController.AvailableRecipe.entries[random.Next(_recipeController.AvailableRecipe.entries.Count)]);
-                Table.Orders.Add(_recipeController.AvailableRecipe.plats[random.Next(_recipeController.AvailableRecipe.plats.Count)]);
-                Table.Orders.Add(_recipeController.AvailableRecipe.desserts[random.Next(_recipeController.AvailableRecipe.desserts.Count)]);
+                try
+                {
+                    Table.Orders.Add(
+                        _recipeController.AvailableRecipe[random.Next(_recipeController.AvailableRecipe.Count)]);
+                }
+                catch (Exception e)
+                {
+                    Table.Orders.Add(new Order());
+                }
             }
 
             _recipeController.SendOrders(Table);

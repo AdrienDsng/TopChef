@@ -24,6 +24,7 @@ namespace TopChefKitchen.Model.Person
         private int ActualNbStep { get; set; }
         private Tool.Tool ToolUsed { get; set; }
         private Machine MachineUsed { get; set; }
+        private Stock Stock { get; set; }
 
        
 
@@ -197,7 +198,7 @@ namespace TopChefKitchen.Model.Person
         {
             foreach (var observer in Observers)
             {
-                observer.Update("Standby",this);
+                observer.Update("Standby",this, Stock);
             }
             
         }

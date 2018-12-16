@@ -18,7 +18,7 @@ namespace TopChefRestaurant.Controller
         private List<Table> _busyTable = new List<Table>();
         private List<Client> _clientsWaiting = new List<Client>();
         private PersonController _personController;
-        private RecipeController _recipeController;
+        private RecipeController _recipeController { get; set; }
 
         /// <summary>
         /// Table controller constructor

@@ -30,7 +30,7 @@ namespace TopChefKitchen.Model.Person
 
         public Cook( Position position, int time) : base( position, time)
         {
-            
+            Observers = new List<IObserverChief>();
             Name = "Cook";
             IsAlive = true;
             IsStatic = false;

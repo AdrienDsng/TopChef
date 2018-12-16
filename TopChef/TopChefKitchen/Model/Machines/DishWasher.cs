@@ -28,6 +28,8 @@ namespace TopChefKitchen.Model.Machines
 
         public DishWasher(Position position) : base(position)
         {
+            Dishes = new List<IDish>();
+            Observers = new List<IObserverDiver>();
             this.Name = "DishWasher";
             this.IsStatic = false;
             this.Capacity = 72;

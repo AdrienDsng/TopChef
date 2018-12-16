@@ -25,6 +25,8 @@ namespace TopChefKitchen.Model.Person
 
         public KitchenChief( Position position, int time) : base( position, time)
         {
+            Orders = new List<Order>();
+            PendingOrders = new List<Order>();
             Name = "KitchenChief";
             IsAlive = true;
             IsStatic = false;           

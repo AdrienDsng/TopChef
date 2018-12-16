@@ -19,8 +19,9 @@ namespace TopChefKitchen.Controller
         public WashMachine WashMachine { get; set; }
         public MachineController()
         {
-            Fridge = new Fridge(new Position(10, 10));
-            Machines.Add(Fridge);
+            Machines = new List<Machine>();
+            this.Fridge = new Fridge(new Position(10, 10));
+            Machines.Add(this.Fridge);
             DishWasher = new DishWasher(new Position(10, 9));
             Machines.Add(DishWasher);
             Machines.Add(new Oven(new Position(10, 8)));

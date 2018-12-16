@@ -27,7 +27,8 @@ namespace TopChefKitchen.Model.Machines
         public int i = 0;
 
         public Fridge(position.Position position) : base(position)
-        {             
+        {
+            WaitTime = new List<int>();
             this.IsStatic = false;
             this.Capacity = 10;
             this.Tools = new List<Tool.Tool>();

@@ -17,6 +17,7 @@ namespace TopChefKitchen.Model.Machines
 
         public Tap(Position position) : base(position)
         {
+            Dishes = new List<Dish>();
             this.Name = "Tap";
             this.IsStatic = false;
             this.Capacity = 1;

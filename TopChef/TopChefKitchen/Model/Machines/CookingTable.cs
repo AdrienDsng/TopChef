@@ -28,6 +28,7 @@ namespace TopChefKitchen.Model.Machines
 
         public CookingTable(Position position) : base(position)
         {
+
             this.IsDirty = false;
             this.Name = "CookingFire";
             this.IsStatic = false;

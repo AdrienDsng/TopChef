@@ -139,12 +139,12 @@ namespace TopChefKitchen.Model.Person
 
         public void AddObserver(IObserverCook observer)
         {
-            throw new NotImplementedException();
+            
         }
 
         public void DelObserver(IObserverCook observer)
         {
-            throw new NotImplementedException();
+            
         }
 
         public void Notify()

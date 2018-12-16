@@ -11,7 +11,7 @@ namespace TopChefKitchen.Controller
 {
     public class SocketController
     {
-        private List<Order> availableRecipes;
+        private List<Order> AvailableRecipes { get; set; }
         private List<Order> Orders { get; set; }
         private List<Order> AvailableOrders { get; set; }
         private Dish PendingDirtyDish { get; set; }
@@ -25,23 +25,16 @@ namespace TopChefKitchen.Controller
         private PersonController PersonController { get; set; }
         private int i = 0;
 
-        internal List<Order> AvailableRecipes
-        {
-            get
-            {
-                return availableRecipes;
-            }
-
-            set
-            {
-                availableRecipes = value;
-            }
-        }
+       
 
 
 
         public SocketController(PersonController personController, MachineController machineController)
         {
+            AvailableRecipes = new List<Order>();
+            Cooks = new List<Cook>();
+            Orders = new List<Order>();
+            AvailableOrders = new List<Order>();
             this.PersonController = personController;
             this.DishWasherDiver = personController.DishWasherDiver;
             this.KitchenChief = personController.KitchenChief;
@@ -52,7 +45,7 @@ namespace TopChefKitchen.Controller
             Cooks.Add(personController.Cook2);
 
             Communicator.Start(5555);
-            (new Thread(CommunicationReceiver)).Start();
+            //(new Thread(CommunicationReceiver)).Start();
 
             Communicator.Connect("127.0.0.1", 4444);
             Communicator.Ready();
@@ -65,6 +58,8 @@ namespace TopChefKitchen.Controller
             while (true)
             {           
                 var obj = Communicator.ReceiveObject();
+                if (obj != null)
+                {              
                 switch (obj.Name)
                 {
                     case "List<Order>":
@@ -79,6 +74,10 @@ namespace TopChefKitchen.Controller
                         PendingTableNapkin = Serialized.Deserialize<TableNapkin>(obj);
                         GiveTableNapkin(PendingTableNapkin);
                         break;
+                    default:
+                        break;
+
+                }
                 }
             }
         }
@@ -114,17 +113,16 @@ namespace TopChefKitchen.Controller
             
         }
 
-        public void MainLoop()
-        {
-            //CommunicationReceiver();
-        }
-
         private void CommunicationSender()
         {
             Communicator.SendObject(Serialized.Serialize(AvailableRecipes));
             Communicator.SendObject(Serialized.Serialize(PersonController.GiveToSocketController()));
         }
 
+        public void MainLoop()
+        {
+            CommunicationReceiver();
+        }
     }
 
 }

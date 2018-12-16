@@ -24,6 +24,8 @@ namespace TopChefKitchen.Controller
 
         public PersonController(Stock Stock, MachineController machineController)
         {
+            Persons = new List<Person>();
+            Machines = new List<Machine>();
             this.Stock = Stock;
             KitchenChief = new KitchenChief(new Position(5, 5), 10000);
             Persons.Add(KitchenChief);

@@ -30,6 +30,7 @@ namespace TopChefKitchen.Model.Machines
        
         public CookingFire(Position position) : base(position)
         {
+
             this.IsDirty = false;
             this.Name = "CookingFire";
             this.IsStatic = false;

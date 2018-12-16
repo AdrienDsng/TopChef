@@ -5,14 +5,16 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using TopChefKitchen.Model;
+using TopChefKitchen.Model.Machines;
 using TopChefKitchen.Model.Person;
 using TopChefKitchen.Model.position;
 
 namespace TopChefKitchen.Controller
 {
-    class PersonController
+    public class PersonController
     {
         private List<Person> Persons { get; set; }
+        private List<Machine> Machines { get; set; }
         private Stock Stock { get; set; }
         public KitchenChief KitchenChief { get; set; }
         public DishWasherDiver DishWasherDiver { get; set; }
@@ -20,9 +22,9 @@ namespace TopChefKitchen.Controller
         public Cook Cook2 { get; set; }
         public Apprentice Apprentice { get; set; }
 
-        public PersonController(StockController stockController, MachineController machineController)
+        public PersonController(Stock Stock, MachineController machineController)
         {
-            Stock = stockController.Stock;
+            this.Stock = Stock;
             KitchenChief = new KitchenChief(new Position(5, 5), 10000);
             Persons.Add(KitchenChief);
             DishWasherDiver = new DishWasherDiver(new Position(5, 5), 10000, machineController.Tap);
@@ -33,6 +35,9 @@ namespace TopChefKitchen.Controller
             Persons.Add(Cook2);
             Apprentice = new Apprentice(new Position(5, 5), 10000);
             Persons.Add(Apprentice);
+
+            AddObserversOnMachines(machineController);
+            AddObserversOnPerson();
         }
 
         public void AddObserversOnMachines(MachineController machineController)
@@ -44,7 +49,7 @@ namespace TopChefKitchen.Controller
                     case "DishWasher":
                         value.AddObserver(DishWasherDiver);
                         break;
-                    case "WashingMachine":
+                    case "WashMachine":
                         value.AddObserver(DishWasherDiver);
                         break;                   
                     default:
@@ -64,13 +69,27 @@ namespace TopChefKitchen.Controller
             Apprentice.AddObserver(Cook2);
         }
 
-        void ExecuteMachine()
+        void ExecuteDishWasher()
+        {
+            Thread.Sleep(60);
+            foreach (var value in Machines)
+            {
+                if (value.Name == "DishWasher")
+                {
+                    DishWasherDiver.PowerOn(value);
+                }
+            }
+        }
+        
+        public void GiveToSocketController()
         {
 
         }
-        internal void MainLoop()
+
+        internal void MainLoop(MachineController machineController)
         {
-            throw new NotImplementedException();
+            this.Machines = machineController.Machines;
+            ExecuteDishWasher();
         }
     }
 }

@@ -191,7 +191,7 @@ namespace Common
             Byte[] digit = new Byte[1];
 
             string content = "";
-
+            int size;
             do
             {
                 Communicator.socket.Receive(digit, 1, SocketFlags.None);
@@ -207,7 +207,7 @@ namespace Common
             }
             while (true);
 
-            int.TryParse(content, out int size);
+            int.TryParse(content, out size);
 
             return size;
         }

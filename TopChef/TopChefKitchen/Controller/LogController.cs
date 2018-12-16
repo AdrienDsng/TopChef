@@ -1,16 +1,11 @@
 ﻿using System;
 using System.Diagnostics;
-using TopChefRestaurant.Model;
+using TopChefKitchen.Model;
 
 namespace TopChefKitchen.Controller
 {
     public static class LogController
     {
-        public static void Log(Event evnt)
-        {
-            Log(evnt.ToString());
-        }
-
         public static void Log(string msg)
         {
             TimeSpan t = TimeSpan.FromMilliseconds(Sleeper.Instance.TimeElapsed);

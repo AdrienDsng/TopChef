@@ -12,8 +12,14 @@ using TopChefKitchen.Model.Tool;
 
 namespace TopChefKitchen.Model.Person
 {
+    /// <summary>
+    /// Cook interface used to instancitate up to 2 apprentices
+    /// </summary>
     public class Apprentice : Person, IObservableByCook
     {
+        /// <summary>
+        /// set up all attributes
+        /// </summary>
         public static Semaphore semaphore = new Semaphore(0, 1);
         public Step Step { get; set; }
         public string ResourceNeeded { get; set; }
@@ -30,6 +36,9 @@ namespace TopChefKitchen.Model.Person
             Arrive();
         }
 
+        /// <summary>
+        /// checks dependid of it's needs if a machine is needed
+        /// </summary>
         public void CheckIfNeedToolOrMachine()
         {
             switch (Step.Resource_Needed)
@@ -102,6 +111,11 @@ namespace TopChefKitchen.Model.Person
             }
         }
 
+        /// <summary>
+        /// by passing a tool the apprentice can be rlated to the tool
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="position"></param>
         public void TakeTool(String name, Position position)
         {
             this.State = "TakingT";
@@ -110,6 +124,12 @@ namespace TopChefKitchen.Model.Person
             this.State = "Standby";
         }
 
+        /// <summary>
+        /// uses a machine or a tool to bring the recipe on step +1 and
+        /// set the recipe on the new step
+        /// </summary>
+        /// <param name="machines"></param>
+        /// <param name="tool"></param>
         public void DoStep(List<Machine> machines, Tool.Tool tool)
         {
             foreach (var value in machines)
@@ -129,6 +149,11 @@ namespace TopChefKitchen.Model.Person
             }
         }
 
+        /// <summary>
+        /// move the apprentice to the machine location and sets its state to Standby
+        /// </summary>
+        /// <param name="machine"></param>
+        /// <param name="position"></param>
         private void UseMachine(Machine machine, Position position)
         {
             this.State = "IsWorking";
@@ -136,17 +161,26 @@ namespace TopChefKitchen.Model.Person
             machine.ReadyToStart(ToolUsed);
             this.State = "Standby";
         }
-
+        /// <summary>
+        /// adds a new observer
+        /// </summary>
+        /// <param name="observer"></param>
         public void AddObserver(IObserverCook observer)
         {
             
         }
 
+        /// <summary>
+        /// deletes the previous added obserber
+        /// </summary>
+        /// <param name="observer"></param>
         public void DelObserver(IObserverCook observer)
         {
             
         }
-
+        /// <summary>
+        /// method used to notify the observer that a taks is finished
+        /// </summary>
         public void Notify()
         {
             throw new NotImplementedException();

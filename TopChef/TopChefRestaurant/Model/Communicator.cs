@@ -189,7 +189,7 @@ namespace Common
         private static int ReceiveSize()
         {
             Byte[] digit = new Byte[1];
-
+            int size;
             string content = "";
 
             do
@@ -207,7 +207,7 @@ namespace Common
             }
             while (true);
 
-            int.TryParse(content, out int size);
+            int.TryParse(content, out size);
 
             return size;
         }

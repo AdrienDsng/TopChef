@@ -19,7 +19,7 @@ namespace TopChefRestaurant.Controller
 
             Communicator.Start(5555);
             (new Thread(KitchenCommunicationReceiver)).Start();
-            
+
             Communicator.Connect("127.0.0.1", 4444);
             Communicator.Ready();
         }
@@ -31,16 +31,24 @@ namespace TopChefRestaurant.Controller
 
         private void KitchenCommunicationReceiver()
         {
-            var obj = Communicator.ReceiveObject();
-            switch (obj.Name)
+            while (true)
             {
-                case "AvailableRecipes":
-                    AvailableRecipe = Serialized.Deserialize<AvailableRecipes>(obj);
-                    break;
-                case "List<Order>":
-                    List<Order> orders = Serialized.Deserialize<List<Order>>(obj);
-                    OrdersReceived(_tableController.GetTableByName(orders[0].TableName));
-                    break;
+                var obj = Communicator.ReceiveObject();
+                if (obj == null)
+                {
+                    Thread.Sleep(Sleeper.Instance.Period);
+                    continue;
+                }
+                switch (obj.Name)
+                {
+                    case "AvailableRecipes":
+                        AvailableRecipe = Serialized.Deserialize<AvailableRecipes>(obj);
+                        break;
+                    case "List<Order>":
+                        List<Order> orders = Serialized.Deserialize<List<Order>>(obj);
+                        OrdersReceived(_tableController.GetTableByName(orders[0].TableName));
+                        break;
+                }
             }
         }
 

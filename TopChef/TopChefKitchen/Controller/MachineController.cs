@@ -58,9 +58,9 @@ namespace TopChefKitchen.Controller
         {
             foreach (var value in Machines)
             {
-                if(value.State == "WaitToStart")
+                if(value.State == "ReadyToStart")
                 { 
-                    new Thread(new ThreadStart(value.IsWorking));                        
+                    new Thread(new ThreadStart(value.IsWorking)).Start();                        
                 }              
             }
         }

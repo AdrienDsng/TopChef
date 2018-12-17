@@ -24,8 +24,8 @@ namespace TopChefKitchen.Model.Person
         private List<Order> Orders { get; set; }
         public List<Order> PendingOrders { get; set; }
         public static Semaphore semaphore = new Semaphore(0, 1);
-        private Recipe.Recipe Recipe { get; set; }
-        private Recipe.Recipe Cookrecipe { get; set; }
+        public Recipe.Recipe Recipe { get; set; }
+        public Recipe.Recipe Cookrecipe { get; set; }
         public Order ReturnRecipe { get; set; }
 
         /// <summary>
@@ -54,11 +54,20 @@ namespace TopChefKitchen.Model.Person
             {
                 if(stock.CheckIfResourceAvailable(command.Name))
                 {
+                    
                     Recipe = stock.SelectRecipe(command.Name);
                 }
             }
 
             Orders = CheckStock(commands, stock);
+        }
+        public void GetCommand(Order command, Stock stock)
+        {       
+                if (stock.CheckIfResourceAvailable(command.Name))
+                {
+                    Console.WriteLine("");
+                    Recipe = stock.SelectRecipe(command.Name);
+                }         
         }
 
         /// <summary>
@@ -68,12 +77,12 @@ namespace TopChefKitchen.Model.Person
         /// <param name="stock"></param>
         public void GiveRecipeToCook(Cook cook, Stock stock)
         {
-            if (stock.CheckIfResourceAvailable(Orders[0].Name))
-            {
-                Cookrecipe = stock.SelectRecipe(Orders[0].Name);
-            }
+            //if (stock.CheckIfResourceAvailable(Orders[0].Name))
+            //{
+            //    Cookrecipe = stock.SelectRecipe(Orders[0].Name);
+            //}
             cook.Recipe = Cookrecipe;
-            Orders.RemoveAt(0);
+           // Orders.RemoveAt(0);
             cook.ActualStep = Recipe.Steps[0];
         }
         

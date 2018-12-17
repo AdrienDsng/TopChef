@@ -99,6 +99,17 @@ namespace TopChefKitchen.Controller
                 i++;
             }                     
         }
+        private void GiveOrders(Order order)
+        {
+         
+                KitchenChief.PendingOrders.Add(order);
+            
+            if (i == 0)
+            {
+                InitializeCooks();
+                i++;
+            }
+        }
 
         private void InitializeCooks()
         {

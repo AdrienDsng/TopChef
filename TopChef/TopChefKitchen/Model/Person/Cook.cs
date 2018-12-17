@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using TopChefKitchen.Controller;
 using TopChefKitchen.Model.Interface;
 using TopChefKitchen.Model.Machines;
 using TopChefKitchen.Model.position;
@@ -40,6 +41,7 @@ namespace TopChefKitchen.Model.Person
         /// <param name="time"></param>
         public Cook( Position position, int time) : base( position, time)
         {
+            ActualStep = null;
             Observers = new List<IObserverChief>();
             Name = "Cook";
             IsAlive = true;
@@ -172,7 +174,7 @@ namespace TopChefKitchen.Model.Person
                     }
 
                 }
-                TakeTool(tool.Name, new Position(tool.Position.X, tool.Position.Y+1));
+                //TakeTool(tool.Name, new Position(tool.Position.X, tool.Position.Y+1));
                 UseMachine(MachineUsed, new Position(MachineUsed.Position.X, MachineUsed.Position.Y));
             }
            
@@ -186,6 +188,7 @@ namespace TopChefKitchen.Model.Person
         private void UseMachine(Machine machine, Position position)
         {
             this.State = "IsWorking";
+            LogController.Log(this.Name + this.State);
             Move(new Position(machine.Position.X, machine.Position.Y+1));
             machine.ReadyToStart(ToolUsed);
             this.State = "Standby";
@@ -221,8 +224,13 @@ namespace TopChefKitchen.Model.Person
         /// </summary>
         public void NextStep()
         {
-            ActualNbStep++;
-            ActualStep = Recipe.Steps[ActualNbStep];
+            
+            if (Recipe.Steps[ActualNbStep] != null)
+            {
+                ActualStep = Recipe.Steps[ActualNbStep];
+                ActualNbStep++;
+            }
+           
         }
         
         /// <summary>
@@ -274,8 +282,9 @@ namespace TopChefKitchen.Model.Person
         /// <param name="state"></param>
         /// <param name="machine"></param>
         public void Update(string state, Machine machine)
-        {         
-                if (machine.State == "Standby" && this.State == "Standby")
+        {
+            LogController.Log(this.Name + this.State);
+            if (machine.State == "Standby" && this.State == "Standby"&& MachineUsed != null)
                 {
                 MachineUsed.State = "Standby";
                 }                   

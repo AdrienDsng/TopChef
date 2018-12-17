@@ -19,7 +19,7 @@ namespace TopChefKitchen.Controller
         
         public KitchenController()
         {      
-            
+            this.Stock = new Stock();
             this.MachineController = new MachineController();          
             this.PersonController = new PersonController(Stock, MachineController);            
             this.SocketController = new SocketController(PersonController, MachineController);
@@ -33,7 +33,7 @@ namespace TopChefKitchen.Controller
             while (true)
             {                              
                 MachineController.MainLoop();
-                PersonController.MainLoop(MachineController);               
+                PersonController.MainLoop(MachineController, SocketController);               
             }
             
         }

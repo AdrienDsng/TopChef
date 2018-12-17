@@ -108,10 +108,10 @@ namespace TopChefKitchen.Controller
             
         }
 
-        private void CommunicationSender()
+        public void CommunicationSender(Order order)
         {
             Communicator.SendObject(Serialized.Serialize(AvailableRecipes));
-            Communicator.SendObject(Serialized.Serialize(PersonController.GiveToSocketController()));
+            Communicator.SendObject(Serialized.Serialize(order));
         }
 
         public void MainLoop()

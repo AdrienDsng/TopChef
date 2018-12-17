@@ -89,10 +89,10 @@ namespace TopChefKitchen.Controller
             return KitchenChief.ReturnRecipe; 
         }
 
-        internal void MainLoop(MachineController machineController)
+        internal void MainLoop(MachineController machineController,SocketController socketController)
         {
             this.Machines = machineController.Machines;          
-            GiveToSocketController();
+            socketController.CommunicationSender(GiveToSocketController());
         }
     }
 }

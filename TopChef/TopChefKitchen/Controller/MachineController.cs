@@ -10,21 +10,26 @@ using TopChefKitchen.Model.position;
 
 namespace TopChefKitchen.Controller
 {
-    class MachineController
+    public class MachineController
     {
-        public List<Machine> Machines { get; set; }
+        public List<Machine> Machines = new List<Machine>();
         private Fridge Fridge { get; set; }
         public Tap Tap { get; set; }
+        public DishWasher DishWasher { get; set; }
+        public WashMachine WashMachine { get; set; }
         public MachineController()
         {
-            Fridge = new Fridge(new Position(10, 10));
-            Machines.Add(Fridge); 
-            Machines.Add(new DishWasher(new Position(10, 9)));
+            Machines = new List<Machine>();
+            this.Fridge = new Fridge(new Position(10, 10));
+            Machines.Add(this.Fridge);
+            DishWasher = new DishWasher(new Position(10, 9));
+            Machines.Add(DishWasher);
             Machines.Add(new Oven(new Position(10, 8)));
             Tap = new Tap(new Position(10, 7));
             Machines.Add(Tap);
             Machines.Add(new Mixer(new Position(10, 6)));
-            Machines.Add(new WashMachine(new Position(10, 5)));
+            WashMachine = new WashMachine(new Position(10, 5));
+            Machines.Add(WashMachine);
             Machines.Add(new CookingFire(new Position(10, 4)));
             Machines.Add(new CookingFire(new Position(10, 3)));
             Machines.Add(new CookingFire(new Position(10, 2)));
@@ -48,21 +53,21 @@ namespace TopChefKitchen.Controller
             Machines.Add(new CookingTable(new Position(27, 26)));           
             Machines.Add(new Bar(new Position(10, 10)));
         }
-        public void MachineExecution(PersonController personController)
+
+        public void MachineExecution()
         {
             foreach (var value in Machines)
             {
                 if(value.State == "WaitToStart")
                 { 
                     new Thread(new ThreadStart(value.IsWorking));                        
-                }
-                value.Notify();
+                }              
             }
         }
 
-        internal void MainLoop(PersonController personController)
+        internal void MainLoop()
         {
-            MachineExecution(personController);
+            MachineExecution();
         }
     }
 }

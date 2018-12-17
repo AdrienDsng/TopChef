@@ -12,10 +12,16 @@ using TopChefKitchen.Model.Tool;
 
 namespace TopChefKitchen.Model.Person
 {
-    class Cook : Person, IObservableByChief, IObserverCook
+    public class Cook : Person, IObservableByChief, IObserverCook
     {
+        /// <summary>
+        /// Class used to instanciate up to 2 cooks
+        /// </summary>
         public static Semaphore semaphore = new Semaphore(0, 2);
 
+        /// <summary>
+        /// setting up the attributes
+        /// </summary>
         public List<IObserverChief> Observers { get ; set ; }
         public Recipe.Recipe Recipe { get; set; }
         public Step ActualStep { get; set; }
@@ -24,12 +30,17 @@ namespace TopChefKitchen.Model.Person
         private int ActualNbStep { get; set; }
         private Tool.Tool ToolUsed { get; set; }
         private Machine MachineUsed { get; set; }
+        private Stock Stock { get; set; }
 
        
-
+        /// <summary>
+        /// constructor of cook
+        /// </summary>
+        /// <param name="position"></param>
+        /// <param name="time"></param>
         public Cook( Position position, int time) : base( position, time)
         {
-            
+            Observers = new List<IObserverChief>();
             Name = "Cook";
             IsAlive = true;
             IsStatic = false;
@@ -38,6 +49,9 @@ namespace TopChefKitchen.Model.Person
             Arrive();
         }
 
+        /// <summary>
+        /// checks dependid of it's needs if a machine is needed
+        /// </summary>
         public void CheckIfNeedToolOrMachine()
         {
             switch (ActualStep.Resource_Needed)
@@ -110,7 +124,11 @@ namespace TopChefKitchen.Model.Person
             }
         }
 
-        public Preparation MakeRecipe(List<Machine> machines)
+        /// <summary>
+        /// iterates into each step and uses tool or machine to pass to step +1
+        /// </summary>
+        /// <param name="machines"></param>
+        public void MakeRecipe(List<Machine> machines)
         {
             
             foreach (var value in Recipe.Steps)
@@ -120,10 +138,16 @@ namespace TopChefKitchen.Model.Person
 
                 NextStep();
             }
+            
             Notify();
-            return new Preparation("Done");
+            
         }
 
+        /// <summary>
+        /// passes to step +1 with tool or machine
+        /// </summary>
+        /// <param name="machines"></param>
+        /// <param name="tool"></param>
         public void DoStep(List<Machine> machines , Tool.Tool tool)
         {
             foreach (var value in machines)
@@ -151,17 +175,14 @@ namespace TopChefKitchen.Model.Person
                 TakeTool(tool.Name, new Position(tool.Position.X, tool.Position.Y+1));
                 UseMachine(MachineUsed, new Position(MachineUsed.Position.X, MachineUsed.Position.Y));
             }
-            CheckIfCanContinue();
+           
         }
 
-        private void CheckIfCanContinue()
-        {
-            while (MachineUsed.State != "Standby")
-            {
-                Move(new Position(5, 5));
-            }
-        }
-
+        /// <summary>
+        /// set own state on working and goes to the machine to use it
+        /// </summary>
+        /// <param name="machine"></param>
+        /// <param name="position"></param>
         private void UseMachine(Machine machine, Position position)
         {
             this.State = "IsWorking";
@@ -170,6 +191,11 @@ namespace TopChefKitchen.Model.Person
             this.State = "Standby";
         }
 
+        /// <summary>
+        /// state to working and moves the cook to the fridg
+        /// sets the fridge using time to the time allowed for the fridge
+        /// </summary>
+        /// <param name="fridge"></param>
         private void PutInFridge(Fridge fridge)
         {
             this.State = "IsWorking";
@@ -179,19 +205,31 @@ namespace TopChefKitchen.Model.Person
             this.State = "Standby";
         }
 
+        /// <summary>
+        /// delegates one step to the apprentice person
+        /// </summary>
+        /// <param name="apprentice"></param>
         public void GiveStepToApprentice(Apprentice apprentice)
         {
             apprentice.Step = ActualStep;           
             apprentice.ResourceNeeded = ActualStep.Resource_Needed;            
             NextStep();
         }
-
+        
+        /// <summary>
+        /// passes to step +1
+        /// </summary>
         public void NextStep()
         {
             ActualNbStep++;
             ActualStep = Recipe.Steps[ActualNbStep];
         }
-              
+        
+        /// <summary>
+        /// bond a tool to a cook for it to complete a step
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="position"></param>
         public void TakeTool(String name, Position position)
         {
             this.State = "IsWorking";
@@ -200,25 +238,41 @@ namespace TopChefKitchen.Model.Person
             this.State = "Standby";
         }
         
+        /// <summary>
+        /// notify the observer that a recipe is finished
+        /// </summary>
         public void Notify()
         {
             foreach (var observer in Observers)
             {
-                observer.Update("state",this);
+                observer.Update("Standby",this, Stock);
             }
             
         }
 
+        /// <summary>
+        /// adds an observer
+        /// </summary>
+        /// <param name="observer"></param>
         public void AddObserver(IObserverChief observer)
         {
             Observers.Add(observer);
         }
 
+        /// <summary>
+        /// deletes an observer
+        /// </summary>
+        /// <param name="observer"></param>
         public void DelObserver(IObserverChief observer)
         {
             Observers.Remove(observer);
         }
 
+        /// <summary>
+        /// is updated by apprentice that a given step is finished
+        /// </summary>
+        /// <param name="state"></param>
+        /// <param name="machine"></param>
         public void Update(string state, Machine machine)
         {         
                 if (machine.State == "Standby" && this.State == "Standby")

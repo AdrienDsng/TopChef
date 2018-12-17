@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using TopChefKitchen.Model;
 
@@ -13,22 +14,28 @@ namespace TopChefKitchen.Controller
         public SocketController SocketController { get; set; }
         private ToolController ToolController { get; set; }
         private PersonController PersonController { get; set; }
-        private StockController StockController { get; set; }
-        //private KitchenView RestaurantView{ get; set; }
+        private Stock Stock { get; set; }
+       
         
         public KitchenController()
-        {
-            this.StockController = new StockController();
-            this.MachineController = new MachineController();
-            this.SocketController = new SocketController();
-            this.PersonController = new PersonController(StockController, MachineController);         
+        {      
+            this.Stock = new Stock();
+            this.MachineController = new MachineController();          
+            this.PersonController = new PersonController(Stock, MachineController);            
+            this.SocketController = new SocketController(PersonController, MachineController);
+            new Thread(new ThreadStart(SocketController.MainLoop));
+           
         }
 
         public void Loop()
         {
-            StockController.MainLoop();
-            MachineController.MainLoop(PersonController);
-            SocketController.MainLoop();
+            int i= 0;
+            while (true)
+            {                              
+                MachineController.MainLoop();
+                PersonController.MainLoop(MachineController, SocketController);               
+            }
+            
         }
     }
 }

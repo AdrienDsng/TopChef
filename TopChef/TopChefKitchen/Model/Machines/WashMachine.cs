@@ -10,7 +10,7 @@ using TopChefKitchen.Model.position;
 
 namespace TopChefKitchen.Model.Machines
 {
-    class WashMachine : Machine , IObservableByDiver
+    public class WashMachine : Machine , IObservableByDiver
     {
         public List<Fabric> Fabrics { get; set; }
         public static Semaphore semaphore = new Semaphore(0, 1);
@@ -18,6 +18,7 @@ namespace TopChefKitchen.Model.Machines
 
         public WashMachine(Position position) : base(position)
         {
+            Fabrics = new List<Fabric>();
             this.Name = "WashMachine";
             this.IsStatic = false;
             this.Capacity = 100000000;

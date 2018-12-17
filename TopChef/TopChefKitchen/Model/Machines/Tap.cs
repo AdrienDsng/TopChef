@@ -9,7 +9,7 @@ using TopChefKitchen.Model.position;
 
 namespace TopChefKitchen.Model.Machines
 {
-    class Tap : Machine
+    public class Tap : Machine
     {
         
         public List<Dish> Dishes { get; set; }
@@ -17,6 +17,7 @@ namespace TopChefKitchen.Model.Machines
 
         public Tap(Position position) : base(position)
         {
+            Dishes = new List<Dish>();
             this.Name = "Tap";
             this.IsStatic = false;
             this.Capacity = 1;

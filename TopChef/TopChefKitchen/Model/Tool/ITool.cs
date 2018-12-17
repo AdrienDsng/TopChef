@@ -8,7 +8,7 @@ using TopChefKitchen.Model.Recipe;
 
 namespace TopChefKitchen.Model.Tool
 {
-    interface ITool : IWashable
+    public interface ITool : IWashable
     {
         int Quantity { get; set; }
         string Size { get; set; }

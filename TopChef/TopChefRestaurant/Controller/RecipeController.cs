@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Threading;
 using Common;
 using TopChefRestaurant.Model;
@@ -9,19 +10,21 @@ namespace TopChefRestaurant.Controller
 {
     public class RecipeController
     {
-        public AvailableRecipes AvailableRecipe = new AvailableRecipes();
+        public List<Order> AvailableRecipe = new List<Order>();
         private PersonController _personController;
         private TableController _tableController;
-
+        private Dictionary<Table, List<Order>> _tableOrders = new Dictionary<Table, List<Order>>();
+        
         public RecipeController(PersonController personController)
         {
             this._personController = personController;
 
             Communicator.Start(5555);
             (new Thread(KitchenCommunicationReceiver)).Start();
-            
             Communicator.Connect("127.0.0.1", 4444);
+            Debug.WriteLine("Connected");
             Communicator.Ready();
+            Debug.WriteLine("RDY !");
         }
 
         public void SetTableController(TableController tableController)
@@ -31,22 +34,38 @@ namespace TopChefRestaurant.Controller
 
         private void KitchenCommunicationReceiver()
         {
-            var obj = Communicator.ReceiveObject();
-            switch (obj.Name)
+            while (true)
             {
-                case "AvailableRecipes":
-                    AvailableRecipe = Serialized.Deserialize<AvailableRecipes>(obj);
-                    break;
-                case "List<Order>":
-                    List<Order> orders = Serialized.Deserialize<List<Order>>(obj);
-                    OrdersReceived(_tableController.GetTableByName(orders[0].tableName));
-                    break;
+                var obj = Communicator.ReceiveObject();
+                if (obj == null)
+                {
+                    Thread.Sleep(Sleeper.Instance.Period);
+                    continue;
+                }
+                switch (obj.Name)
+                {
+                    case "List<Order>":
+                        AvailableRecipe = Serialized.Deserialize<List<Order>>(obj);
+                        break;
+                    case "Order":
+                        Order order = Serialized.Deserialize<Order>(obj);
+                        Table table = _tableController.GetTableByName(order.TableName);
+                        
+                        _tableOrders[table].Add(order);
+                        if (_tableOrders[table].Count == table.Orders.Count)
+                        {
+                            _tableOrders.Remove(table);
+                            OrdersReceived(table);
+                        }
+                        break;
+                }
             }
         }
 
-        public void SendOrders(List<Order> orders)
+        public void SendOrders(Table table)
         {
-            Communicator.SendObject(Serialized.Serialize(orders));
+            _tableOrders.Add(table, new List<Order>());
+            Communicator.SendObject(Serialized.Serialize(table.Orders));
         }
 
         public void OrdersReceived(Table table)

@@ -28,9 +28,6 @@ C:\Users\Julien\Documents\csharp\topchef\TopChef\TopChefKitchen\bin\DesktopGL\An
 C:\Users\Julien\Documents\csharp\topchef\TopChef\TopChefKitchen\bin\DesktopGL\AnyCPU\Debug\TopChefKitchen.exe
 C:\Users\Julien\Documents\csharp\topchef\TopChef\TopChefKitchen\bin\DesktopGL\AnyCPU\Debug\TopChefKitchen.pdb
 C:\Users\Julien\Documents\csharp\topchef\TopChef\TopChefKitchen\bin\DesktopGL\AnyCPU\Debug\MonoGame.Framework.dll
-C:\Users\Julien\Documents\csharp\topchef\TopChef\TopChefKitchen\obj\Debug\TopChefKitchen.csprojAssemblyReference.cache
-C:\Users\Julien\Documents\csharp\topchef\TopChef\TopChefKitchen\obj\Debug\TopChefKitchen.csproj.CoreCompileInputs.cache
-C:\Users\Julien\Documents\csharp\topchef\TopChef\TopChefKitchen\obj\Debug\TopChefKitchen.csproj.CopyComplete
 C:\Users\Julien\Documents\csharp\topchef\TopChef\TopChefKitchen\obj\Debug\TopChefKitchen.exe
 C:\Users\Julien\Documents\csharp\topchef\TopChef\TopChefKitchen\obj\Debug\TopChefKitchen.pdb
 C:\Users\mathi\Documents\1_Cesi.Exia-local\A3\ProjetTopChef\TopChef\TopChef\TopChefKitchen\obj\Debug\TopChefKitchen.csprojAssemblyReference.cache
@@ -63,3 +60,17 @@ C:\Users\mathi\Documents\1_Cesi.Exia-local\A3\ProjetTopChef\TopChef\TopChef\TopC
 C:\Users\mathi\Documents\1_Cesi.Exia-local\A3\ProjetTopChef\TopChef\TopChef\TopChefKitchen\bin\DesktopGL\AnyCPU\Debug\MonoGame.Extended.Tiled.xml
 C:\Users\mathi\Documents\1_Cesi.Exia-local\A3\ProjetTopChef\TopChef\TopChef\TopChefKitchen\bin\DesktopGL\AnyCPU\Debug\Newtonsoft.Json.xml
 C:\Users\mathi\Documents\1_Cesi.Exia-local\A3\ProjetTopChef\TopChef\TopChef\TopChefKitchen\obj\Debug\TopChefKitchen.csproj.CopyComplete
+C:\Users\Julien\Documents\csharp\topchef\TopChef\TopChefKitchen\obj\Debug\TopChefKitchen.csprojResolveAssemblyReference.cache
+C:\Users\Julien\Documents\csharp\topchef\TopChef\TopChefKitchen\bin\DesktopGL\AnyCPU\Debug\Content\kitchen.xnb
+C:\Users\Julien\Documents\csharp\topchef\TopChef\TopChefKitchen\bin\DesktopGL\AnyCPU\Debug\Content\player.xnb
+C:\Users\Julien\Documents\csharp\topchef\TopChef\TopChefKitchen\bin\DesktopGL\AnyCPU\Debug\MonoGame.Extended.dll
+C:\Users\Julien\Documents\csharp\topchef\TopChef\TopChefKitchen\bin\DesktopGL\AnyCPU\Debug\MonoGame.Extended.Graphics.dll
+C:\Users\Julien\Documents\csharp\topchef\TopChef\TopChefKitchen\bin\DesktopGL\AnyCPU\Debug\MonoGame.Extended.Tiled.dll
+C:\Users\Julien\Documents\csharp\topchef\TopChef\TopChefKitchen\bin\DesktopGL\AnyCPU\Debug\Newtonsoft.Json.dll
+C:\Users\Julien\Documents\csharp\topchef\TopChef\TopChefKitchen\bin\DesktopGL\AnyCPU\Debug\MonoGame.Extended.pdb
+C:\Users\Julien\Documents\csharp\topchef\TopChef\TopChefKitchen\bin\DesktopGL\AnyCPU\Debug\MonoGame.Extended.xml
+C:\Users\Julien\Documents\csharp\topchef\TopChef\TopChefKitchen\bin\DesktopGL\AnyCPU\Debug\MonoGame.Extended.Graphics.pdb
+C:\Users\Julien\Documents\csharp\topchef\TopChef\TopChefKitchen\bin\DesktopGL\AnyCPU\Debug\MonoGame.Extended.Graphics.xml
+C:\Users\Julien\Documents\csharp\topchef\TopChef\TopChefKitchen\bin\DesktopGL\AnyCPU\Debug\MonoGame.Extended.Tiled.pdb
+C:\Users\Julien\Documents\csharp\topchef\TopChef\TopChefKitchen\bin\DesktopGL\AnyCPU\Debug\MonoGame.Extended.Tiled.xml
+C:\Users\Julien\Documents\csharp\topchef\TopChef\TopChefKitchen\bin\DesktopGL\AnyCPU\Debug\Newtonsoft.Json.xml

@@ -9,7 +9,7 @@ namespace TopChefKitchen.Model.Interface
     //<summary>
     //Interface to Give state to classes
     //<summary>
-    interface IState
+    public interface IState
     {
         string State { get; set; }
     }

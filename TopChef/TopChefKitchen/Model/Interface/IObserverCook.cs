@@ -10,7 +10,7 @@ namespace TopChefKitchen.Model.Interface
     //<summary>
     //Interface to Observe Obervable Class for the Cook
     //<summary>
-    interface IObserverCook
+    public interface IObserverCook
     {
        void Update(string state, Machine machine);       
     }

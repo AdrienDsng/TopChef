@@ -4,12 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using TopChefKitchen.Controller;
 using TopChefKitchen.Model.Interface;
 using TopChefKitchen.Model.position;
 
 namespace TopChefKitchen.Model.Machines
 {
-    class Machine : IMachine, IState, IStatic, INamed, IPosition, IObservableByCook, IObservableByDiver
+    public class Machine : IMachine, IState, IStatic, INamed, IPosition, IObservableByCook, IObservableByDiver
     {
          
         public int Capacity { get ; set; }
@@ -18,11 +19,11 @@ namespace TopChefKitchen.Model.Machines
         public string State { get ; set; }
         public string Name { get ; set ; }
         public Position Position { get ; set; }
-        public List<IObserverCook> Observers { get ; set ; }
+        public List<IObserverCook> Observers { get ; set ; } = new List<IObserverCook>();
 
         public Machine(Position position, string name)
         {
-            this.Observers = new List<IObserverCook>();
+            
             this.Position = position;
             this.Capacity = 1;
             this.WorkingTime = 5;
@@ -55,8 +56,11 @@ namespace TopChefKitchen.Model.Machines
         public void IsWorking()
         {
             this.State = "IsWorking";
+            LogController.Log(this.Name+this.State);
             Thread.Sleep(WorkingTime);
             this.State = "Standby";
+            LogController.Log(this.Name + this.State);
+            Notify();
 
         }
 
@@ -85,12 +89,12 @@ namespace TopChefKitchen.Model.Machines
 
         public void AddObserver(IObserverDiver observer)
         {
-            throw new NotImplementedException();
+            //Observers.Add(observer);
         }
 
         public void DelObserver(IObserverDiver observer)
         {
-            throw new NotImplementedException();
+            //Observers.Remove(observer);
         }
     }
 }

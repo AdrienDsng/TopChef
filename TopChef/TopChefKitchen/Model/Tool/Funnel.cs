@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TopChefKitchen.Model.Tool
 {
-    class Funnel : Tool
+    public class Funnel : Tool
     {
         public Funnel(position.Position position) : base(position)
         {

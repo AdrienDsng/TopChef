@@ -9,7 +9,7 @@ using TopChefKitchen.Model.Recipe;
 
 namespace TopChefKitchen.Model.Tool
 {
-    class Tool : ITool, INamed , IStatic, IState, IWashable , IObservableByDiver
+    public class Tool : ITool, INamed , IStatic, IState, IWashable , IObservableByDiver
     {
         public int Quantity { get ; set ; }
         public string Size { get ; set ; }

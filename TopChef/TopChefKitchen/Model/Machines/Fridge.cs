@@ -13,7 +13,7 @@ namespace TopChefKitchen.Model.Machines
     //<summary>
     //Class Fridge : class to represent the fridge in the kitchen
     //<summary>
-    class Fridge : Machine
+    public class Fridge : Machine
     {
         //<summary>
         //List with all tools
@@ -27,7 +27,8 @@ namespace TopChefKitchen.Model.Machines
         public int i = 0;
 
         public Fridge(position.Position position) : base(position)
-        {             
+        {
+            WaitTime = new List<int>();
             this.IsStatic = false;
             this.Capacity = 10;
             this.Tools = new List<Tool.Tool>();
@@ -62,9 +63,7 @@ namespace TopChefKitchen.Model.Machines
             {
                 if (value.State == "ReadyToWait")
                 {
-                    void Sleep(){
-                        Thread.Sleep(WaitTime[i]);
-                    }
+                    
 
                     new Thread(new ThreadStart(Sleep));
                     value.State = "Standby";
@@ -73,6 +72,8 @@ namespace TopChefKitchen.Model.Machines
             }
         }
 
-
+        void Sleep(){
+            Thread.Sleep(WaitTime[i]);
+        }
     }
 }

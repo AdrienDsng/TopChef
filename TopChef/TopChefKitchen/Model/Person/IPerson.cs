@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 
 namespace TopChefKitchen.Model.Person
 {
-    interface IPerson
+    /// <summary>
+    /// interface for all person object adding worktime IsAlive and tool attributes
+    /// </summary>
+    public interface IPerson
     {
         int WorkingTime { get; set; }
         bool IsAlive { get; set; }

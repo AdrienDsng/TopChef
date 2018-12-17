@@ -11,25 +11,24 @@ namespace TopChefRestaurant.Model.Actions
     {
         private RecipeController _recipeController;
         public Table Table;
-        
+
         public TakeCommands(Table table, RecipeController recipeController) : base(60)
         {
             this.Table = table;
             this._recipeController = recipeController;
             this.Position = new Position(Table.Position.X + 1, Table.Position.Y);
         }
+
         public override void Realize()
         {
             Random random = new Random();
 
-            for (var i = 0; i < Table.Client.Number; i++)//TODO update this to check recipe availability in real time & select full menu
+            for (var i = 0; i < Table.Client.Number; i++)
             {
-                Table.Orders.Add(_recipeController.AvailableRecipe.entries[random.Next(_recipeController.AvailableRecipe.entries.Count)]);
-                Table.Orders.Add(_recipeController.AvailableRecipe.plats[random.Next(_recipeController.AvailableRecipe.plats.Count)]);
-                Table.Orders.Add(_recipeController.AvailableRecipe.desserts[random.Next(_recipeController.AvailableRecipe.desserts.Count)]);
+                Table.Orders.Add(_recipeController.AvailableRecipe[random.Next(_recipeController.AvailableRecipe.Count)]);
             }
 
-            _recipeController.SendOrders(Table.Orders);
+            _recipeController.SendOrders(Table);
             LogController.Log(new Event(this));
         }
 

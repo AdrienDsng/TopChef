@@ -13,7 +13,7 @@ namespace TopChefKitchen.Model.Machines
     //<summary>
     //Class DishWasher : class to represent DishWasher in the kitchen
     //<summary>
-    class DishWasher : Machine, IObservableByDiver
+    public class DishWasher : Machine, IObservableByDiver
     {
         //<summary>
         //List with all dish
@@ -28,6 +28,8 @@ namespace TopChefKitchen.Model.Machines
 
         public DishWasher(Position position) : base(position)
         {
+            Dishes = new List<IDish>();
+            Observers = new List<IObserverDiver>();
             this.Name = "DishWasher";
             this.IsStatic = false;
             this.Capacity = 72;

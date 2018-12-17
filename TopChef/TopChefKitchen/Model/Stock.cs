@@ -5,11 +5,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data;
 using System.Data.SqlClient;
+using System.Diagnostics;
 using TopChefKitchen.Model.Recipe;
 
 namespace TopChefKitchen.Model
 {
-    class Stock
+    public class Stock
     {
         public Recipe.Recipe Recipe { get; set; }
         private DataSet DataSet { get ; set ; }
@@ -31,9 +32,10 @@ namespace TopChefKitchen.Model
         public Stock()
         {
             Rq_sql = null;
-            Cnx = @"Data Source=DESKTOP-OR03K2O\SQLEXPRESS;Initial Catalog=sql ;Integrated Security=True";
+            Cnx = "Server=localhost;Database=sql;User Id=sa;Password=RootP4ssword!;";
             Connection = new System.Data.SqlClient.SqlConnection(Cnx);
             Connection.Open();
+            Debug.WriteLine(Connection.State);
             DataSet = new System.Data.DataSet();
             Command = null;
         }

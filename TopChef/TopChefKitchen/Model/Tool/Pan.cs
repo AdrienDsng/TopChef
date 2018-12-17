@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TopChefKitchen.Model.Tool
 {
-    class Pan : Tool
+    public class Pan : Tool
     {
         public Pan(position.Position position) : base(position)
         {

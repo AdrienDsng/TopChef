@@ -1,6 +1,6 @@
 ﻿namespace TopChefKitchen.Model
 {
-    class Order
+    public class Order
     {
         public string Name { get; set; }
         public int Type { get; set; }

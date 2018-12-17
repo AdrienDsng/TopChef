@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TopChefKitchen.Model.Interface
 {
-    interface IObservableByChief
+    public interface IObservableByChief
     {
         void AddObserver(IObserverChief observer);
         void DelObserver(IObserverChief observer);

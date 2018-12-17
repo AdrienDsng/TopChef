@@ -14,7 +14,7 @@ namespace TopChefRestaurant.Controller
     {
         private List<Client> _clients = new List<Client>();
         private PersonController _personController;
-        private TableController _tableController;
+        private TableController _tableController { get; set; }
 
         /// <summary>
         /// ClientController constructor

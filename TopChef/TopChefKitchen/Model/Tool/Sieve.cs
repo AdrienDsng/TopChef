@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TopChefKitchen.Model.Tool
 {
-    class Sieve : Tool
+    public class Sieve : Tool
     {
         public Sieve(position.Position position) : base(position)
         {

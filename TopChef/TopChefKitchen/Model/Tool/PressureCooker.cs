@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TopChefKitchen.Model.Tool
 {
-    class PressureCooker : Tool
+    public class PressureCooker : Tool
     {
         public PressureCooker(position.Position position) : base(position)
         {

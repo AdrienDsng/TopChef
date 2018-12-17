@@ -92,7 +92,7 @@ namespace TopChefKitchen.Controller
         internal void MainLoop(MachineController machineController,SocketController socketController)
         {
             this.Machines = machineController.Machines;          
-            socketController.CommunicationSender(GiveToSocketController());
+            //socketController.CommunicationSender(GiveToSocketController());
         }
     }
 }

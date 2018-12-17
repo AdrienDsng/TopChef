@@ -28,11 +28,10 @@ namespace TopChefKitchen.Model
         private int Id { get; set; }
         private Dictionary<string, int> Dictionary { get; set; }
 
-
         public Stock()
         {
             Rq_sql = null;
-            Cnx = "Server=localhost;Database=sql;User Id=sa;Password=RootP4ssword!;";
+            Cnx = @"Server=DESKTOP-OR03K2O\SQLEXPRESS;Initial Catalog=sql;Integrated Security=True;";
             Connection = new System.Data.SqlClient.SqlConnection(Cnx);
             Connection.Open();
             Debug.WriteLine(Connection.State);
@@ -169,11 +168,18 @@ namespace TopChefKitchen.Model
         private SqlDataReader GetRessourcesFromRecipe(string name)
         {
             Rq_sql = "select * from recipes where name = '" + name +"';";
-            Command = new System.Data.SqlClient.SqlCommand(Rq_sql, Connection);          
+            Command = new System.Data.SqlClient.SqlCommand(Rq_sql, Connection);
             ReaderRecipe = Command.ExecuteReader();
-            ReaderRecipe.Read();           
-            Rq_sql = "select * from recipe_resource where id_recipe =" + ReaderRecipe.GetInt32(0)+";";
-            ReaderRecipe.Close();
+            try
+            {
+                ReaderRecipe.Read();
+                Rq_sql = "select * from recipe_resource where id_recipe =" + ReaderRecipe.GetInt32(0) + ";";
+            }
+            finally
+            {
+                ReaderRecipe.Close();
+            }
+         //ReaderRecipe.Close();
             Command = new System.Data.SqlClient.SqlCommand(Rq_sql, Connection);
             ReaderRecipe_Resource = Command.ExecuteReader();
 
@@ -193,34 +199,51 @@ namespace TopChefKitchen.Model
             List<int> ids = new List<int>();
             bool isnull = true;
             ReaderRecipe_Resource = GetRessourcesFromRecipe(name);
-            ReaderRecipe_Resource.Read();
-            
-            while (ReaderRecipe_Resource.Read() != false)
-            {                                                
-                ids.Add(ReaderRecipe_Resource.GetInt32(1));
-                quantities.Add(ReaderRecipe_Resource.GetInt32(3));
+            try
+            {              
+                while (ReaderRecipe_Resource.Read() != false)
+                {
+                    ids.Add(ReaderRecipe_Resource.GetInt32(1));
+                    quantities.Add(ReaderRecipe_Resource.GetInt32(3));
+
+                    //ReaderRecipe_Resource.Read();
+                }
                 
-                ReaderRecipe_Resource.Read();
             }
-            ReaderRecipe_Resource.Close();
+            finally
+            {
+                ReaderRecipe_Resource.Close();
+            }
+            
+            
+            
             int i = 0;
             foreach (int value in ids)
             {
-                Rq_sql = "SELECT * FROM stock WHERE id = " + ids + ";" ;
+                Rq_sql = " select * from stock where id = '" + ids + "';" ; 
                 Command = new System.Data.SqlClient.SqlCommand(Rq_sql, Connection);
                 ReaderStock = Command.ExecuteReader();
-                ReaderStock.Read();
-                if (quantities[i]- ReaderStock.GetInt32(2) >= 0)
+                try
                 {
-                    isnull = true;
+                    ReaderStock.Read();
+                    if (quantities[i] - ReaderStock.GetInt32(1) >= 0)
+                    {
+                        isnull = true;
+                    }
+                    else
+                    {
+                        isnull = false;
+                    }
+                    i++;
+                    
                 }
-                else
+                finally
                 {
-                    isnull = false;
+                    ReaderRecipe_Resource.Close();
                 }
-                i++;
+                
             }
-            return isnull;          
+            return isnull;
         }
 
         public Dictionary<string , int> GetRecipeNameWithTypes()

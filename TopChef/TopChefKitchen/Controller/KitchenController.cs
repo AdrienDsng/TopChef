@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using TopChefKitchen.Model;
+using TopChefKitchen.Model.Recipe;
 
 namespace TopChefKitchen.Controller
 {
@@ -21,10 +22,11 @@ namespace TopChefKitchen.Controller
         {      
             this.Stock = new Stock();
             this.MachineController = new MachineController();          
-            this.PersonController = new PersonController(Stock, MachineController);            
-            this.SocketController = new SocketController(PersonController, MachineController);
-            new Thread(new ThreadStart(SocketController.MainLoop));
+            this.PersonController = new PersonController(Stock, MachineController);
            
+            //this.SocketController = new SocketController(PersonController, MachineController);
+            //new Thread(new ThreadStart(SocketController.MainLoop));
+
         }
 
         public void Loop()
@@ -36,6 +38,31 @@ namespace TopChefKitchen.Controller
                 PersonController.MainLoop(MachineController, SocketController);               
             }
             
+        }
+        public void TestMehtod()
+        {
+
+            Recipe recipe = new Recipe();
+            recipe.Name = "test";
+            recipe.Type = 1;
+            Step step = new Step();
+            step.Id = 1;
+            step.Resource_Needed = "CookingFire";
+            step.Nb_step = 1;
+            step.Wait_Time = 20;
+            Step step2 = new Step();
+            step.Id = 2;
+            step.Resource_Needed = "CookingKnife";
+            step.Nb_step = 2;
+            step.Wait_Time = 30;
+            recipe.Steps.Add(step);
+            recipe.Steps.Add(step2);
+            PersonController.KitchenChief.Cookrecipe = recipe;
+            PersonController.KitchenChief.Recipe = recipe;
+            PersonController.KitchenChief.GiveRecipeToCook(PersonController.Cook1, Stock);
+            PersonController.Cook1.MakeRecipe(MachineController.Machines);
+
+
         }
     }
 }

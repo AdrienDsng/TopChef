@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading;
 using TopChefKitchen.Controller;
 
 namespace TopChefKitchen
@@ -16,7 +17,11 @@ namespace TopChefKitchen
         {
             using (var game = new kitchen())
             {
+                Console.WriteLine("test");
                 KitchenController controller = new KitchenController();
+                Console.WriteLine("test");
+                new Thread(new ThreadStart(controller.TestMehtod)).Start();
+                new Thread( new ThreadStart (controller.Loop)).Start();
                 game.Run();
             }
         }

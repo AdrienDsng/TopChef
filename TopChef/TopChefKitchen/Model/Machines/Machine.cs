@@ -50,13 +50,14 @@ namespace TopChefKitchen.Model.Machines
 
         public void ReadyToStart(Tool.Tool tool)
         {
-            this.State = "WaitToStart";
+            this.State = "ReadyToStart";
         }
 
         public void IsWorking()
         {
             this.State = "IsWorking";
-            LogController.Log(this.Name+this.State);
+            
+            LogController.Log("CookingTable" + this.State);
             Thread.Sleep(WorkingTime);
             this.State = "Standby";
             LogController.Log(this.Name + this.State);
